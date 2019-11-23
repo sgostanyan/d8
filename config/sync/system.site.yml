@@ -1,0 +1,14 @@
+uuid: c19f17e2-ae3e-4b4e-9f95-b47af4ee5240
+name: 'Drupal 8'
+mail: sgostanyan@adimeo.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: fr
+default_langcode: fr
+_core:
+  default_config_hash: yTxtFqBHnEWxQswuWvkjE8mKw2t8oKuCL1q8KnfHuGE

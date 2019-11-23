@@ -1,0 +1,14 @@
+uuid: 48e55a50-e6df-4eee-ab16-0b8fd4a7e5a5
+langcode: fr
+status: true
+dependencies:
+  module:
+    - user
+_core:
+  default_config_hash: k3aUaZXGDuhkek2TZIee0PApOPTvYZLadziekdyHA5A
+id: user_search
+label: Utilisateurs
+path: user
+weight: 0
+plugin: user_search
+configuration: {  }
