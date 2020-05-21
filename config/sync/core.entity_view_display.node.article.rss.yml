@@ -7,6 +7,11 @@ dependencies:
     - field.field.node.article.body
     - field.field.node.article.comment
     - field.field.node.article.field_image
+    - field.field.node.article.field_media
+    - field.field.node.article.field_page
+    - field.field.node.article.field_paragraph
+    - field.field.node.article.field_pdf
+    - field.field.node.article.field_pdf_public
     - field.field.node.article.field_tags
     - node.type.article
   module:
@@ -25,5 +30,10 @@ hidden:
   body: true
   comment: true
   field_image: true
+  field_media: true
+  field_page: true
+  field_paragraph: true
+  field_pdf: true
+  field_pdf_public: true
   field_tags: true
   langcode: true

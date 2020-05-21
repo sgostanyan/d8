@@ -1,0 +1,23 @@
+uuid: 3d006973-4faf-4905-b753-e4901faec60b
+langcode: fr
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.token
+    - taxonomy.vocabulary.tags
+  module:
+    - text
+id: taxonomy_term.tags.token
+targetEntityType: taxonomy_term
+bundle: tags
+mode: token
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true

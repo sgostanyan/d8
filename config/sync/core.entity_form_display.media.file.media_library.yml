@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_form_mode.media.media_library
     - field.field.media.file.field_media_file
+    - field.field.media.file.field_test_file
     - media.type.file
 _core:
   default_config_hash: MoONd1Snx4wuAdOo3Xh0yr9kyIf_L5_ocp50YjG74dQ
@@ -23,6 +24,7 @@ content:
 hidden:
   created: true
   field_media_file: true
+  field_test_file: true
   name: true
   path: true
   status: true

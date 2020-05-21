@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.media.file.field_media_file
+    - field.field.media.file.field_test_file
     - media.type.file
   module:
     - file
@@ -20,6 +21,14 @@ content:
     third_party_settings: {  }
     type: file_default
     weight: 1
+    region: content
+  field_test_file:
+    weight: 2
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
     region: content
 hidden:
   created: true

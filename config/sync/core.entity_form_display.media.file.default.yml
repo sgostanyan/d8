@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.media.file.field_media_file
+    - field.field.media.file.field_test_file
     - media.type.file
   module:
     - file
@@ -27,6 +28,13 @@ content:
     third_party_settings: {  }
     type: file_generic
     weight: 0
+    region: content
+  field_test_file:
+    weight: 101
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
     region: content
   langcode:
     type: language_select
@@ -55,6 +63,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     region: content
     third_party_settings: {  }
 hidden:

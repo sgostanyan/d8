@@ -13,14 +13,11 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
-        },
-        {
-            "type": "git",
-            "url": "https://gitlab.com/sgostanyan/test-module"
         }
     ],
     "require": {
         "php": ">=7.0.8",
+        "abraham/twitteroauth": "^1.1",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
         "drupal-composer/drupal-scaffold": "^2.5",
@@ -28,11 +25,16 @@
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.7.0",
         "drupal/devel": "^2.1",
+        "drupal/entity_popin": "^1.1",
         "drupal/field_group": "^3.0",
-        "drupal/media_pdf_thumbnail": "^2.0",
+        "drupal/file_delete": "^1.0",
+        "drupal/media_pdf_thumbnail": "^3.1",
         "drupal/paragraphs": "^1.10",
         "drupal/pathauto": "^1.5",
+        "drupal/pdf_slideshow": "^2.5",
+        "drupal/views_bulk_operations": "^3.6",
         "drush/drush": "^9.0.0",
+        "sgostanyan/sg_entity_services": "dev-master",
         "spatie/pdf-to-image": "^1.8",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
@@ -79,7 +81,6 @@
             "web/core": ["type:drupal-core"],
             "web/libraries/{$name}": ["type:drupal-library"],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
-            "web/modules/sgostanyan/{$name}": ["type:drupal-module-sgostanyan"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/Commands/contrib/{$name}": ["type:drupal-drush"]

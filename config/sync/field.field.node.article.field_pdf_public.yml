@@ -1,0 +1,27 @@
+uuid: e86803b8-9f55-4c94-85db-ed3d0e30c3b6
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pdf_public
+    - node.type.article
+  module:
+    - file
+id: node.article.field_pdf_public
+field_name: field_pdf_public
+entity_type: node
+bundle: article
+label: 'PDF Public'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

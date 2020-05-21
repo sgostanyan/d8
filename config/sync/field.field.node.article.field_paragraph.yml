@@ -1,0 +1,31 @@
+uuid: ccd1515a-bb17-4dab-8820-1b315cee7040
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_paragraph
+    - node.type.article
+    - paragraphs.paragraphs_type.paragraph_test
+  module:
+    - entity_reference_revisions
+id: node.article.field_paragraph
+field_name: field_paragraph
+entity_type: node
+bundle: article
+label: Paragraph
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      paragraph_test: paragraph_test
+    target_bundles_drag_drop:
+      paragraph_test:
+        enabled: true
+        weight: 2
+field_type: entity_reference_revisions

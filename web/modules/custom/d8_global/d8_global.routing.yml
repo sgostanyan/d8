@@ -1,0 +1,8 @@
+
+d8_global.test_controller_test1:
+  path: '/admin/test1'
+  defaults:
+    _controller: '\Drupal\d8_global\Controller\TestController::test1'
+    _title: 'test1'
+  requirements:
+    _permission: 'access content'
