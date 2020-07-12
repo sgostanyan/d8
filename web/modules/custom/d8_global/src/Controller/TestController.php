@@ -17,9 +17,13 @@ class TestController extends ControllerBase {
    */
   public function test1() {
 
-    $this->testWS();
-
+   // $this->testWS();
     $this->sgEntityServices();
+
+    /**
+     * @var \Drupal\sg_entity_services\Services\SgEntityServices $sgServices
+     */
+    $sgServices = \Drupal::service('sg_entity_services.service');
 
     return [
       '#type' => 'markup',
@@ -74,20 +78,19 @@ class TestController extends ControllerBase {
 
   public function sgEntityServices() {
     $sgEntityService = \Drupal::service('sg_entity_services.service');
-    //$fid = $sgEntityService->getFileManager()->generateFileEntity('public://sources/', 'tiger.jpg', 'private://animals/');
-    $fileInfo = $sgEntityService->getFileManager()->getFileInfos(281);
-    $fileSize = $sgEntityService->getFileManager()->sanitizeFileSize(286567); //287 Ko
-    $image = $sgEntityService->getEntityDisplayManager()->imageStyleRender(298, 'thumbnail', ['class' => ['thumb-style']]);
-    $imageUrl = $sgEntityService->getImageManager()->getImageStyleUrl(298, 'thumbnail');
-    $imageStyles = $sgEntityService->getImageManager()->getImageStyles();
-    ksm($imageStyles);
+    /*$fid = $sgEntityService->getFileManager()->generateFileEntity('public://sources/', 'tiger.jpg', 'private://animals/');
+     $fileInfo = $sgEntityService->getFileManager()->getFileInfos(281);
+     $fileSize = $sgEntityService->getFileManager()->sanitizeFileSize(286567); //287 Ko
+     $image = $sgEntityService->getEntityDisplayManager()->imageStyleRender(298, 'thumbnail', ['class' => ['thumb-style']]);
+     $imageUrl = $sgEntityService->getImageManager()->getImageStyleUrl(298, 'thumbnail');
+     $imageStyles = $sgEntityService->getImageManager()->getImageStyles();*/
 
-    /* $entities = $sgEntityService->getEntityStorageManager()->getEntities('node', NULL, [4]);
+/*     $entities = $sgEntityService->getEntityStorageManager()->getEntities('node', NULL, [4]);
      $viewModes = $sgEntityService->getEntityDisplayManager()->getViewModes('node');
      $renderArray = $sgEntityService->getEntityDisplayManager()->renderEntity(reset($entities['article']));
      $markup = $sgEntityService->getEntityDisplayManager()->renderArrayToMarkup($renderArray);
      $tag = $sgEntityService->getEntityDisplayManager()->htmlTagRender('a', 'TOTO', ['href' => 'http://top.com']);
-     $markup = $sgEntityService->getEntityDisplayManager()->renderArrayToMarkup($tag);
+     $markup = $sgEntityService->getEntityDisplayManager()->renderArrayToMarkup($tag);*/
 
      $trans = [
        'en' => [
@@ -124,14 +127,14 @@ class TestController extends ControllerBase {
            'target_id' => 1,
          ],
        ],
-     ];*/
+     ];
 
 
-    /* $newEntity = Drupal::service('sg_entity_services.service')
+    $newEntity = \Drupal::service('sg_entity_services.service')
        ->getEntityStorageManager()
        ->createEntity('node', [
          'type' => 'article',
-         'title' => 'TaSoeur'], $trans);*/
+         'title' => 'TaSoeur'], $trans);
 
     /*$transEntity = Drupal::service('sg_entity_services.service')
       ->getEntityStorageManager()

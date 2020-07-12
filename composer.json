@@ -34,7 +34,7 @@
         "drupal/pdf_slideshow": "^2.5",
         "drupal/views_bulk_operations": "^3.6",
         "drush/drush": "^9.0.0",
-        "sgostanyan/sg_entity_services": "dev-master",
+        "sgostanyan/sg_entity_services": "^1.0",
         "spatie/pdf-to-image": "^1.8",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
