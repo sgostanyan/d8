@@ -32,6 +32,7 @@
         "drupal/paragraphs": "^1.10",
         "drupal/pathauto": "^1.5",
         "drupal/pdf_slideshow": "^2.5",
+        "drupal/redis": "^1.4",
         "drupal/views_bulk_operations": "^3.6",
         "drush/drush": "^9.0.0",
         "sgostanyan/sg_entity_services": "^1.0",
