@@ -18,7 +18,7 @@ before_script:
   - eval $(ssh-agent -s)
   - ssh-add <(echo "$SSH_PRIVATE_KEY")
   - mkdir -p ~/.ssh
-  - echo "$SSH_PRIVATE_KEY" > id_rsa
+  - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
   - chmod 700 ~/.ssh
 
 deploy_master:
