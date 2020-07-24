@@ -26,7 +26,7 @@ deploy_staging:
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo "$STAGING_SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
   script:
-    - cd /var/www/html/sardev/application
+ #   - cd /var/www/html/sardev/application
     - composer install -n
     - vendor/drush/drush/drush updb -y
     - vendor/drush/drush/drush cim -y
