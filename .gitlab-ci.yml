@@ -25,7 +25,7 @@ deploy:prod:
   only:
     - master
   script:
-    - touch testOK
+    - cd /var/www/html/sardev/application
     - composer install -n
     - vendor/drush/drush/drush updb -y
     - vendor/drush/drush/drush cim -y
