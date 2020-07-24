@@ -7,15 +7,15 @@ stages:
   environment:
     name: $env
     url: $url
-  before_script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval $(ssh-agent -s)
-    - ssh-add <(echo "$DEPLOYER_SECRET")
-    - mkdir -p ~/.ssh
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-    - bundle install --path vendor/bundle
-  script:
-    - bundle exec cap $env deploy
+#  before_script:
+#    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+ #   - eval $(ssh-agent -s)
+  #  - ssh-add <(echo "$DEPLOYER_SECRET")
+  #  - mkdir -p ~/.ssh
+  #  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  #  - bundle install --path vendor/bundle
+  #script:
+   # - bundle exec cap $env deploy
 
 deploy:prod:
   <<: *deploy
