@@ -1,4 +1,11 @@
+variables:
+  DOCKER_IMAGE_DEPLOY: williamyeh/ansible:alpine3
+
+stages:
+  - deploy_staging
+
 deploy_staging:
+  stage: deploy_staging
   image: $DOCKER_IMAGE_DEPLOY
   only:
     # For commits or MR in the 'master' branch.
@@ -24,5 +31,4 @@ deploy_staging:
     - vendor/drush/drush/drush updb -y
     - vendor/drush/drush/drush cim -y
     - vendor/drush/drush/drush cr
-
   when: manual
