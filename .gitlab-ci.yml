@@ -1,34 +1,42 @@
+# GitLab CI script for Drupal 8 websites.
+# @see https://www.dx-experts.nl/blog/2018/drupal-8-and-gitlab-ci-setup-guide
+# @see https://gitlab.com/dx-experts/drupal-templates-for-gitlab-ci
+#
+# This script deploys a Drupal 8 site on each commit on the master-branch.
+#
+# Preparation:
+# Save $SSH_PRIVATE_KEY first in GitLab CI variables.
 variables:
-  DOCKER_IMAGE_DEPLOY: williamyeh/ansible:alpine3
+  GIT_ROOT: "/var/www/html/sardev/application"
+  SSH_LOGIN: "ssh -p22 -oStrictHostKeyChecking=no sgostanyan@gmail.com"
+  DRUSH: "drush"
+  COMPOSER: "composer"
 
-stages:
-  - deploy_staging
+before_script:
+  # @see https://docs.gitlab.com/ee/ci/ssh_keys/
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
 
-deploy_staging:
-  stage: deploy_staging
-  image: $DOCKER_IMAGE_DEPLOY
+deploy_master:
   only:
-    # For commits or MR in the 'master' branch.
     - master
-  before_script:
-    # Run ssh-agent (inside the build environment)
-    - eval $(ssh-agent -s)
-    # Add the SSH key to the agent store.
-    # Define STAGING_SSH_PRIVATE_KEY as a Gitlab-CI secret variable in your repository.
-    # @see <a href="https://gitlab.com/jamietanna/jvt.me/commit/733627fdf9ef1aad9bb338364672bde4c5e237da">https://gitlab.com/jamietanna/jvt.me/commit/733627fdf9ef1aad9bb33836467…</a>
-    - echo -e "$DEPLOYER_SECRET" > key
-    - chmod 600 key
-    - ssh-add key
-    # Check the server's host key.
-    # Define STAGING_SSH_SERVER_HOSTKEYS as a Gitlab-CI secret variable in your repository.
-    # To get them:
-    # ssh-keyscan -H your-staging-server-IP
-    - mkdir -p ~/.ssh
-    - '[[ -f /.dockerenv ]] && echo "$STAGING_SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
   script:
- #   - cd /var/www/html/sardev/application
-    - composer install -n
-    - vendor/drush/drush/drush updb -y
-    - vendor/drush/drush/drush cim -y
-    - vendor/drush/drush/drush cr
+    - $SSH_LOGIN "cd $GIT_ROOT && git fetch --tags"
+    - $SSH_LOGIN "cd $GIT_ROOT && git pull"
+    # Never blindly run composer update on the server: https://blog.martinhujer.cz/17-tips-for-using-composer-efficiently/
+    - $SSH_LOGIN "cd $GIT_ROOT && $COMPOSER install"
+    # Updates must be run before configuration is imported
+    # https://drupal.stackexchange.com/questions/188840/what-order-should-configuration-import-and-module-updates-be-run
+    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH updatedb -y"
+    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH config-import -y"
+    # (Additional) sanitizing tasks.
+    #- $SSH_LOGIN "cd $GIT_ROOT && $DRUSH locale:check"
+    #- $SSH_LOGIN "cd $GIT_ROOT; $DRUSH locale:update"
+    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH core-cron"
+    # You should consider fine-grained cache invalidation
+    # @see https://www.dx-experts.nl/blog/2017/drupal-8-development-caching
+    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH cache-rebuild -y"
   when: manual
