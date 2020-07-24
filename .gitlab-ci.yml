@@ -19,6 +19,7 @@ before_script:
   - ssh-add <(echo "$SSH_PRIVATE_KEY")
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
+  - ls -la ~/.ssh
 
 deploy_master:
   stage: deploy
