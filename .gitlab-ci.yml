@@ -1,0 +1,7 @@
+job:
+  script:
+    - touch testOK
+    - composer install -n
+    - vendor/drush/drush/drush updb -y
+    - vendor/drush/drush/drush cim -y
+    - vendor/drush/drush/drush cr
