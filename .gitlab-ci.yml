@@ -19,13 +19,13 @@ before_script:
   - ssh-add <(echo "$SSH_PRIVATE_KEY")
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
-  - ls -la ~/.ssh
 
 deploy_master:
   stage: deploy
   only:
     - master
   script:
+    - $SSH_LOGIN
     - $SSH_LOGIN "cd $GIT_ROOT && git fetch --tags"
     - $SSH_LOGIN "cd $GIT_ROOT && git pull"
     # Never blindly run composer update on the server: https://blog.martinhujer.cz/17-tips-for-using-composer-efficiently/
