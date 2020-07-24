@@ -1,7 +1,33 @@
-job:
+stages:
+  - deploy
+
+.deploy: &deploy
+  image: ruby:latest
+  stage: deploy
+  environment:
+    name: $env
+    url: $url
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$DEPLOYER_SECRET")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - bundle install --path vendor/bundle
+  script:
+    - bundle exec cap $env deploy
+
+deploy:prod:
+  <<: *deploy
+  variables:
+    env: prod
+    url: https://troopers.agency
+  only:
+    - master
   script:
     - touch testOK
     - composer install -n
     - vendor/drush/drush/drush updb -y
     - vendor/drush/drush/drush cim -y
     - vendor/drush/drush/drush cr
+  when: manual
