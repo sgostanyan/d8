@@ -21,7 +21,7 @@ deploy:prod:
   <<: *deploy
   variables:
     env: prod
-    url: https://troopers.agency
+    url: https://sardev.tk
   only:
     - master
   script:
