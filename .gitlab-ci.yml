@@ -21,6 +21,7 @@ before_script:
   - chmod 700 ~/.ssh
 
 deploy_master:
+  stage: deploy
   only:
     - master
   script:
