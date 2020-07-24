@@ -8,7 +8,7 @@
 # Save $SSH_PRIVATE_KEY first in GitLab CI variables.
 variables:
   GIT_ROOT: "/var/www/html/sardev/application"
-  SSH_LOGIN: "ssh -p22 -oStrictHostKeyChecking=no ubuntu@sardev.tk"
+  SSH_LOGIN: "ssh ubuntu@sardev.tk"
   DRUSH: "drush"
   COMPOSER: "composer"
 
@@ -19,7 +19,6 @@ before_script:
   - ssh-add <(echo "$SSH_PRIVATE_KEY")
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
-  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
 deploy_master:
   stage: deploy
