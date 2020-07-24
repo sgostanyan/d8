@@ -1,29 +1,24 @@
-stages:
-  - deploy
-
-.deploy: &deploy
-  image: ruby:latest
-  stage: deploy
-  environment:
-    name: $env
-    url: $url
-#  before_script:
-#    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
- #   - eval $(ssh-agent -s)
-  #  - ssh-add <(echo "$DEPLOYER_SECRET")
-  #  - mkdir -p ~/.ssh
-  #  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-  #  - bundle install --path vendor/bundle
-  #script:
-   # - bundle exec cap $env deploy
-
-deploy:prod:
-  <<: *deploy
-  variables:
-    env: prod
-    url: https://sardev.tk
+deploy_staging:
+  stage: deploy_staging
+  image: $DOCKER_IMAGE_DEPLOY
   only:
+    # For commits or MR in the 'master' branch.
     - master
+  before_script:
+    # Run ssh-agent (inside the build environment)
+    - eval $(ssh-agent -s)
+    # Add the SSH key to the agent store.
+    # Define STAGING_SSH_PRIVATE_KEY as a Gitlab-CI secret variable in your repository.
+    # @see <a href="https://gitlab.com/jamietanna/jvt.me/commit/733627fdf9ef1aad9bb338364672bde4c5e237da">https://gitlab.com/jamietanna/jvt.me/commit/733627fdf9ef1aad9bb33836467…</a>
+    - echo -e "$DEPLOYER_SECRET" > key
+    - chmod 600 key
+    - ssh-add key
+    # Check the server's host key.
+    # Define STAGING_SSH_SERVER_HOSTKEYS as a Gitlab-CI secret variable in your repository.
+    # To get them:
+    # ssh-keyscan -H your-staging-server-IP
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo "$STAGING_SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
   script:
     - cd /var/www/html/sardev/application
     - composer install -n
