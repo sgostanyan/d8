@@ -19,11 +19,6 @@ before_script:
   #- echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
   - ssh-add <(echo "$SSH_PRIVATE_KEY")
   - mkdir -p ~/.ssh
-#  - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-#  - chmod 400 ~/.ssh/id_rsa
- # - eval $(ssh-agent -s)
-# - ssh-add ~/.ssh/id_rsa
-  - ls -la ~/.ssh
   - chmod 700 ~/.ssh
 
 deploy_master:
@@ -31,7 +26,6 @@ deploy_master:
   only:
     - master
   script:
-    - $SSH_LOGIN
     - $SSH_LOGIN "cd $GIT_ROOT && git fetch --tags"
     - $SSH_LOGIN "cd $GIT_ROOT && git pull"
     # Never blindly run composer update on the server: https://blog.martinhujer.cz/17-tips-for-using-composer-efficiently/
