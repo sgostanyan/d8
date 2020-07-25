@@ -9,8 +9,6 @@
 variables:
   GIT_ROOT: "/var/www/html/d8/application"
   SSH_LOGIN: "ssh -vvv -p22 -oStrictHostKeyChecking=no ubuntu@sardev.tk"
-  DRUSH: "drush"
-  COMPOSER: "composer"
 
 before_script:
   # @see https://docs.gitlab.com/ee/ci/ssh_keys/
@@ -26,14 +24,15 @@ deploy_master:
   only:
     - master
   script:
-#    - $SSH_LOGIN "cd $GIT_ROOT && git fetch --tags"
-    - $SSH_LOGIN "cd $GIT_ROOT && git pull"
+    - $SSH_LOGIN "$GIT_ROOT/deploy/run.sh"
+#   - $SSH_LOGIN "cd $GIT_ROOT && git fetch --tags"
+#    - $SSH_LOGIN "cd $GIT_ROOT && git pull"
     # Never blindly run composer update on the server: https://blog.martinhujer.cz/17-tips-for-using-composer-efficiently/
-    - $SSH_LOGIN "cd $GIT_ROOT && $COMPOSER install -n"
+#    - $SSH_LOGIN "cd $GIT_ROOT && $COMPOSER install -n"
 #    # Updates must be run before configuration is imported
 #    # https://drupal.stackexchange.com/questions/188840/what-order-should-configuration-import-and-module-updates-be-run
-    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH updatedb -y"
-    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH config-import -y"
+#    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH updatedb -y"
+#    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH config-import -y"
     # (Additional) sanitizing tasks.
     #- $SSH_LOGIN "cd $GIT_ROOT && $DRUSH locale:check"
     #- $SSH_LOGIN "cd $GIT_ROOT; $DRUSH locale:update"
