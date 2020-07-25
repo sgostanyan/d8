@@ -24,7 +24,7 @@ deploy_master:
   only:
     - master
   script:
-    - $SSH_LOGIN "cd /var/www/html/d8/application && composer install && drush updb && drush cim -y && drush cr"
+    - $SSH_LOGIN "cd /var/www/html/d8/application && git pull && composer install && drush updb && drush cim -y && drush cr"
 #    - $SSH_LOGIN "$GIT_ROOT/deploy/run.sh"
 #   - $SSH_LOGIN "cd $GIT_ROOT && git fetch --tags"
 #    - $SSH_LOGIN "cd $GIT_ROOT && git pull"
