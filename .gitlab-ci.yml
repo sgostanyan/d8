@@ -24,4 +24,4 @@ deploy_master:
     - master
   script:
     - $SSH_LOGIN "cd $GIT_ROOT && git pull && composer install && drush updb && drush cim -y && drush cr"
-  when: manual
+#  when: manual
