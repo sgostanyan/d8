@@ -26,7 +26,7 @@ deploy_master:
   only:
     - master
   script:
-    - $SSH_LOGIN
+    - $SSH_LOGIN && cd $GIT_ROOT && git pull $COMPOSER install -n && $DRUSH updb -y && $DRUSH cim -y && $DRUSH cr
 #    - $SSH_LOGIN "cd $GIT_ROOT && git fetch --tags"
  #   - $SSH_LOGIN "cd $GIT_ROOT && git pull"
     # Never blindly run composer update on the server: https://blog.martinhujer.cz/17-tips-for-using-composer-efficiently/
