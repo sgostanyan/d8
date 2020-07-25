@@ -8,7 +8,7 @@
 # Save $SSH_PRIVATE_KEY first in GitLab CI variables.
 variables:
   GIT_ROOT: "/var/www/html/d8/application"
-  SSH_LOGIN: "ssh -vvv -p22 -oStrictHostKeyChecking=no ubuntu@sardev.tk"
+  SSH_LOGIN: "ssh -v -p22 -oStrictHostKeyChecking=no ubuntu@sardev.tk"
 
 before_script:
   # @see https://docs.gitlab.com/ee/ci/ssh_keys/
@@ -25,7 +25,7 @@ deploy_master:
     - master
   script:
     - $SSH_LOGIN "pwd"
-    - $SSH_LOGIN "$GIT_ROOT/deploy/run.sh"
+#    - $SSH_LOGIN "$GIT_ROOT/deploy/run.sh"
 #   - $SSH_LOGIN "cd $GIT_ROOT && git fetch --tags"
 #    - $SSH_LOGIN "cd $GIT_ROOT && git pull"
     # Never blindly run composer update on the server: https://blog.martinhujer.cz/17-tips-for-using-composer-efficiently/
