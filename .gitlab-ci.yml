@@ -8,7 +8,7 @@
 # Save $SSH_PRIVATE_KEY first in GitLab CI variables.
 variables:
   GIT_ROOT: "/var/www/html/d8/application"
-  SSH_LOGIN: "ssh -p22 -oStrictHostKeyChecking=no ubuntu@sardev.tk"
+  SSH_LOGIN: "ssh -vvv -p22 -oStrictHostKeyChecking=no ubuntu@sardev.tk"
   DRUSH: "drush"
   COMPOSER: "composer"
 
