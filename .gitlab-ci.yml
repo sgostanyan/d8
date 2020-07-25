@@ -26,19 +26,21 @@ deploy_master:
   only:
     - master
   script:
-    - $SSH_LOGIN "cd $GIT_ROOT && git fetch --tags"
-    - $SSH_LOGIN "cd $GIT_ROOT && git pull"
+    - $SSH_LOGIN
+#    - $SSH_LOGIN "cd $GIT_ROOT && git fetch --tags"
+ #   - $SSH_LOGIN "cd $GIT_ROOT && git pull"
     # Never blindly run composer update on the server: https://blog.martinhujer.cz/17-tips-for-using-composer-efficiently/
-    - $SSH_LOGIN "cd $GIT_ROOT && $COMPOSER install"
-    # Updates must be run before configuration is imported
-    # https://drupal.stackexchange.com/questions/188840/what-order-should-configuration-import-and-module-updates-be-run
-    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH updatedb -y"
-    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH config-import -y"
+#    - $SSH_LOGIN "cd $GIT_ROOT && $COMPOSER install"
+#    # Updates must be run before configuration is imported
+#    # https://drupal.stackexchange.com/questions/188840/what-order-should-configuration-import-and-module-updates-be-run
+#    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH updatedb -y"
+#    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH config-import -y"
     # (Additional) sanitizing tasks.
     #- $SSH_LOGIN "cd $GIT_ROOT && $DRUSH locale:check"
     #- $SSH_LOGIN "cd $GIT_ROOT; $DRUSH locale:update"
-    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH core-cron"
+#    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH core-cron"
     # You should consider fine-grained cache invalidation
     # @see https://www.dx-experts.nl/blog/2017/drupal-8-development-caching
-    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH cache-rebuild -y"
+#    - $SSH_LOGIN "cd $GIT_ROOT && $DRUSH cache-rebuild -y"
   when: manual
+11
