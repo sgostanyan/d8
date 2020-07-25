@@ -14,16 +14,16 @@ variables:
 
 before_script:
   # @see https://docs.gitlab.com/ee/ci/ssh_keys/
- # - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
- # - eval $(ssh-agent -s)
- # - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
- # - mkdir -p ~/.ssh
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+  - mkdir -p ~/.ssh
 #  - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
 #  - chmod 400 ~/.ssh/id_rsa
  # - eval $(ssh-agent -s)
 # - ssh-add ~/.ssh/id_rsa
-  #- ls -la ~/.ssh
-  #- chmod 700 ~/.ssh
+  - ls -la ~/.ssh
+  - chmod 700 ~/.ssh
 
 deploy_master:
   stage: deploy
