@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "58b9d114014befbcca1bf554a1d77062",
+    "content-hash": "23d7f2ad4aac9ab002de81de3980bece",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -2863,6 +2863,9 @@
                         "[web-root]/profiles/README.txt": "assets/scaffold/files/profiles.README.txt",
                         "[web-root]/themes/README.txt": "assets/scaffold/files/themes.README.txt"
                     }
+                },
+                "patches_applied": {
+                    "TypeError: Argument 1 passed to Drupal\\views\\Plugin\\views\\field\\EntityOperations::getEntityTranslation() must implement interface Drupal\\Core\\Entity\\EntityInterface, null given,": "https://www.drupal.org/files/issues/2020-09-03/3007424-108.patch"
                 }
             },
             "autoload": {
@@ -3296,17 +3299,17 @@
         },
         {
             "name": "drupal/media_pdf_thumbnail",
-            "version": "3.5.0",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/media_pdf_thumbnail.git",
-                "reference": "8.x-3.5"
+                "reference": "8.x-3.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_pdf_thumbnail-8.x-3.5.zip",
-                "reference": "8.x-3.5",
-                "shasum": "c8e306e78a361045d4bebe68bb97b592764a7152"
+                "url": "https://ftp.drupal.org/files/projects/media_pdf_thumbnail-8.x-3.6.zip",
+                "reference": "8.x-3.6",
+                "shasum": "a80ba89003c35ac6d0fd3f8575790500ed7e7aee"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -3316,8 +3319,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.5",
-                    "datestamp": "1601139297",
+                    "version": "8.x-3.6",
+                    "datestamp": "1601156700",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"

@@ -78,6 +78,11 @@
         "patchLevel": {
             "drupal/core": "-p2"
         },
+        "patches": {
+            "drupal/core": {
+                "TypeError: Argument 1 passed to Drupal\\views\\Plugin\\views\\field\\EntityOperations::getEntityTranslation() must implement interface Drupal\\Core\\Entity\\EntityInterface, null given,": "https://www.drupal.org/files/issues/2020-09-03/3007424-108.patch"
+            }
+        },
         "installer-paths": {
             "web/core": ["type:drupal-core"],
             "web/libraries/{$name}": ["type:drupal-library"],
