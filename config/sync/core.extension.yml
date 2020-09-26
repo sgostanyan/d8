@@ -47,6 +47,7 @@ module:
   pdf_slideshow: 0
   quickedit: 0
   rdf: 0
+  redis: 0
   search: 0
   sg_entity_services: 0
   shortcut: 0
