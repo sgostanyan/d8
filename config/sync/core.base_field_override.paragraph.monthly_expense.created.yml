@@ -1,0 +1,18 @@
+uuid: 7233c52c-a41e-44d2-87af-0d15d6c196c1
+langcode: fr
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.monthly_expense
+id: paragraph.monthly_expense.created
+field_name: created
+entity_type: paragraph
+bundle: monthly_expense
+label: 'Écrit le'
+description: 'Heure de création du paragraphe.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

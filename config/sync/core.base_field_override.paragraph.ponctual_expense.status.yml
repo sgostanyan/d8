@@ -1,0 +1,22 @@
+uuid: 7e819713-4a53-403e-8de0-625b9203ab60
+langcode: fr
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.ponctual_expense
+id: paragraph.ponctual_expense.status
+field_name: status
+entity_type: paragraph
+bundle: ponctual_expense
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Activé
+  off_label: Désactivé
+field_type: boolean

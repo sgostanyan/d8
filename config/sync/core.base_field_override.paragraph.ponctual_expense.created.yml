@@ -1,0 +1,18 @@
+uuid: 66f75871-a968-4a61-ab49-f6d9fe918106
+langcode: fr
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.ponctual_expense
+id: paragraph.ponctual_expense.created
+field_name: created
+entity_type: paragraph
+bundle: ponctual_expense
+label: 'Écrit le'
+description: 'Heure de création du paragraphe.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

@@ -1,0 +1,18 @@
+uuid: 65c4d241-c27a-44d0-b89c-e5ac433b0365
+langcode: fr
+status: true
+dependencies:
+  config:
+    - comment.type.comment
+id: comment.comment.changed
+field_name: changed
+entity_type: comment
+bundle: comment
+label: Modifié
+description: 'L''heure de la dernière modification du commentaire.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

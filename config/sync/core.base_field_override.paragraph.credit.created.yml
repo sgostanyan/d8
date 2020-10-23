@@ -1,0 +1,18 @@
+uuid: 8f41cd9c-a82b-4e4f-b6e5-5ef10d54453f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.credit
+id: paragraph.credit.created
+field_name: created
+entity_type: paragraph
+bundle: credit
+label: 'Écrit le'
+description: 'Heure de création du paragraphe.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

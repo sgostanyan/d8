@@ -1,7 +1,7 @@
 (function ($, Drupal) {
   Drupal.behaviors.budgeBehavior = {
     attach: function (context, settings) {
-      $('#myTable').DataTable();
+      $('#budge').DataTable();
     }
   };
 })(jQuery, Drupal);

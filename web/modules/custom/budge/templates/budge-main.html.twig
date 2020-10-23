@@ -1,22 +1,24 @@
 {{ dpm(content) }}
 
-
-
-<table id="table_id" class="display">
+<table id="budge" class="display">
   <thead>
   <tr>
-    <th>Column 1</th>
-    <th>Column 2</th>
+    <th>Titre</th>
+    <th>Type</th>
+    <th>Date</th>
+    <th>Montant</th>
+    <th>Solde</th>
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>Row 1 Data 1</td>
-    <td>Row 1 Data 2</td>
-  </tr>
-  <tr>
-    <td>Row 2 Data 1</td>
-    <td>Row 2 Data 2</td>
-  </tr>
+  {% for item in content.sorted %}
+    <tr>
+      <td>{{ item['Titre'] }}</td>
+      <td>{{ item['Type'] }}</td>
+      <td>{{ item['Date'] }}</td>
+      <td>{{ item['Montant'] }}</td>
+      <td>{{ item['Solde'] }}</td>
+    </tr>
+  {% endfor %}
   </tbody>
 </table>

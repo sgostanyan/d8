@@ -1,0 +1,18 @@
+uuid: 97811d97-3907-4398-bae8-efbe9399bbef
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.page
+id: node.page.changed
+field_name: changed
+entity_type: node
+bundle: page
+label: Modifié
+description: 'La date à laquelle le nœud a été modifié pour la dernière fois.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

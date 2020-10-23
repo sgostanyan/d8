@@ -13,6 +13,7 @@ use Drupal\budge\Gateway\BudgeGateway;
 class BudgeManager {
 
   const FIELDS_BUDGET = [
+    'field_start_amount',
     'field_credits',
     'field_monthly_expenses',
     'field_ponctual_expenses',
@@ -49,11 +50,17 @@ class BudgeManager {
       $list = [];
       foreach (self::FIELDS_BUDGET as $field) {
         if ($budgetEntity->hasField($field)) {
-          $list[$field] = $this->manageParagraphFields($budgetEntity->get($field)->getValue());
+          if ($field !== 'field_start_amount') {
+            $list[$field] = $this->manageParagraphFields($field,
+              $budgetEntity->get($field)->getValue());
+          }
+          else {
+            $list[$field] = $budgetEntity->get($field)->getValue()[0]['value'];
+          }
         }
       }
     }
-    return isset($list) ? $list : [];
+    return $this->sortList($list);
   }
 
   /**
@@ -72,7 +79,7 @@ class BudgeManager {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  protected function manageParagraphFields($pids) {
+  protected function manageParagraphFields($type, $pids) {
     $paragraphEntities = $this->budgeGateway->fetchParagraphEntities($pids);
     $output = [];
     if (!empty($paragraphEntities)) {
@@ -80,13 +87,76 @@ class BudgeManager {
         $list = [];
         foreach (self::FIELDS_PARAGRAPHS as $field) {
           if ($paragraphEntity->hasField($field)) {
-            $list[$field] = $paragraphEntity->get($field)->getValue()[0]['value'];
+            $list[$field] = $paragraphEntity->get($field)
+              ->getValue()[0]['value'];
+            $list['type'] = $type;
           }
         }
         $output[] = $list;
       }
     }
     return $output;
+  }
+
+  /**
+   * @param array $list
+   *
+   * @return array[]
+   */
+  protected function sortList(array $list) {
+    $total = array_merge($list['field_monthly_expenses'],
+      $list['field_ponctual_expenses'],
+      $list['field_credits']);
+    $sorted = [];
+    $amount = $list['field_start_amount'];
+    $totalPonctualExpenses = 0;
+    $totalMonthlyExpenses = 0;
+    $expenses = ['monthly' => 0, 'ponctual' => 0,];
+
+    foreach ($total as $key => $item) {
+      $type = $item['type'];
+      if ($type == "field_credits") {
+        $amount += $item['field_amount'];
+        $sorted[] = [
+          'Titre' => $item['field_title'],
+          'Type' => 'Ajout',
+          'Date' => $item['field_date'],
+          'Montant' => '+' . $item['field_amount'],
+          'Solde' => $amount,
+        ];
+      }
+      elseif ($type == "field_monthly_expenses") {
+        $amount -= $item['field_amount'];
+        $totalMonthlyExpenses += $item['field_amount'];
+        $expenses['monthly'] = $totalMonthlyExpenses;
+        $sorted[] = [
+          'Titre' => $item['field_title'],
+          'Type' => 'Dépense mensuelle',
+          'Date' => $item['field_date'],
+          'Montant' => '-' . $item['field_amount'],
+          'Solde' => $amount,
+        ];
+      }
+      elseif ($type == "field_ponctual_expenses") {
+        $amount -= $item['field_amount'];
+        $totalPonctualExpenses += $item['field_amount'];
+        $expenses['ponctual'] = $totalPonctualExpenses;
+        $sorted[] = [
+          'Titre' => $item['field_title'],
+          'Type' => 'Dépense ponctuelle',
+          'Date' => $item['field_date'],
+          'Montant' => '-' . $item['field_amount'],
+          'Solde' => $amount,
+        ];
+      }
+
+    }
+    return [
+      'list' => $list,
+      'sorted' => $sorted,
+      'currentAmount' => $amount,
+      'expenses' => $expenses,
+    ];
   }
 
 }

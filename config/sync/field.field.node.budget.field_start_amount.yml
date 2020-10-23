@@ -1,0 +1,23 @@
+uuid: 7c278aac-5e20-48a5-9ac1-2fea23eea2ad
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_start_amount
+    - node.type.budget
+id: node.budget.field_start_amount
+field_name: field_start_amount
+entity_type: node
+bundle: budget
+label: 'Montant de départ'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

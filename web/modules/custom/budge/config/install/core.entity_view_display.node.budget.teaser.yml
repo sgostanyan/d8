@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.budget.field_credits
     - field.field.node.budget.field_monthly_expenses
     - field.field.node.budget.field_ponctual_expenses
+    - field.field.node.budget.field_start_amount
     - node.type.budget
   module:
     - user
@@ -24,4 +25,5 @@ hidden:
   field_credits: true
   field_monthly_expenses: true
   field_ponctual_expenses: true
+  field_start_amount: true
   langcode: true

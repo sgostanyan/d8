@@ -1,0 +1,18 @@
+uuid: ae7addd1-dd5a-4978-8f22-f34e0da4bd1c
+langcode: fr
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.credit
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: paragraph.credit
+target_entity_type_id: paragraph
+target_bundle: credit
+default_langcode: site_default
+language_alterable: false
