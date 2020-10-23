@@ -1,0 +1,23 @@
+uuid: 77add596-271b-4b20-af76-7cc6a1de53a4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_amount
+    - paragraphs.paragraphs_type.monthly_expense
+id: paragraph.monthly_expense.field_amount
+field_name: field_amount
+entity_type: paragraph
+bundle: monthly_expense
+label: Montant
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

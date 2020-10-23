@@ -1,0 +1,10 @@
+uuid: 331e76ba-63a2-4ef9-b241-a274324ff1cc
+langcode: fr
+status: true
+dependencies: {  }
+id: monthly_expense
+label: 'Dépense mensuelle'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,37 @@
+uuid: 349628dd-4704-4c1e-8636-63cd0a0bf7a2
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_credits
+    - node.type.budget
+    - paragraphs.paragraphs_type.credit
+  module:
+    - entity_reference_revisions
+id: node.budget.field_credits
+field_name: field_credits
+entity_type: node
+bundle: budget
+label: Crédits
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      credit: credit
+    target_bundles_drag_drop:
+      credit:
+        enabled: true
+        weight: 4
+      monthly_expense:
+        weight: 5
+        enabled: false
+      ponctual_expense:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

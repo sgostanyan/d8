@@ -1,0 +1,21 @@
+uuid: 991bb312-e954-4efd-9da0-c4b2041e4ec9
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_date
+    - paragraphs.paragraphs_type.ponctual_expense
+  module:
+    - datetime
+id: paragraph.ponctual_expense.field_date
+field_name: field_date
+entity_type: paragraph
+bundle: ponctual_expense
+label: Date
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

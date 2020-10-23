@@ -22,3 +22,16 @@ function budge_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+/**
+ * Implements hook_theme().
+ */
+function budge_theme($existing, $type, $theme, $path) {
+  return [
+    'budge_main' => [
+      'variables' => [
+        'content' => NULL,
+      ],
+    ],
+  ];
+}

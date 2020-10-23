@@ -1,0 +1,23 @@
+uuid: 211d5db7-dd09-4bff-94a7-d0d54a4f5312
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_amount
+    - paragraphs.paragraphs_type.ponctual_expense
+id: paragraph.ponctual_expense.field_amount
+field_name: field_amount
+entity_type: paragraph
+bundle: ponctual_expense
+label: Montant
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

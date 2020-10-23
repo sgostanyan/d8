@@ -1,0 +1,27 @@
+uuid: c77a293a-08a0-47be-9e8c-7442835a3d1a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.budget.field_credits
+    - field.field.node.budget.field_monthly_expenses
+    - field.field.node.budget.field_ponctual_expenses
+    - node.type.budget
+  module:
+    - user
+id: node.budget.teaser
+targetEntityType: node
+bundle: budget
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_credits: true
+  field_monthly_expenses: true
+  field_ponctual_expenses: true
+  langcode: true

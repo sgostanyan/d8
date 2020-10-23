@@ -1,0 +1,37 @@
+uuid: c578ccab-5c3b-48d3-b840-925c026ddcf4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_monthly_expenses
+    - node.type.budget
+    - paragraphs.paragraphs_type.monthly_expense
+  module:
+    - entity_reference_revisions
+id: node.budget.field_monthly_expenses
+field_name: field_monthly_expenses
+entity_type: node
+bundle: budget
+label: 'Dépenses mensuelles'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      monthly_expense: monthly_expense
+    target_bundles_drag_drop:
+      credit:
+        weight: 4
+        enabled: false
+      monthly_expense:
+        enabled: true
+        weight: 5
+      ponctual_expense:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,110 @@
+uuid: 24524620-cfe5-4b55-b0b0-c4d17ab267e6
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.budget.field_credits
+    - field.field.node.budget.field_monthly_expenses
+    - field.field.node.budget.field_ponctual_expenses
+    - node.type.budget
+  module:
+    - field_group
+    - paragraphs
+third_party_settings:
+  field_group:
+    group_mensuel:
+      children:
+        - field_monthly_expenses
+      parent_name: ''
+      weight: 1
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: Mensuel
+    group_ponctuel:
+      children:
+        - field_ponctual_expenses
+      parent_name: ''
+      weight: 2
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: Ponctuel
+    group_cr:
+      children:
+        - field_credits
+      parent_name: ''
+      weight: 3
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: Crédit
+id: node.budget.default
+targetEntityType: node
+bundle: budget
+mode: default
+content:
+  field_credits:
+    type: entity_reference_paragraphs
+    weight: 4
+    settings:
+      title: Paragraphe
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+    region: content
+  field_monthly_expenses:
+    type: entity_reference_paragraphs
+    weight: 2
+    settings:
+      title: Paragraphe
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+    region: content
+  field_ponctual_expenses:
+    type: entity_reference_paragraphs
+    weight: 3
+    settings:
+      title: Paragraphe
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

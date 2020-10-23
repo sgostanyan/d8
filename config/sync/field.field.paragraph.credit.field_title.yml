@@ -1,0 +1,19 @@
+uuid: f99a952d-16af-43dc-9f38-6542c68316bf
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.credit
+id: paragraph.credit.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: credit
+label: Titre
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

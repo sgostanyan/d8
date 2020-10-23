@@ -1,0 +1,8 @@
+
+budge.budge_main_controller_main:
+  path: '/budge'
+  defaults:
+    _controller: budge_main_controller_main:main
+    _title: 'Budge'
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,51 @@
+uuid: 9d8e9d1d-6baf-4d26-ab8d-211144553eb5
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.budget.field_credits
+    - field.field.node.budget.field_monthly_expenses
+    - field.field.node.budget.field_ponctual_expenses
+    - node.type.budget
+  module:
+    - entity_reference_revisions
+    - user
+id: node.budget.default
+targetEntityType: node
+bundle: budget
+mode: default
+content:
+  field_credits:
+    type: entity_reference_revisions_entity_view
+    weight: 101
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_monthly_expenses:
+    type: entity_reference_revisions_entity_view
+    weight: 102
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_ponctual_expenses:
+    type: entity_reference_revisions_entity_view
+    weight: 103
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true

@@ -1,0 +1,40 @@
+uuid: 9e2823a3-2b7c-4674-a035-a0182555ac13
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.monthly_expense.field_amount
+    - field.field.paragraph.monthly_expense.field_date
+    - field.field.paragraph.monthly_expense.field_title
+    - paragraphs.paragraphs_type.monthly_expense
+  module:
+    - datetime
+id: paragraph.monthly_expense.default
+targetEntityType: paragraph
+bundle: monthly_expense
+mode: default
+content:
+  field_amount:
+    weight: 1
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_date:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

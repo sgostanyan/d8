@@ -1,0 +1,10 @@
+uuid: 3e690c4e-9906-47ed-834c-b89d6214f713
+langcode: fr
+status: true
+dependencies: {  }
+id: ponctual_expense
+label: 'Dépense ponctuelle'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

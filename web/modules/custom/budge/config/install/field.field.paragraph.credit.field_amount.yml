@@ -1,0 +1,23 @@
+uuid: 0ffa05d5-3947-46dc-b088-003e2a6c3773
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_amount
+    - paragraphs.paragraphs_type.credit
+id: paragraph.credit.field_amount
+field_name: field_amount
+entity_type: paragraph
+bundle: credit
+label: Montant
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

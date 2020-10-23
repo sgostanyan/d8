@@ -1,0 +1,10 @@
+services:
+  #Controllers
+  budge_main_controller_main:
+    class: Drupal\budge\Controller\BudgeMainController
+    autowire: true
+
+  # Managers
+  budge.export.manager:
+    class: Drupal\budge\Manager\BudgeExportManager
+    autowire: true

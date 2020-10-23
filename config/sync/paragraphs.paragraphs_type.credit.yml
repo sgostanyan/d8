@@ -1,0 +1,10 @@
+uuid: adb16cdd-6c66-4479-8097-c6a7487c4b8f
+langcode: fr
+status: true
+dependencies: {  }
+id: credit
+label: Crédit
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

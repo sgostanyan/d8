@@ -1,0 +1,37 @@
+uuid: 4e243375-c377-4b77-b947-605ca255d5f8
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ponctual_expenses
+    - node.type.budget
+    - paragraphs.paragraphs_type.ponctual_expense
+  module:
+    - entity_reference_revisions
+id: node.budget.field_ponctual_expenses
+field_name: field_ponctual_expenses
+entity_type: node
+bundle: budget
+label: 'Dépenses ponctuelles'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      ponctual_expense: ponctual_expense
+    target_bundles_drag_drop:
+      credit:
+        weight: 4
+        enabled: false
+      monthly_expense:
+        weight: 5
+        enabled: false
+      ponctual_expense:
+        enabled: true
+        weight: 6
+field_type: entity_reference_revisions

@@ -1,0 +1,45 @@
+uuid: 91f0df5a-8ec8-416d-9664-a306bb639996
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.credit.field_amount
+    - field.field.paragraph.credit.field_date
+    - field.field.paragraph.credit.field_title
+    - paragraphs.paragraphs_type.credit
+  module:
+    - datetime
+id: paragraph.credit.default
+targetEntityType: paragraph
+bundle: credit
+mode: default
+content:
+  field_amount:
+    weight: 0
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  field_date:
+    weight: 2
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_title:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

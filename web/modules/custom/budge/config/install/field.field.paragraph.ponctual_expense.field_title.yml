@@ -1,0 +1,19 @@
+uuid: e6077163-160e-4aa8-9e7d-d6384ab250df
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.ponctual_expense
+id: paragraph.ponctual_expense.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: ponctual_expense
+label: Titre
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

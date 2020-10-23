@@ -1,0 +1,40 @@
+uuid: e68bdc3b-4b27-4b8c-813d-992e88cb8643
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ponctual_expense.field_amount
+    - field.field.paragraph.ponctual_expense.field_date
+    - field.field.paragraph.ponctual_expense.field_title
+    - paragraphs.paragraphs_type.ponctual_expense
+  module:
+    - datetime
+id: paragraph.ponctual_expense.default
+targetEntityType: paragraph
+bundle: ponctual_expense
+mode: default
+content:
+  field_amount:
+    weight: 1
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_date:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
