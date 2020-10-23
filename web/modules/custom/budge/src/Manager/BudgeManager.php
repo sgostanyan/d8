@@ -111,7 +111,7 @@ class BudgeManager {
     $amount = $list['field_start_amount'];
     $totalPonctualExpenses = 0;
     $totalMonthlyExpenses = 0;
-    $expenses = ['monthly' => 0, 'ponctual' => 0,];
+    $expenses = ['monthly' => 0, 'ponctual' => 0];
 
     foreach ($total as $key => $item) {
       $type = $item['type'];
@@ -121,32 +121,32 @@ class BudgeManager {
           'Titre' => $item['field_title'],
           'Type' => 'Ajout',
           'Date' => $item['field_date'],
-          'Montant' => '+' . $item['field_amount'],
-          'Solde' => $amount,
+          'Montant' => '+' . number_format($item['field_amount'], 2,',', ''),
+          'Solde' => number_format($amount, 2, ',', ''),
         ];
       }
       elseif ($type == "field_monthly_expenses") {
         $amount -= $item['field_amount'];
         $totalMonthlyExpenses += $item['field_amount'];
-        $expenses['monthly'] = $totalMonthlyExpenses;
+        $expenses['monthly'] = number_format($totalMonthlyExpenses, 2, ',', '');
         $sorted[] = [
           'Titre' => $item['field_title'],
           'Type' => 'Dépense mensuelle',
           'Date' => $item['field_date'],
-          'Montant' => '-' . $item['field_amount'],
-          'Solde' => $amount,
+          'Montant' => '-' . number_format($item['field_amount'],2, ',', ''),
+          'Solde' => number_format($amount, 2, ',', ''),
         ];
       }
       elseif ($type == "field_ponctual_expenses") {
         $amount -= $item['field_amount'];
         $totalPonctualExpenses += $item['field_amount'];
-        $expenses['ponctual'] = $totalPonctualExpenses;
+        $expenses['ponctual'] = number_format($totalPonctualExpenses, 2,',', '');
         $sorted[] = [
           'Titre' => $item['field_title'],
           'Type' => 'Dépense ponctuelle',
           'Date' => $item['field_date'],
-          'Montant' => '-' . $item['field_amount'],
-          'Solde' => $amount,
+          'Montant' => '-' . number_format($item['field_amount'], 2, ',', ''),
+          'Solde' => number_format($amount, 2, ',', ''),
         ];
       }
 

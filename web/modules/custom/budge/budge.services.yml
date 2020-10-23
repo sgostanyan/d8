@@ -5,6 +5,9 @@ services:
     autowire: true
 
   # Managers
+  budge.main.manager:
+    class: Drupal\budge\Manager\BudgeManager
+    autowire: true
   budge.export.manager:
     class: Drupal\budge\Manager\BudgeExportManager
     autowire: true

@@ -1,0 +1,23 @@
+uuid: 174a1d67-0462-441f-80d6-cc07dbd75915
+langcode: fr
+status: true
+dependencies:
+  module:
+    - budge
+  theme:
+    - bartik
+id: budgeoverviewblock
+theme: bartik
+region: sidebar_first
+weight: 0
+provider: null
+plugin: budge_overview_block
+settings:
+  id: budge_overview_block
+  label: 'Budge overview block'
+  provider: budge
+  label_display: '0'
+  show_monthly_expenses_amount: 1
+  show_ponctual_expenses_amount: 1
+  show_credits_amounts: 0
+visibility: {  }
