@@ -1,0 +1,5 @@
+services:
+  drush9_custom_commands.commands:
+    class: Drupal\d8_global\Drush\Drush9CustomCommands
+    tags:
+      - { name: drush.command }

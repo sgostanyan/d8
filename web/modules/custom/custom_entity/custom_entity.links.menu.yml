@@ -1,0 +1,17 @@
+
+# SL Agency menu items definition
+entity.sl_agency_entity.collection:
+  title: 'SL Agency list'
+  route_name: entity.sl_agency_entity.collection
+  description: 'List SL Agency entities'
+  parent: system.admin_structure
+  weight: 100
+
+
+# SL Agency type menu items definition
+entity.sl_agency_entity_type.collection:
+  title: 'SL Agency type'
+  route_name: entity.sl_agency_entity_type.collection
+  description: 'List SL Agency type (bundles)'
+  parent: system.admin_structure
+  weight: 99

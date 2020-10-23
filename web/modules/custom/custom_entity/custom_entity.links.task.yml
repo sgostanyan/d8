@@ -1,0 +1,17 @@
+# SL Agency routing definition
+
+entity.sl_agency_entity.canonical:
+  route_name: entity.sl_agency_entity.canonical
+  base_route: entity.sl_agency_entity.canonical
+  title: 'View'
+
+entity.sl_agency_entity.edit_form:
+  route_name: entity.sl_agency_entity.edit_form
+  base_route: entity.sl_agency_entity.canonical
+  title: 'Edit'
+
+entity.sl_agency_entity.delete_form:
+  route_name:  entity.sl_agency_entity.delete_form
+  base_route:  entity.sl_agency_entity.canonical
+  title: Delete
+  weight: 10

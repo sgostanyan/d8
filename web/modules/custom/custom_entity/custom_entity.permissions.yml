@@ -1,0 +1,22 @@
+add sl agency entities:
+  title: 'Create new SL Agency entities'
+
+administer sl agency entities:
+  title: 'Administer SL Agency entities'
+  description: 'Allow to access the administration form to configure SL Agency entities.'
+  restrict access: true
+
+delete sl agency entities:
+  title: 'Delete SL Agency entities'
+
+edit sl agency entities:
+  title: 'Edit SL Agency entities'
+
+view published sl agency entities:
+  title: 'View published SL Agency entities'
+
+view unpublished sl agency entities:
+  title: 'View unpublished SL Agency entities'
+
+permission_callbacks:
+  - \Drupal\custom_entity\SLAgencyEntityPermissions::generatePermissions
