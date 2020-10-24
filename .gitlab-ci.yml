@@ -11,18 +11,12 @@ variables:
   SSH_LOGIN: "ssh -p22 -oStrictHostKeyChecking=no ubuntu@sarven.tk"
 
 before_script:
-  #- mkdir -p ~/.ssh
-  #- echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-  #- chmod 700 ~/.ssh/id_rsa
-  #- eval "$(ssh-agent -s)"
-  #- ssh-add ~/.ssh/id_rsa
-  #- ssh-keyscan -H 'gitlab.com' >> ~/.ssh/known_hosts
-  - eval $(ssh-agent -s)
-  - cd ~
-  - touch id.rsa
-  - echo "$SSH_PRIVATE_KEY" > id.rsa
-  - chmod 700 id.rsa
-  - ssh -o StrictHostKeyChecking=no -i id.rsa $SSH_USER@$SERVER
+  - mkdir -p ~/.ssh
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+  - chmod 700 ~/.ssh/id_rsa
+  - eval "$(ssh-agent -s)"
+  - ssh-add ~/.ssh/id_rsa
+  - ssh-keyscan -H 'gitlab.com' >> ~/.ssh/known_hosts
 
 deploy_master:
   stage: deploy
