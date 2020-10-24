@@ -12,6 +12,7 @@
 /web/sites/*/settings.local.php
 /web/sites/*/settings.redis.local.php
 /web/sites/development.services.yml
+/web/.htaccess
 
 # Ignore Drupal's file directory
 /web/sites/*/files/
@@ -25,5 +26,4 @@
 
 # Ignore .env files as they are personal
 /.env
-
 ./DS_Store
