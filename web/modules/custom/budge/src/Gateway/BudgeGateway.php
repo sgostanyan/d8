@@ -108,7 +108,10 @@ class BudgeGateway {
       $data = array_merge(['type' => $type], $value);
       $entity = $entityStorage->create($data);
       $entity->save();
-      $ids[]['target_id'] = $entity->id();
+      $ids[] = [
+        'target_id' => $entity->id(),
+        'target_revision_id' => $entity->get('revision_id')->getValue()[0]['value'],
+      ];
     }
     return $ids;
   }
@@ -126,8 +129,7 @@ class BudgeGateway {
     $budgetEntity = $this->entityTypeManager->getStorage('node')->load($bid);
     if ($budgetEntity) {
       foreach ($budgetFields as $field => $values) {
-        $top='';
-        $budgetEntity->set('field_credits', ['target_id' => '13', 'target_id' => '399']);
+        $budgetEntity->set($field, $values);
       }
       return $budgetEntity->save();
     }

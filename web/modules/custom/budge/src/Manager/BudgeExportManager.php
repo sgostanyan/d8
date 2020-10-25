@@ -79,4 +79,11 @@ class BudgeExportManager {
     return Yaml::parseFile($this->filePath);
   }
 
+  /**
+   * @return string
+   */
+  public function getFilePath() {
+    return $this->filePath;
+  }
+
 }

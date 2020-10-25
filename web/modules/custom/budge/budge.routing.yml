@@ -15,18 +15,18 @@ budge.budge_main_controller_edit:
   requirements:
     _permission: 'access content'
 
-budge.budge_main_controller_export:
-  path: '/budge/export'
+budge.import_form:
+  path: '/admin/budge/import'
   defaults:
-    _controller: budge_main_controller_main:export
-    _title: 'Budge export'
+    _form: '\Drupal\budge\Form\ImportForm'
+    _title: 'ExportForm'
   requirements:
     _permission: 'access content'
 
-budge.budge_main_controller_import:
-  path: '/budge/import'
+budge.export_form:
+  path: '/admin/budge/export'
   defaults:
-    _controller: budge_main_controller_main:import
-    _title: 'Budge import'
+    _form: '\Drupal\budge\Form\ExportForm'
+    _title: 'ExportForm'
   requirements:
     _permission: 'access content'

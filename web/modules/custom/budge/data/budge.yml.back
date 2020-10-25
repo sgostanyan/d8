@@ -1,8 +1,8 @@
 list:
     field_start_amount: '2000.00'
-    field_credits: {  }
+    field_credits: [{ field_date: '2020-10-20', type: field_credits, field_amount: '23.44', field_title: Ajout }]
     field_monthly_expenses: [{ field_date: '2020-10-05', type: field_monthly_expenses, field_amount: '30.00', field_title: 'Epargne enfants' }, { field_date: '2020-10-05', type: field_monthly_expenses, field_amount: '600.00', field_title: Pension }, { field_date: '2020-10-05', type: field_monthly_expenses, field_amount: '50.00', field_title: 'Remboursement Isabelle' }, { field_date: '2020-10-05', type: field_monthly_expenses, field_amount: '53.00', field_title: Gaz/Electricité }, { field_date: '2020-10-05', type: field_monthly_expenses, field_amount: '75.20', field_title: Navigo }, { field_date: '2020-10-12', type: field_monthly_expenses, field_amount: '500.00', field_title: 'Clamart Habitat' }, { field_date: '2020-10-15', type: field_monthly_expenses, field_amount: '69.11', field_title: Matmut }, { field_date: '2020-10-15', type: field_monthly_expenses, field_amount: '367.00', field_title: Impôts }, { field_date: '2020-10-15', type: field_monthly_expenses, field_amount: '27.99', field_title: Bouygues }, { field_date: '2020-10-21', type: field_monthly_expenses, field_amount: '16.80', field_title: 'Société Générale' }]
-    field_ponctual_expenses: {  }
+    field_ponctual_expenses: [{ field_date: '2020-10-22', type: field_ponctual_expenses, field_amount: '100.00', field_title: TEST }]
 sorted:
     - { Titre: 'Epargne enfants', Type: 'Dépense mensuelle', Date: '2020-10-05', Montant: '-30,00', Solde: '1970,00' }
     - { Titre: Pension, Type: 'Dépense mensuelle', Date: '2020-10-05', Montant: '-600,00', Solde: '1370,00' }
@@ -14,7 +14,9 @@ sorted:
     - { Titre: Impôts, Type: 'Dépense mensuelle', Date: '2020-10-15', Montant: '-367,00', Solde: '255,69' }
     - { Titre: Bouygues, Type: 'Dépense mensuelle', Date: '2020-10-15', Montant: '-27,99', Solde: '227,70' }
     - { Titre: 'Société Générale', Type: 'Dépense mensuelle', Date: '2020-10-21', Montant: '-16,80', Solde: '210,90' }
-currentAmount: 210.9
+    - { Titre: TEST, Type: 'Dépense ponctuelle', Date: '2020-10-22', Montant: '-100,00', Solde: '110,90' }
+    - { Titre: Ajout, Type: Ajout, Date: '2020-10-20', Montant: '+23,44', Solde: '134,34' }
+currentAmount: 134.34
 expenses:
     monthly: '1789,10'
-    ponctual: 0
+    ponctual: '100,00'
