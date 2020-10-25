@@ -6,3 +6,27 @@ budge.budge_main_controller_main:
     _title: 'Budge'
   requirements:
     _permission: 'access content'
+
+budge.budge_main_controller_edit:
+  path: '/budge/edit'
+  defaults:
+    _controller: budge_main_controller_main:edit
+    _title: 'Budge edit'
+  requirements:
+    _permission: 'access content'
+
+budge.budge_main_controller_export:
+  path: '/budge/export'
+  defaults:
+    _controller: budge_main_controller_main:export
+    _title: 'Budge export'
+  requirements:
+    _permission: 'access content'
+
+budge.budge_main_controller_import:
+  path: '/budge/import'
+  defaults:
+    _controller: budge_main_controller_main:import
+    _title: 'Budge import'
+  requirements:
+    _permission: 'access content'

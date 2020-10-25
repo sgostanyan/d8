@@ -121,7 +121,7 @@ class BudgeManager {
           'Titre' => $item['field_title'],
           'Type' => 'Ajout',
           'Date' => $item['field_date'],
-          'Montant' => '+' . number_format($item['field_amount'], 2,',', ''),
+          'Montant' => '+' . number_format($item['field_amount'], 2, ',', ''),
           'Solde' => number_format($amount, 2, ',', ''),
         ];
       }
@@ -133,14 +133,17 @@ class BudgeManager {
           'Titre' => $item['field_title'],
           'Type' => 'Dépense mensuelle',
           'Date' => $item['field_date'],
-          'Montant' => '-' . number_format($item['field_amount'],2, ',', ''),
+          'Montant' => '-' . number_format($item['field_amount'], 2, ',', ''),
           'Solde' => number_format($amount, 2, ',', ''),
         ];
       }
       elseif ($type == "field_ponctual_expenses") {
         $amount -= $item['field_amount'];
         $totalPonctualExpenses += $item['field_amount'];
-        $expenses['ponctual'] = number_format($totalPonctualExpenses, 2,',', '');
+        $expenses['ponctual'] = number_format($totalPonctualExpenses,
+          2,
+          ',',
+          '');
         $sorted[] = [
           'Titre' => $item['field_title'],
           'Type' => 'Dépense ponctuelle',
@@ -157,6 +160,28 @@ class BudgeManager {
       'currentAmount' => $amount,
       'expenses' => $expenses,
     ];
+  }
+
+  /**
+   * @param $values
+   *
+   * @return int
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  public function createBudget($values) {
+    // Node budget.
+    $bid = $this->budgeGateway->addBudgetEntity();
+    $budgetFields = [];
+    $startAmount = $values['list']['field_start_amount'];
+    unset($values['list']['field_start_amount']);
+    // Paragraphs.
+    foreach ($values['list'] as $index => $value) {
+      $budgetFields[$index] = $this->budgeGateway->addParagraphEntity($value);
+    }
+    $budgetFields['field_start_amount'] = $startAmount;
+    return $this->budgeGateway->attachParagraphToBudget($bid, $budgetFields);
   }
 
 }

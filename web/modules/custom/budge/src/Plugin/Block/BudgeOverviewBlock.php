@@ -81,7 +81,7 @@ class BudgeOverviewBlock extends BlockBase implements ContainerFactoryPluginInte
       $html .= '<h3>';
       $html .= 'Dépenses mensuelles totales';
       $html .= '</h3>';
-      $html .= '<p>';
+      $html .= '<p style="font-weight: bold; font-size: large;">';
       $html .= $budget['expenses']['monthly'] . ' euros';
       $html .= '</p>';
       $html .= '<div>';
@@ -91,13 +91,13 @@ class BudgeOverviewBlock extends BlockBase implements ContainerFactoryPluginInte
       $html .= '<h3>';
       $html .= 'Dépenses poncuelles totales';
       $html .= '</h3>';
-      $html .= '<p>';
+      $html .= '<p style="font-weight: bold; font-size: large;">';
       $html .= $budget['expenses']['ponctual'] . ' euros';
       $html .= '</p>';
       $html .= '<div>';
     }
     $html .= '<div>';
-    return ['#markup' => $html];
+    return ['#children' => $html];
   }
 
 }
