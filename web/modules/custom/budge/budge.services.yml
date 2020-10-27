@@ -4,6 +4,10 @@ services:
     class: Drupal\budge\Controller\BudgeMainController
     autowire: true
 
+  budge_export_controller:
+    class: Drupal\budge\Controller\BudgeExportController
+    autowire: true
+
   # Managers
   budge.main.manager:
     class: Drupal\budge\Manager\BudgeManager

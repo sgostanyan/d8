@@ -39,7 +39,6 @@ class BudgeMainController extends ControllerBase {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function main() {
-
     return [
       '#theme' => 'budge_main',
       '#content' => $this->budgetManager->getBudget(),
