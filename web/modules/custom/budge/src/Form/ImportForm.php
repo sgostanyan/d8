@@ -42,6 +42,13 @@ class ImportForm extends FormBase {
   protected $messenger;
 
   /**
+   * Drupal\Core\State\State.
+   *
+   * @var \Drupal\Core\State\State
+   */
+  protected $state;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
@@ -50,6 +57,7 @@ class ImportForm extends FormBase {
     $instance->entityTypeManager = $container->get('entity_type.manager');
     $instance->fileSystem = $container->get('file_system');
     $instance->messenger = $container->get('messenger');
+    $instance->state = $container->get('state');
     return $instance;
   }
 
@@ -69,9 +77,10 @@ class ImportForm extends FormBase {
       '#title' => $this->t('YAML export'),
       '#weight' => '0',
       '#description' => t('Allowed extensions: yml'),
-      '#upload_location' => 'private://budge',
+      '#upload_location' => 'private://budge/import',
       '#upload_validators' => [
         'file_validate_extensions' => ['yml'],
+        '#default_value' => [$this->getFileId()],
       ],
     ];
     $form['submit'] = [
@@ -89,16 +98,28 @@ class ImportForm extends FormBase {
     $fid = !empty($fid) ? reset($fid) : NULL;
     $fileEntity = $fid ? File::load($fid) : NULL;
     $fileUri = $fileEntity ? $fileEntity->getFileUri() : NULL;
-    if ($fileUri) {
-      if ($this->fileSystem->copy($fileUri,
-        $this->budgeExportManager->getFilePath(),
-        TRUE)) {
-        $this->budgeExportManager->importBudget();
-      }
+    if ($fileUri && $this->budgeExportManager->importBudget($fileUri)) {
       $this->messenger->addMessage(t('Successfull imported'),
         Messenger::TYPE_STATUS);
     }
-    $this->messenger->addMessage(t('An error occurred during processing'),
-      Messenger::TYPE_ERROR);
+    else {
+      $this->messenger->addMessage(t('An error occurred during processing'),
+        Messenger::TYPE_ERROR);
+    }
   }
+
+  /**
+   * @param $fid
+   */
+  protected function setFileId($fid) {
+    $this->state->set('budge_fid', $fid);
+  }
+
+  /**
+   * @return mixed|null
+   */
+  protected function getFileId() {
+    return $this->state->get('budge_fid');
+  }
+
 }

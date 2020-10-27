@@ -3,7 +3,7 @@
 
 namespace Drupal\budge\Manager;
 
-use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\File\FileSystemInterface;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -19,26 +19,19 @@ class BudgeExportManager {
   protected $budgeManager;
 
   /**
-   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   * @var \Drupal\Core\File\FileSystemInterface
    */
-  protected $moduleHandler;
-
-  /**
-   * @var string
-   */
-  protected $filePath;
+  protected $fileSystem;
 
   /**
    * BudgeExportManager constructor.
    *
    * @param \Drupal\budge\Manager\BudgeManager $budgeManager
-   * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
+   * @param \Drupal\Core\File\FileSystemInterface $fileSystem
    */
-  public function __construct(BudgeManager $budgeManager, ModuleHandlerInterface $moduleHandler) {
+  public function __construct(BudgeManager $budgeManager, FileSystemInterface $fileSystem) {
     $this->budgeManager = $budgeManager;
-    $this->moduleHandler = $moduleHandler;
-    $this->filePath = $moduleHandler->getModule('budge')
-        ->getPath() . '/data/budge.yml';
+    $this->fileSystem = $fileSystem;
   }
 
   /**
@@ -48,42 +41,40 @@ class BudgeExportManager {
    */
   public function exportBudget() {
     $budget = $this->budgeManager->getBudget();
-    $yml = Yaml::dump($budget);
+    $yml = !empty($budget) ? Yaml::dump($budget) : NULL;
     return $yml ? $this->writeFile($yml) : FALSE;
   }
 
   /**
    * @param $yml
    *
-   * @return bool
+   * @return false|string
    */
   protected function writeFile($yml) {
-    return file_put_contents($this->filePath, $yml) ? TRUE : FALSE;
+    return $this->fileSystem->saveData($yml,
+      'private://budge/export/budge.yml') ? 'private://budge/export/budge.yml' : FALSE;
   }
 
   /**
-   * @return mixed|void
+   * @param $fileUri
+   *
+   * @return int|null
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function importBudget() {
-    $yml = $this->readFile();
+  public function importBudget($fileUri) {
+    $yml = $this->readFile($fileUri);
     return $yml ? $this->budgeManager->createBudget($yml) : NULL;
   }
 
   /**
+   * @param $fileUri
+   *
    * @return mixed
    */
-  protected function readFile() {
-    return Yaml::parseFile($this->filePath);
-  }
-
-  /**
-   * @return string
-   */
-  public function getFilePath() {
-    return $this->filePath;
+  protected function readFile($fileUri) {
+    return Yaml::parseFile($fileUri);
   }
 
 }

@@ -60,7 +60,7 @@ class BudgeManager {
         }
       }
     }
-    return $this->sortList($list);
+    return !empty($list) ? $this->sortList($list) : NULL;
   }
 
   /**

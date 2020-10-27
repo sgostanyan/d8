@@ -5,7 +5,9 @@ namespace Drupal\budge\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Messenger\Messenger;
+use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * Class ExportForm.
@@ -34,6 +36,13 @@ class ExportForm extends FormBase {
   protected $fileSystem;
 
   /**
+   * Drupal\Core\Messenger\Messenger.
+   *
+   * @var \Drupal\Core\Messenger\Messenger
+   */
+  protected $messenger;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
@@ -41,6 +50,7 @@ class ExportForm extends FormBase {
     $instance->budgeExportManager = $container->get('budge.export.manager');
     $instance->entityTypeManager = $container->get('entity_type.manager');
     $instance->fileSystem = $container->get('file_system');
+    $instance->messenger = $container->get('messenger');
     return $instance;
   }
 
@@ -66,13 +76,24 @@ class ExportForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    if ($this->budgeExportManager->exportBudget()) {
+    $fileUri = $this->budgeExportManager->exportBudget();
+    if ($fileUri) {
       $this->messenger->addMessage(t('Successfull exported'),
         Messenger::TYPE_STATUS);
+      $headers = [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'attachment;filename="' . "budge.yml" . '"',
+      ];
+      return new BinaryFileResponse(Url::fromUri($fileUri),
+        200,
+        $headers,
+        TRUE);
     }
     else {
       $this->messenger->addMessage(t('An error occurred during processing'),
         Messenger::TYPE_ERROR);
     }
   }
+
+
 }
