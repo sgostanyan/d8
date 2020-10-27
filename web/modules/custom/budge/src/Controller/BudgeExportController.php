@@ -71,7 +71,7 @@ class BudgeExportController extends ControllerBase {
         'Content-Type' => 'text/yaml',
         'Content-Disposition' => 'attachment;filename="budge.yml"',
       ]);
-      return $response->send();
+      return $response;
     }
     else {
       $this->messenger->addMessage(t('An error occurred during processing'), Messenger::TYPE_ERROR);
