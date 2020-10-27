@@ -8,6 +8,7 @@ use Drupal\Core\Messenger\Messenger;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 /**
  * Class ExportForm.
@@ -80,14 +81,12 @@ class ExportForm extends FormBase {
     if ($fileUri) {
       $this->messenger->addMessage(t('Successfull exported'),
         Messenger::TYPE_STATUS);
-      $headers = [
-        'Content-Type' => 'application/pdf',
-        'Content-Disposition' => 'attachment;filename="' . "budge.yml" . '"',
-      ];
-      return new BinaryFileResponse(Url::fromUri($fileUri),
-        200,
-        $headers,
-        TRUE);
+      $response = new BinaryFileResponse($fileUri, 200, ['Content-Type' => 'application/yml', 'Content-Disposition' => 'attachment;filename="budge.yml"']);
+      /*$response->setContentDisposition(
+        ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+        'file_name.txt'
+      );*/
+      return $response->send();
     }
     else {
       $this->messenger->addMessage(t('An error occurred during processing'),

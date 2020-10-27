@@ -19,7 +19,7 @@ budge.import_form:
   path: '/admin/budge/import'
   defaults:
     _form: '\Drupal\budge\Form\ImportForm'
-    _title: 'ExportForm'
+    _title: 'Import'
   requirements:
     _permission: 'access content'
 
@@ -27,6 +27,6 @@ budge.export_form:
   path: '/admin/budge/export'
   defaults:
     _form: '\Drupal\budge\Form\ExportForm'
-    _title: 'ExportForm'
+    _title: 'Export'
   requirements:
     _permission: 'access content'

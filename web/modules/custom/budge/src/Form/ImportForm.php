@@ -80,8 +80,8 @@ class ImportForm extends FormBase {
       '#upload_location' => 'private://budge/import',
       '#upload_validators' => [
         'file_validate_extensions' => ['yml'],
-        '#default_value' => [$this->getFileId()],
       ],
+      '#default_value' => !empty($this->getFileId()) ? [$this->getFileId()] : '',
     ];
     $form['submit'] = [
       '#type' => 'submit',
@@ -101,6 +101,7 @@ class ImportForm extends FormBase {
     if ($fileUri && $this->budgeExportManager->importBudget($fileUri)) {
       $this->messenger->addMessage(t('Successfull imported'),
         Messenger::TYPE_STATUS);
+      $this->setFileId($fid);
     }
     else {
       $this->messenger->addMessage(t('An error occurred during processing'),

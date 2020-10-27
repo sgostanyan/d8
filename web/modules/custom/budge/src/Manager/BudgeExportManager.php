@@ -3,6 +3,7 @@
 
 namespace Drupal\budge\Manager;
 
+use Drupal\Core\Extension\ModuleHandler;
 use Drupal\Core\File\FileSystemInterface;
 use Symfony\Component\Yaml\Yaml;
 
@@ -24,14 +25,21 @@ class BudgeExportManager {
   protected $fileSystem;
 
   /**
+   * @var \Drupal\Core\Extension\ModuleHandler
+   */
+  protected $moduleHandler;
+
+  /**
    * BudgeExportManager constructor.
    *
    * @param \Drupal\budge\Manager\BudgeManager $budgeManager
    * @param \Drupal\Core\File\FileSystemInterface $fileSystem
+   * @param \Drupal\Core\Extension\ModuleHandler $moduleHandler
    */
-  public function __construct(BudgeManager $budgeManager, FileSystemInterface $fileSystem) {
+  public function __construct(BudgeManager $budgeManager, FileSystemInterface $fileSystem, ModuleHandler $moduleHandler) {
     $this->budgeManager = $budgeManager;
     $this->fileSystem = $fileSystem;
+    $this->moduleHandler = $moduleHandler;
   }
 
   /**
@@ -51,8 +59,11 @@ class BudgeExportManager {
    * @return false|string
    */
   protected function writeFile($yml) {
-    return $this->fileSystem->saveData($yml,
-      'private://budge/export/budge.yml') ? 'private://budge/export/budge.yml' : FALSE;
+    $modulePath = \Drupal::moduleHandler()->getModule('budge')->getPath();
+    $destinationDirectory = $modulePath . '/data/export/';
+    $filePath = $destinationDirectory . 'budge_export.yml';
+    $this->fileSystem->prepareDirectory($destinationDirectory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+    return $this->fileSystem->saveData($yml, $filePath, FileSystemInterface::EXISTS_REPLACE) ? $filePath : FALSE;
   }
 
   /**
