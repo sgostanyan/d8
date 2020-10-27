@@ -67,11 +67,10 @@ class BudgeExportController extends ControllerBase {
   public function export() {
     $fileUri = $this->budgeExportManager->exportBudget();
     if ($fileUri) {
-      $response = new BinaryFileResponse($fileUri, 200, [
+      return new BinaryFileResponse($fileUri, 200, [
         'Content-Type' => 'text/yaml',
         'Content-Disposition' => 'attachment;filename="budge.yml"',
       ]);
-      return $response;
     }
     else {
       $this->messenger->addMessage(t('An error occurred during processing'), Messenger::TYPE_ERROR);
