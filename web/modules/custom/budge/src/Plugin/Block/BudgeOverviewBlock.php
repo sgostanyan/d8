@@ -102,4 +102,11 @@ class BudgeOverviewBlock extends BlockBase implements ContainerFactoryPluginInte
     return ['#children' => $html];
   }
 
+  /**
+   * @return int
+   */
+  public function getCacheMaxAge() {
+    return 0;
+  }
+
 }
