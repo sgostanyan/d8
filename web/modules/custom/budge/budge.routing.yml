@@ -13,7 +13,7 @@ budge.budge_main_controller_edit:
     _controller: budge_main_controller_main:edit
     _title: 'Budge edit'
   requirements:
-    _permission: 'access content'
+    _permission: 'budge'
 
 budge.import_form:
   path: '/admin/budge/import'
@@ -21,7 +21,7 @@ budge.import_form:
     _form: '\Drupal\budge\Form\ImportForm'
     _title: 'Import'
   requirements:
-    _permission: 'access content'
+    _permission: 'budge'
 
 budge.export_main:
   path: '/admin/budge/export'
@@ -29,7 +29,7 @@ budge.export_main:
     _controller: budge_export_controller:main
     _title: 'Export'
   requirements:
-    _permission: 'access content'
+    _permission: 'budge'
 
 budge.export_export:
   path: '/admin/budge/export/export'
@@ -37,4 +37,4 @@ budge.export_export:
     _controller: budge_export_controller:export
     _title: 'Budge edit'
   requirements:
-    _permission: 'access content'
+    _permission: 'budge'
