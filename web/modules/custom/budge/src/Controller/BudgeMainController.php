@@ -5,6 +5,7 @@ namespace Drupal\budge\Controller;
 use Drupal\budge\Manager\BudgeExportManager;
 use Drupal\budge\Manager\BudgeManager;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
@@ -58,6 +59,7 @@ class BudgeMainController extends ControllerBase {
     if ($budgetEntity) {
       return new RedirectResponse('/node/' . $budgetEntity->id() . '/edit?destination=/budge');
     }
+    return new RedirectResponse(Url::fromRoute('node.add', ['node_type' => 'budget'])->toString());
   }
 
 }
