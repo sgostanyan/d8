@@ -25,6 +25,7 @@
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.7.0",
         "drupal/devel": "^2.1",
+        "drupal/entity_clone": "^1.0@beta",
         "drupal/entity_popin": "^1.1",
         "drupal/field_group": "^3.0",
         "drupal/file_delete": "^1.0",

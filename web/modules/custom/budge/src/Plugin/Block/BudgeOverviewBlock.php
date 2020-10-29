@@ -18,9 +18,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class BudgeOverviewBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
-   * Drupal\Core\DependencyInjection\ContainerInjectionInterface definition.
+   * Drupal\budge\Manager\BudgeManager definition.
    *
-   * @var \Drupal\Core\DependencyInjection\ContainerInjectionInterface
+   * @var \Drupal\budge\Manager\BudgeManager
    */
   protected $budgeManager;
 
@@ -73,31 +73,33 @@ class BudgeOverviewBlock extends BlockBase implements ContainerFactoryPluginInte
    */
   public function build() {
 
-    $budget = $this->budgeManager->getBudget();
+    $budgets = $this->budgeManager->getBudgets();
     $html = '';
-    if (!empty($budget)) {
-      $html = '<div>';
-      if ($this->configuration['show_monthly_expenses_amount']) {
+    if (!empty($budgets)) {
+      foreach ($budgets as $budget) {
         $html .= '<div>';
-        $html .= '<h3>';
-        $html .= 'Dépenses mensuelles totales';
-        $html .= '</h3>';
-        $html .= '<p style="font-weight: bold; font-size: large;">';
-        $html .= $budget['expenses']['monthly'] . ' euros';
-        $html .= '</p>';
+        if ($this->configuration['show_monthly_expenses_amount']) {
+          $html .= '<div>';
+          $html .= '<h3>';
+          $html .= 'Dépenses mensuelles totales';
+          $html .= '</h3>';
+          $html .= '<p style="font-weight: bold; font-size: large;">';
+          $html .= $budget['expenses']['monthly'] . ' euros';
+          $html .= '</p>';
+          $html .= '<div>';
+        }
+        if ($this->configuration['show_ponctual_expenses_amount']) {
+          $html .= '<div>';
+          $html .= '<h3>';
+          $html .= 'Dépenses poncuelles totales';
+          $html .= '</h3>';
+          $html .= '<p style="font-weight: bold; font-size: large;">';
+          $html .= $budget['expenses']['ponctual'] . ' euros';
+          $html .= '</p>';
+          $html .= '<div>';
+        }
         $html .= '<div>';
       }
-      if ($this->configuration['show_ponctual_expenses_amount']) {
-        $html .= '<div>';
-        $html .= '<h3>';
-        $html .= 'Dépenses poncuelles totales';
-        $html .= '</h3>';
-        $html .= '<p style="font-weight: bold; font-size: large;">';
-        $html .= $budget['expenses']['ponctual'] . ' euros';
-        $html .= '</p>';
-        $html .= '<div>';
-      }
-      $html .= '<div>';
     }
     return ['#children' => $html];
   }

@@ -48,8 +48,8 @@ class BudgeExportManager {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function exportBudget() {
-    $budget = $this->budgeManager->getBudget();
-    $yml = !empty($budget) ? Yaml::dump($budget) : NULL;
+    $budgets = $this->budgeManager->getBudgets();
+    $yml = !empty($budgets) ? Yaml::dump($budgets) : NULL;
     return $yml ? $this->writeFile($yml) : FALSE;
   }
 

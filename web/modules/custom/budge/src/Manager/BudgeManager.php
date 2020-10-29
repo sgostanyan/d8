@@ -44,27 +44,32 @@ class BudgeManager {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getBudget() {
-    $budgetEntity = $this->getBudgetEntity();
-    if ($budgetEntity) {
-      $list = [];
-      foreach (self::FIELDS_BUDGET as $field) {
-        if ($budgetEntity->hasField($field)) {
-          if ($field !== 'field_start_amount') {
-            $list[$field] = $this->manageParagraphFields($field,
-              $budgetEntity->get($field)->getValue());
-          }
-          else {
-            $list[$field] = $budgetEntity->get($field)->getValue()[0]['value'];
+  public function getBudgets() {
+    $budgetEntities = $this->getBudgetEntity();
+    $budgets = [];
+    if ($budgetEntities) {
+      foreach ($budgetEntities as $budgetEntity) {
+        $list['budge_name'] = $budgetEntity->label();
+        foreach (self::FIELDS_BUDGET as $field) {
+          $list['id'] = $budgetEntity->id();
+          if ($budgetEntity->hasField($field)) {
+            if ($field !== 'field_start_amount') {
+              $list[$field] = $this->manageParagraphFields($field,
+                $budgetEntity->get($field)->getValue());
+            }
+            else {
+              $list[$field] = $budgetEntity->get($field)->getValue()[0]['value'];
+            }
           }
         }
+        $budgets[] = $this->sortList($list);
       }
     }
-    return !empty($list) ? $this->sortList($list) : NULL;
+    return !empty($budgets) ? $budgets  : NULL;
   }
 
   /**
-   * @return \Drupal\Core\Entity\EntityInterface|null
+   * @return \Drupal\Core\Entity\EntityInterface[]|null
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */

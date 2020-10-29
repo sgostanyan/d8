@@ -8,7 +8,7 @@ budge.budge_main_controller_main:
     _permission: 'access content'
 
 budge.budge_main_controller_edit:
-  path: '/budge/edit'
+  path: '/budge/edit/{nid}'
   defaults:
     _controller: budge_main_controller_main:edit
     _title: 'Budge edit'

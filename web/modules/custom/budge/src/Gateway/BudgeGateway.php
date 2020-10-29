@@ -30,14 +30,14 @@ class BudgeGateway {
   }
 
   /**
-   * @return \Drupal\Core\Entity\EntityInterface|null
+   * @return \Drupal\Core\Entity\EntityInterface[]|null
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function fetchBudgeEntity() {
-    $bid = $this->fetchBudge();
-    return !empty($bid) ? $this->entityTypeManager->getStorage('node')
-      ->load(reset($bid)) : NULL;
+    $bids = $this->fetchBudge();
+    return !empty($bids) ? $this->entityTypeManager->getStorage('node')
+      ->loadMultiple($bids) : NULL;
   }
 
   /**
@@ -49,8 +49,7 @@ class BudgeGateway {
     return $this->entityTypeManager->getStorage('node')
       ->getQuery()
       ->condition('type', 'budget')
-      ->sort('created', 'DESC')
-      ->range(0, 1)
+      ->sort('changed', 'DESC')
       ->execute();
   }
 

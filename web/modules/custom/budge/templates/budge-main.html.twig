@@ -1,6 +1,7 @@
-<div style="margin-bottom: 1em; display: flex;">
+
+<div style="margin-bottom: 3em; display: flex;">
   <div>
-    <a href="/budge/edit" class="button">Editer</a>
+    <a href="/node/add/budget/node/add/budget" class="button">Ajouter</a>
   </div>
   <div>
     <a href="/admin/budge/import?destination=/budge" class="button" style="margin-left: 1em;">Importer</a>
@@ -10,25 +11,34 @@
   </div>
 </div>
 
-<table id="budge" class="display">
-  <thead>
-  <tr>
-    <th>Titre</th>
-    <th>Type</th>
-    <th>Date</th>
-    <th>Montant</th>
-    <th>Solde</th>
-  </tr>
-  </thead>
-  <tbody>
-  {% for item in content.sorted %}
+{% for budget in content %}
+  <h2>{{ budget.list['budge_name'] }}</h2>
+  <div style="margin-bottom: 1em; display: flex;">
+    <div>
+      <a href="/budge/edit/{{ budget.list['id'] }}" class="button">Editer</a>
+    </div>
+  </div>
+
+  <table id="budge" class="display">
+    <thead>
     <tr>
-      <td>{{ item['Titre'] }}</td>
-      <td>{{ item['Type'] }}</td>
-      <td>{{ item['Date'] }}</td>
-      <td>{{ item['Montant'] }}</td>
-      <td>{{ item['Solde'] }}</td>
+      <th>Titre</th>
+      <th>Type</th>
+      <th>Date</th>
+      <th>Montant</th>
+      <th>Solde</th>
     </tr>
-  {% endfor %}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    {% for item in budget.sorted %}
+      <tr>
+        <td>{{ item['Titre'] }}</td>
+        <td>{{ item['Type'] }}</td>
+        <td>{{ item['Date'] }}</td>
+        <td>{{ item['Montant'] }}</td>
+        <td>{{ item['Solde'] }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endfor %}

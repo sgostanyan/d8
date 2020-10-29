@@ -42,7 +42,7 @@ class BudgeMainController extends ControllerBase {
   public function main() {
     return [
       '#theme' => 'budge_main',
-      '#content' => $this->budgetManager->getBudget(),
+      '#content' => $this->budgetManager->getBudgets(),
       '#attached' => [
         'library' => 'budge/budge',
       ],
@@ -50,16 +50,12 @@ class BudgeMainController extends ControllerBase {
   }
 
   /**
+   * @param $nid
+   *
    * @return \Symfony\Component\HttpFoundation\RedirectResponse
-   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
-   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function edit() {
-    $budgetEntity = $this->budgetManager->getBudgetEntity();
-    if ($budgetEntity) {
-      return new RedirectResponse('/node/' . $budgetEntity->id() . '/edit?destination=/budge');
-    }
-    return new RedirectResponse(Url::fromRoute('node.add', ['node_type' => 'budget'])->toString());
+  public function edit($nid) {
+    return new RedirectResponse('/node/' . $nid . '/edit?destination=/budge');
   }
 
 }
