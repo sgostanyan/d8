@@ -1,11 +1,13 @@
 (function ($, Drupal) {
   Drupal.behaviors.budgeBehavior = {
     attach: function (context, settings) {
-      $('#budge').once().DataTable(
-        {
-          "pageLength": 50,
-        }
-      );
+      $('table.budge').once().each(function () {
+        $(this).DataTable(
+          {
+            "pageLength": 50,
+          }
+        );
+      });
     }
   };
 })(jQuery, Drupal);
