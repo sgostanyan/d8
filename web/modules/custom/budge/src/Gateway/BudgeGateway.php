@@ -49,6 +49,7 @@ class BudgeGateway {
     return $this->entityTypeManager->getStorage('node')
       ->getQuery()
       ->condition('type', 'budget')
+      ->sort('created', 'DESC')
       ->range(0, 1)
       ->execute();
   }
