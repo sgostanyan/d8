@@ -49,23 +49,23 @@ class BudgeManager {
     $budgets = [];
     if ($budgetEntities) {
       foreach ($budgetEntities as $budgetEntity) {
-        $list['budge_name'] = $budgetEntity->label();
+        $list['title'] = $budgetEntity->label();
         foreach (self::FIELDS_BUDGET as $field) {
-          $list['id'] = $budgetEntity->id();
           if ($budgetEntity->hasField($field)) {
             if ($field !== 'field_start_amount') {
               $list[$field] = $this->manageParagraphFields($field,
                 $budgetEntity->get($field)->getValue());
             }
             else {
-              $list[$field] = $budgetEntity->get($field)->getValue()[0]['value'];
+              $list[$field] = $budgetEntity->get($field)
+                ->getValue()[0]['value'];
             }
           }
         }
-        $budgets[] = $this->sortList($list);
+        $budgets[$budgetEntity->id()] = $this->sortList($list);
       }
     }
-    return !empty($budgets) ? $budgets  : NULL;
+    return !empty($budgets) ? $budgets : NULL;
   }
 
   /**
@@ -74,7 +74,7 @@ class BudgeManager {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function getBudgetEntity() {
-    return $this->budgeGateway->fetchBudgeEntity();
+    return $this->budgeGateway->fetchBudgetEntities();
   }
 
   /**
@@ -168,25 +168,33 @@ class BudgeManager {
   }
 
   /**
-   * @param $values
+   * @param $budgets
    *
    * @return int
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function createBudget($values) {
-    // Node budget.
-    $bid = $this->budgeGateway->addBudgetEntity();
-    $budgetFields = [];
-    $startAmount = $values['list']['field_start_amount'];
-    unset($values['list']['field_start_amount']);
-    // Paragraphs.
-    foreach ($values['list'] as $index => $value) {
-      $budgetFields[$index] = $this->budgeGateway->addParagraphEntity($value);
+  public function createBudget($budgets) {
+    $this->budgeGateway->deleteAllBudgets();
+    foreach ($budgets as $values) {
+      // Node budget.
+      $bid = $this->budgeGateway->addBudgetEntity($values['list']['title']);
+      $budgetFields = [];
+      $startAmount = $values['list']['field_start_amount'];
+      // Paragraphs.
+      foreach ($values['list'] as $index => $value) {
+        $exceptValues = ['field_start_amount', 'title'];
+        if (!in_array($index, $exceptValues)) {
+          $budgetFields[$index] = $this->budgeGateway->addParagraphEntity($value);
+        }
+      }
+      $budgetFields['field_start_amount'] = $startAmount;
+      if (!$this->budgeGateway->attachParagraphToBudget($bid, $budgetFields)) {
+        return NULL;
+      }
     }
-    $budgetFields['field_start_amount'] = $startAmount;
-    return $this->budgeGateway->attachParagraphToBudget($bid, $budgetFields);
+    return TRUE;
   }
 
 }

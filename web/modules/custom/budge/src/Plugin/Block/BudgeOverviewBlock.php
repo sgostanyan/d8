@@ -81,7 +81,7 @@ class BudgeOverviewBlock extends BlockBase implements ContainerFactoryPluginInte
         if ($this->configuration['show_monthly_expenses_amount']) {
           $html .= '<div>';
           $html .= '<h3>';
-          $html .= 'Dépenses mensuelles totales';
+          $html .= 'Dépenses mensuelles totales ' . $budget['list']['title'];
           $html .= '</h3>';
           $html .= '<p style="font-weight: bold; font-size: large;">';
           $html .= $budget['expenses']['monthly'] . ' euros';

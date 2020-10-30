@@ -34,8 +34,8 @@ class BudgeGateway {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function fetchBudgeEntity() {
-    $bids = $this->fetchBudge();
+  public function fetchBudgetEntities() {
+    $bids = $this->fetchBudgetIds();
     return !empty($bids) ? $this->entityTypeManager->getStorage('node')
       ->loadMultiple($bids) : NULL;
   }
@@ -45,11 +45,11 @@ class BudgeGateway {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function fetchBudge() {
+  public function fetchBudgetIds() {
     return $this->entityTypeManager->getStorage('node')
       ->getQuery()
       ->condition('type', 'budget')
-      ->sort('changed', 'DESC')
+      ->sort('nid', 'DESC')
       ->execute();
   }
 
@@ -70,20 +70,19 @@ class BudgeGateway {
   }
 
   /**
-   * @param $values
+   * @param $title
    *
    * @return array|int
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function addBudgetEntity() {
+  public function addBudgetEntity($title) {
     $entityStorage = $this->entityTypeManager->getStorage('node');
-    $budgeId = $this->fetchBudge();
     if (empty($budgeId)) {
       $entity = $entityStorage->create([
         'type' => 'budget',
-        'title' => 'Budget',
+        'title' => $title
       ]);
       $entity->save();
       $budgeId = $entity->id();
@@ -134,6 +133,20 @@ class BudgeGateway {
       return $budgetEntity->save();
     }
     return NULL;
+  }
+
+  /**
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  public function deleteAllBudgets() {
+    $budgetEntities = $this->fetchBudgetEntities();
+    if ($budgetEntities) {
+      foreach ($budgetEntities as $budgetEntity) {
+        $budgetEntity->delete();
+      }
+    }
   }
 
 }

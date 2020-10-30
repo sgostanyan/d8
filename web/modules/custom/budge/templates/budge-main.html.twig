@@ -11,15 +11,15 @@
   </div>
 </div>
 
-{% for budget in content %}
-  <h2>{{ budget.list['budge_name'] }}</h2>
+{% for id,budget in content %} {{ dpm() }}
+  <h2>{{ budget.list['title'] }}</h2>
   <div style="margin-bottom: 1em; display: flex;">
     <div>
-      <a href="/budge/edit/{{ budget.list['id'] }}" class="button">Editer</a>
+      <a href="/budge/edit/{{ id }}" class="button">Editer</a>
     </div>
   </div>
 
-  <table id="budge-{{ budget.list['id'] }}" class="budge display">
+  <table id="budge-{{ id }}" class="budge display">
     <thead>
     <tr>
       <th>Titre</th>
