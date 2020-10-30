@@ -5,7 +5,7 @@ budge.budge_main_controller_main:
     _controller: budge_main_controller_main:main
     _title: 'Budge'
   requirements:
-    _permission: 'access content'
+    _permission: 'budge'
 
 budge.budge_main_controller_edit:
   path: '/budge/edit/{nid}'

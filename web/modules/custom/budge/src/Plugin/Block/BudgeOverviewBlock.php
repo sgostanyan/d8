@@ -80,13 +80,14 @@ class BudgeOverviewBlock extends BlockBase implements ContainerFactoryPluginInte
         $html .= '<div>';
         if ($this->configuration['show_monthly_expenses_amount']) {
           $html .= '<div>';
+          $html .= '<h2 style="font-weight: bold; font-size: large;">' . $budget['list']['title'] . '</h2>';
           $html .= '<h3>';
-          $html .= 'Dépenses mensuelles totales ' . $budget['list']['title'];
+          $html .= 'Dépenses mensuelles totales';
           $html .= '</h3>';
           $html .= '<p style="font-weight: bold; font-size: large;">';
           $html .= $budget['expenses']['monthly'] . ' euros';
           $html .= '</p>';
-          $html .= '<div>';
+          $html .= '</div>';
         }
         if ($this->configuration['show_ponctual_expenses_amount']) {
           $html .= '<div>';
@@ -96,9 +97,9 @@ class BudgeOverviewBlock extends BlockBase implements ContainerFactoryPluginInte
           $html .= '<p style="font-weight: bold; font-size: large;">';
           $html .= $budget['expenses']['ponctual'] . ' euros';
           $html .= '</p>';
-          $html .= '<div>';
+          $html .= '</div>';
         }
-        $html .= '<div>';
+        $html .= '</div>';
       }
     }
     return ['#children' => $html];

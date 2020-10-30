@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - budge
+    - system
   theme:
     - bartik
 id: budgeoverviewblock
@@ -20,4 +21,9 @@ settings:
   show_monthly_expenses_amount: 1
   show_ponctual_expenses_amount: 1
   show_credits_amounts: 0
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: /budge
+    negate: false
+    context_mapping: {  }
