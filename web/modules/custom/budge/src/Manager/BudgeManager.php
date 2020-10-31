@@ -122,7 +122,7 @@ class BudgeManager {
     foreach ($total as $key => $item) {
       $type = $item['type'];
       if ($type == "field_credits") {
-        $amount += $item['field_amount'];
+        $amount += !empty($item['status']) ? $item['field_amount'] : 0;
         $sorted[] = [
           'Titre' => $item['field_title'],
           'Type' => 'Ajout',
@@ -133,7 +133,7 @@ class BudgeManager {
         ];
       }
       elseif ($type == "field_monthly_expenses") {
-        $amount -= $item['field_amount'];
+        $amount -= !empty($item['status']) ? $item['field_amount'] : 0;
         $totalMonthlyExpenses += $item['field_amount'];
         $expenses['monthly'] = number_format($totalMonthlyExpenses, 2, ',', '');
         $sorted[] = [
@@ -146,7 +146,7 @@ class BudgeManager {
         ];
       }
       elseif ($type == "field_ponctual_expenses") {
-        $amount -= $item['field_amount'];
+        $amount -= !empty($item['status']) ? $item['field_amount'] : 0;
         $totalPonctualExpenses += $item['field_amount'];
         $expenses['ponctual'] = number_format($totalPonctualExpenses,
           2,
