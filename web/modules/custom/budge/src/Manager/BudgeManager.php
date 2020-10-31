@@ -129,6 +129,7 @@ class BudgeManager {
           'Date' => $item['field_date'],
           'Montant' => '+' . number_format($item['field_amount'], 2, ',', ''),
           'Solde' => number_format($amount, 2, ',', ''),
+          'afficher' => $item['status'],
         ];
       }
       elseif ($type == "field_monthly_expenses") {
@@ -157,6 +158,7 @@ class BudgeManager {
           'Date' => $item['field_date'],
           'Montant' => '-' . number_format($item['field_amount'], 2, ',', ''),
           'Solde' => number_format($amount, 2, ',', ''),
+          'afficher' => $item['status'],
         ];
       }
 
