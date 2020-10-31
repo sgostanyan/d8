@@ -36,6 +36,11 @@ function budge_theme($existing, $type, $theme, $path) {
     'budge_export' => [
       'variables' => []
     ],
+    'budge_block' => [
+      'variables' => [
+        'content' => NULL,
+      ],
+    ],
   ];
 }
 

@@ -72,31 +72,14 @@ class BudgeOverviewBlock extends BlockBase implements ContainerFactoryPluginInte
    * {@inheritdoc}
    */
   public function build() {
-
-    $budgets = $this->budgeManager->getBudgets();
-    $html = '';
-    if (!empty($budgets)) {
-      foreach ($budgets as $budget) {
-        $html .= '<div>';
-        if ($this->configuration['show_monthly_expenses_amount']) {
-          $html .= '<div>';
-          $html .= '<h2 style="font-weight: bold; font-size: large;">' . $budget['list']['title'] . '</h2>';
-          $html .= '<h3>Solde actuel</h3>';
-          $html .= '<p style="font-weight: bold; font-size: large;">' . $budget['currentAmount'] . ' euros' . '</p>';
-          $html .= '<h3>Dépenses mensuelles (incluant les prévisions)</h3>';
-          $html .= '<p style="font-weight: bold; font-size: large;">' . $budget['expenses']['monthly'] . ' euros' . '</p>';
-          $html .= '</div>';
-        }
-        if ($this->configuration['show_ponctual_expenses_amount']) {
-          $html .= '<div>';
-          $html .= '<h3>Dépenses poncuelles</h3>';
-          $html .= '<p style="font-weight: bold; font-size: large;">' . $budget['expenses']['ponctual'] . ' euros</p>';
-          $html .= '</div>';
-        }
-        $html .= '</div>';
-      }
-    }
-    return ['#children' => $html];
+    return [
+      '#theme' => 'budge_block',
+      '#content' => [
+        'budgets' => $this->budgeManager->getBudgets(),
+        'showMonthlyExpenses' => $this->configuration['show_monthly_expenses_amount'],
+        'showPonctualExpenses' => $this->configuration['show_ponctual_expenses_amount'],
+      ],
+    ];
   }
 
   /**

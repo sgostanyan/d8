@@ -166,7 +166,8 @@ class BudgeManager {
     return [
       'list' => $list,
       'sorted' => $sorted,
-      'currentAmount' => $amount,
+      'currentAmount' => number_format($amount, 2, ',', ''),
+      'expectedAmount' => number_format($amount - $expenses['monthly'] - $expenses['ponctual'], 2, ',', ''),
       'expenses' => $expenses,
     ];
   }
