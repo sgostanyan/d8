@@ -1,4 +1,3 @@
-
 <div style="margin-bottom: 3em; display: flex;">
   <div>
     <a href="/node/add/budget/node/add/budget" class="button">Ajouter</a>
@@ -31,13 +30,15 @@
     </thead>
     <tbody>
     {% for item in budget.sorted %}
-      <tr>
-        <td>{{ item['Titre'] }}</td>
-        <td>{{ item['Type'] }}</td>
-        <td>{{ item['Date'] }}</td>
-        <td>{{ item['Montant'] }}</td>
-        <td>{{ item['Solde'] }}</td>
-      </tr>
+      {% if item['afficher'] %}
+        <tr>
+          <td>{{ item['Titre'] }}</td>
+          <td>{{ item['Type'] }}</td>
+          <td>{{ item['Date'] }}</td>
+          <td>{{ item['Montant'] }}</td>
+          <td>{{ item['Solde'] }}</td>
+        </tr>
+      {% endif %}
     {% endfor %}
     </tbody>
   </table>

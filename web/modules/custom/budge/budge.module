@@ -38,3 +38,12 @@ function budge_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
+
+/**
+ * Implements hook_entity_presave().
+ */
+function budge_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+ if ($entity->bundle() == 'budget') {
+   Drupal::service('cache.render')->invalidate('route');
+ }
+}
