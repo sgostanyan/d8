@@ -23,5 +23,5 @@ deploy_master:
   only:
     - master
   script:
-    - $SSH_LOGIN "cd $GIT_ROOT && git pull && composer install && drush updb && drush cim -y && drush cr"
+    - $SSH_LOGIN "cd $GIT_ROOT && git pull && composer install && drush updb && drush cim -y && drush cr && sudo chown -R ubuntu:www-data $GIT_ROOT"
 #  when: manual
