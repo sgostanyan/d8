@@ -23,6 +23,7 @@ class BudgeManager {
     'field_date',
     'field_amount',
     'field_title',
+    'status'
   ];
 
   /**
@@ -140,6 +141,7 @@ class BudgeManager {
           'Date' => $item['field_date'],
           'Montant' => '-' . number_format($item['field_amount'], 2, ',', ''),
           'Solde' => number_format($amount, 2, ',', ''),
+          'afficher' => $item['status'],
         ];
       }
       elseif ($type == "field_ponctual_expenses") {
