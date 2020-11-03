@@ -110,6 +110,7 @@ class BudgeManager {
    * @return array[]
    */
   protected function sortList(array $list) {
+    // Merging all types.
     $total = array_merge($list['field_monthly_expenses'],
       $list['field_ponctual_expenses'],
       $list['field_credits']);
@@ -119,6 +120,22 @@ class BudgeManager {
     $totalMonthlyExpenses = 0;
     $expenses = ['monthly' => 0, 'ponctual' => 0];
 
+    // Order by date.
+    $reorderedBydate = [];
+    foreach ($total as $value) {
+      $reorderedBydate[str_replace('-', '', $value['field_date'])][] = $value;
+    };
+    ksort($reorderedBydate);
+
+    // Preparing final array.
+    $total = [];
+    foreach ($reorderedBydate as $itemsPerDate) {
+      foreach ($itemsPerDate as $itemPerDate) {
+        $total[] = $itemPerDate;
+      }
+    }
+
+    // Calculating and sanitizing.
     foreach ($total as $key => $item) {
       $type = $item['type'];
       if ($type == "field_credits") {
