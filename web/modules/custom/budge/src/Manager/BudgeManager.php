@@ -125,7 +125,7 @@ class BudgeManager {
     foreach ($total as $value) {
       $reorderedBydate[str_replace('-', '', $value['field_date'])][] = $value;
     };
-    ksort($reorderedBydate);
+    ksort($reorderedBydate, SORT_NUMERIC);
 
     // Preparing final array.
     $total = [];
@@ -182,7 +182,7 @@ class BudgeManager {
     }
     return [
       'list' => $list,
-      'sorted' => $sorted,
+      'sorted' => array_reverse($sorted),
       'currentAmount' => number_format($amount, 2, ',', ''),
       'expectedAmount' => number_format($amount - $expenses['monthly'] - $expenses['ponctual'], 2, ',', ''),
       'expenses' => $expenses,

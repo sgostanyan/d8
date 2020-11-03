@@ -5,7 +5,7 @@
         $(this).DataTable(
           {
             "pageLength": 50,
-            "order": [[ 2, "desc" ]],
+            "order": [],
           }
         );
       });
