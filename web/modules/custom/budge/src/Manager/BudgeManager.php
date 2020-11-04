@@ -23,7 +23,7 @@ class BudgeManager {
     'field_date',
     'field_amount',
     'field_title',
-    'status'
+    'status',
   ];
 
   /**
@@ -110,82 +110,67 @@ class BudgeManager {
    * @return array[]
    */
   protected function sortList(array $list) {
-    // Merging all types.
-    $total = array_merge($list['field_monthly_expenses'],
-      $list['field_ponctual_expenses'],
-      $list['field_credits']);
-    $sorted = [];
+    $total = $this->sortByDate($list);
+
+    $filtered = [];
     $amount = $list['field_start_amount'];
     $totalPonctualExpenses = 0;
     $totalMonthlyExpenses = 0;
-    $expenses = ['monthly' => 0, 'ponctual' => 0];
-
-    // Order by date.
-    $reorderedBydate = [];
-    foreach ($total as $value) {
-      $reorderedBydate[str_replace('-', '', $value['field_date'])][] = $value;
-    };
-    ksort($reorderedBydate, SORT_NUMERIC);
-
-    // Preparing final array.
-    $total = [];
-    foreach ($reorderedBydate as $itemsPerDate) {
-      foreach ($itemsPerDate as $itemPerDate) {
-        $total[] = $itemPerDate;
-      }
-    }
+    $totalCredits = 0;
 
     // Calculating and sanitizing.
     foreach ($total as $key => $item) {
       $type = $item['type'];
       if ($type == "field_credits") {
-        $amount += !empty($item['status']) ? $item['field_amount'] : 0;
-        $sorted[] = [
-          'Titre' => $item['field_title'],
-          'Type' => 'Ajout',
-          'Date' => $item['field_date'],
-          'Montant' => '+' . number_format($item['field_amount'], 2, ',', ''),
-          'Solde' => number_format($amount, 2, ',', ''),
-          'afficher' => $item['status'],
-        ];
-      }
-      elseif ($type == "field_monthly_expenses") {
-        $amount -= !empty($item['status']) ? $item['field_amount'] : 0;
-        $totalMonthlyExpenses += $item['field_amount'];
-        $expenses['monthly'] = number_format($totalMonthlyExpenses, 2, ',', '');
-        $sorted[] = [
-          'Titre' => $item['field_title'],
-          'Type' => 'Dépense mensuelle',
-          'Date' => $item['field_date'],
-          'Montant' => '-' . number_format($item['field_amount'], 2, ',', ''),
-          'Solde' => number_format($amount, 2, ',', ''),
-          'afficher' => $item['status'],
-        ];
+        $totalCredits += $item['field_amount'];
+        if (!empty($item['status'])) {
+          $amount += $item['field_amount'];
+          $filtered[] = [
+            'Titre' => $item['field_title'],
+            'Type' => 'Ajout',
+            'Date' => $item['field_date'],
+            'Montant' => '+' . number_format($item['field_amount'], 2, ',', ''),
+            'Solde' => number_format($amount, 2, ',', ''),
+          ];
+        }
       }
       elseif ($type == "field_ponctual_expenses") {
-        $amount -= !empty($item['status']) ? $item['field_amount'] : 0;
         $totalPonctualExpenses += $item['field_amount'];
-        $expenses['ponctual'] = number_format($totalPonctualExpenses,
-          2,
-          ',',
-          '');
-        $sorted[] = [
-          'Titre' => $item['field_title'],
-          'Type' => 'Dépense ponctuelle',
-          'Date' => $item['field_date'],
-          'Montant' => '-' . number_format($item['field_amount'], 2, ',', ''),
-          'Solde' => number_format($amount, 2, ',', ''),
-          'afficher' => $item['status'],
-        ];
+        if (!empty($item['status'])) {
+          $amount -= $item['field_amount'];
+          $filtered[] = [
+            'Titre' => $item['field_title'],
+            'Type' => 'Dépense ponctuelle',
+            'Date' => $item['field_date'],
+            'Montant' => '-' . number_format($item['field_amount'], 2, ',', ''),
+            'Solde' => number_format($amount, 2, ',', ''),
+          ];
+        }
       }
-
+      elseif ($type == "field_monthly_expenses") {
+        $totalMonthlyExpenses += $item['field_amount'];
+        if (!empty($item['status'])) {
+          $amount -= $item['field_amount'];
+          $filtered[] = [
+            'Titre' => $item['field_title'],
+            'Type' => 'Dépense mensuelle',
+            'Date' => $item['field_date'],
+            'Montant' => '-' . number_format($item['field_amount'], 2, ',', ''),
+            'Solde' => number_format($amount, 2, ',', ''),
+          ];
+        }
+      }
     }
+
     return [
       'list' => $list,
-      'sorted' => array_reverse($sorted),
+      'sorted' => array_reverse($filtered),
       'currentAmount' => number_format($amount, 2, ',', ''),
-      'expectedAmount' => number_format($amount - $expenses['monthly'] - $expenses['ponctual'], 2, ',', ''),
-      'expenses' => $expenses,
+      'expectedAmount' => number_format($list['field_start_amount'] - $totalMonthlyExpenses - $totalPonctualExpenses + $totalCredits,
+        2,
+        ',',
+        ''),
+      'expenses' =>  $expenses = ['monthly' => $totalMonthlyExpenses, 'ponctual' => $totalPonctualExpenses],
     ];
   }
 
@@ -217,6 +202,26 @@ class BudgeManager {
       }
     }
     return TRUE;
+  }
+
+  /**
+   * @param $lists
+   *
+   * @return array
+   */
+  protected function sortByDate($lists) {
+    $output = [];
+    $sorted = [];
+    foreach ($lists as $type => $list) {
+      foreach ($list as $item) {
+        $sorted[str_replace('-', '', $item['field_date'])][] = $item;
+      }
+    }
+    ksort($sorted);
+    foreach ($sorted as $item) {
+      $output = array_merge($output, $item);
+    }
+    return $output;
   }
 
 }

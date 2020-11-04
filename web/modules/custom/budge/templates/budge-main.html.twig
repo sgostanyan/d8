@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <table id="budge-{{ id }}" class="budge display">
+  <table id="budge-{{ id }}" class="budgedisplay">
     <thead>
     <tr>
       <th>Titre</th>
@@ -30,15 +30,13 @@
     </thead>
     <tbody>
     {% for item in budget.sorted %}
-      {% if item['afficher'] %}
-        <tr>
-          <td>{{ item['Titre'] }}</td>
-          <td>{{ item['Type'] }}</td>
-          <td>{{ item['Date'] }}</td>
-          <td>{{ item['Montant'] }}</td>
-          <td>{{ item['Solde'] }}</td>
-        </tr>
-      {% endif %}
+      <tr>
+        <td>{{ item['Titre'] }}</td>
+        <td>{{ item['Type'] }}</td>
+        <td>{{ item['Date'] }}</td>
+        <td>{{ item['Montant'] }}</td>
+        <td>{{ item['Solde'] }}</td>
+      </tr>
     {% endfor %}
     </tbody>
   </table>
