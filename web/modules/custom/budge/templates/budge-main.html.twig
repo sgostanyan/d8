@@ -22,7 +22,7 @@
     <thead>
     <tr>
       <th>Titre</th>
-      <th>Type</th>
+      {#<th>Type</th>#}
       <th>Date</th>
       <th>Montant</th>
       <th>Solde</th>
@@ -30,12 +30,16 @@
     </thead>
     <tbody>
     {% for item in budget.sorted %}
-      <tr>
-        <td>{{ item['Titre'] }}</td>
-        <td>{{ item['Type'] }}</td>
-        <td>{{ item['Date'] }}</td>
-        <td>{{ item['Montant'] }}</td>
-        <td>{{ item['Solde'] }}</td>
+      <tr style="background-color: {{ rowBGC[item['id']] }}">
+        <td style="font-weight: bold; font-size: 1.3em;">
+          <div>
+            <img class="icon" style="vertical-align: middle; width: 6%; margin: 0.4em 1.2em 0.4em 0.4em;" src="{{ item['icon'] }}" alt="icon">{{ item['Titre'] }}
+          </div>
+        </td>
+        {#<td style="font-weight: bold; font-size: 1.4em;">{{ item['Type'] }}</td>#}
+        <td style="font-weight: bold; font-size: 1.1em;">{{ item['Date'] }}</td>
+        <td style="font-weight: bold; font-size: 1.1em;">{{ item['Montant'] }}</td>
+        <td style="font-weight: bold; font-size: 1.1em;">{{ item['Solde'] }}</td>
       </tr>
     {% endfor %}
     </tbody>

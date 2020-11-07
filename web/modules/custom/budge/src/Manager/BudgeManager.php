@@ -4,6 +4,7 @@
 namespace Drupal\budge\Manager;
 
 use Drupal\budge\Gateway\BudgeGateway;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 
 /**
  * Class BudgeManager
@@ -26,18 +27,37 @@ class BudgeManager {
     'status',
   ];
 
+  const ICONS = [
+    'field_credits' => 'circle-cropped-blue.png',
+    'field_monthly_expenses' => 'circle-cropped-purple.png',
+    'field_ponctual_expenses' => 'circle-cropped-yellow.png',
+  ];
+
   /**
    * @var \Drupal\budge\Gateway\BudgeGateway
    */
   protected $budgeGateway;
 
   /**
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
+  /**
+   * @var string
+   */
+  protected $modulePath;
+
+  /**
    * BudgeExportManager constructor.
    *
    * @param \Drupal\budge\Gateway\BudgeGateway $budgeGateway
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
    */
-  public function __construct(BudgeGateway $budgeGateway) {
+  public function __construct(BudgeGateway $budgeGateway, ModuleHandlerInterface $moduleHandler) {
     $this->budgeGateway = $budgeGateway;
+    $this->moduleHandler = $moduleHandler;
+    $this->modulePath = $moduleHandler->getModule('budge')->getPath();
   }
 
   /**
@@ -131,6 +151,7 @@ class BudgeManager {
             'Date' => $item['field_date'],
             'Montant' => '+' . number_format($item['field_amount'], 2, ',', ''),
             'Solde' => number_format($amount, 2, ',', ''),
+            'icon' => $this->modulePath . '/images/' . self::ICONS[$type],
           ];
         }
       }
@@ -144,6 +165,7 @@ class BudgeManager {
             'Date' => $item['field_date'],
             'Montant' => '-' . number_format($item['field_amount'], 2, ',', ''),
             'Solde' => number_format($amount, 2, ',', ''),
+            'icon' => $this->modulePath . '/images/' . self::ICONS[$type],
           ];
         }
       }
@@ -157,6 +179,7 @@ class BudgeManager {
             'Date' => $item['field_date'],
             'Montant' => '-' . number_format($item['field_amount'], 2, ',', ''),
             'Solde' => number_format($amount, 2, ',', ''),
+            'icon' => $this->modulePath . '/images/' . self::ICONS[$type],
           ];
         }
       }
@@ -213,6 +236,9 @@ class BudgeManager {
     $output = [];
     $sorted = [];
     foreach ($lists as $type => $list) {
+      if (!is_array($list)) {
+        continue;
+      }
       foreach ($list as $item) {
         $sorted[str_replace('-', '', $item['field_date'])][] = $item;
       }
