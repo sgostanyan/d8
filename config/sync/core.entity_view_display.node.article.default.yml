@@ -4,14 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.node.article.body
-    - field.field.node.article.comment
+    - field.field.node.article.field_country
     - field.field.node.article.field_image
     - field.field.node.article.field_media
     - field.field.node.article.field_page
     - field.field.node.article.field_paragraph
     - field.field.node.article.field_pdf
     - field.field.node.article.field_pdf_public
-    - field.field.node.article.field_tags
+    - field.field.node.article.field_type
     - node.type.article
   module:
     - entity_popin
@@ -32,6 +32,14 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
+  field_country:
+    weight: 4
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
   field_page:
     weight: 1
     label: hidden
@@ -56,12 +64,19 @@ content:
       height: '250'
       nb_pages: '2'
     third_party_settings: {  }
+  field_type:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
 hidden:
-  comment: true
   field_image: true
   field_media: true
   field_paragraph: true
   field_pdf: true
-  field_tags: true
   langcode: true
   links: true
+  search_api_excerpt: true

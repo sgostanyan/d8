@@ -6,7 +6,7 @@ tips:
   locale-language:
     body: 'Seleccione el idioma que quiere traducir.'
   locale-search:
-    label: Buscar
+    label: Search
     body: 'Escriba la palabra o frase específica que desea traducir, también puede escribir sólo una parte de una palabra.'
   locale-filter:
     label: 'Filtrar la búsqueda'

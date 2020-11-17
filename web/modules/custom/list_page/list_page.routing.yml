@@ -1,0 +1,8 @@
+
+list_page.list_page_controller_Page:
+  path: '/articles'
+  defaults:
+    _controller: Drupal\list_page\Controller\ArticleListPageController:Page
+    _title: 'List Page'
+  requirements:
+    _permission: 'access content'

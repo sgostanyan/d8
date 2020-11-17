@@ -1,19 +1,19 @@
 label: Multimedia
 display:
   default:
-    display_title: Máster
+    display_title: Master
     display_options:
       exposed_form:
         options:
           submit_button: Filtro
-          reset_button_label: Restablecer
-          exposed_sorts_label: 'Ordenar por'
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
       pager:
         options:
           expose:
-            items_per_page_label: 'Elementos por página'
-            items_per_page_options_all_label: '- Todo -'
-            offset_label: Desplazamiento
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
           tags:
             previous: '‹ Anterior'
             next: 'Siguiente >'
@@ -27,11 +27,11 @@ display:
         name:
           label: 'Nombre del elemento multimedia'
         bundle:
-          label: Tipo
+          label: Type
         uid:
           label: Autor
         status:
-          label: Estado
+          label: Status
           settings:
             format_custom_true: Publicado
             format_custom_false: 'Sin publicar'
@@ -45,7 +45,7 @@ display:
             label: 'Nombre del elemento multimedia'
         bundle:
           expose:
-            label: Tipo
+            label: Type
         status:
           expose:
             label: Verdad

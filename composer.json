@@ -34,6 +34,7 @@
         "drupal/pathauto": "^1.5",
         "drupal/pdf_slideshow": "^2.5",
         "drupal/redis": "^1.4",
+        "drupal/search_api": "^1.18",
         "drupal/time_field": "^1.13",
         "drupal/views_bulk_operations": "^3.6",
         "drush/drush": "~9",

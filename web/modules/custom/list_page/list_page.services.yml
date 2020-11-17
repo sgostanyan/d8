@@ -1,0 +1,15 @@
+services:
+
+ #Managers
+  list_page.manager:
+    class: Drupal\list_page\Service\ListPageManager
+    autowire: true
+
+  #Controllers
+  Drupal\list_page\Controller\ListPageController:
+    arguments: ['@list_page.manager']
+
+
+  Drupal\list_page\Controller\ArticleListPageController:
+    autowire: true
+

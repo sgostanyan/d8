@@ -6,8 +6,8 @@ display:
       exposed_form:
         options:
           submit_button: Filtro
-          reset_button_label: Restablecer
-          exposed_sorts_label: 'Ordenar por'
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
       pager:
         options:
           tags:
@@ -23,7 +23,7 @@ display:
         name:
           label: Autor
         status:
-          label: Estado
+          label: Status
           settings:
             format_custom_true: Publicado
             format_custom_false: 'Sin publicar'
@@ -40,7 +40,7 @@ display:
             label: 'Tipo de contenido'
         status:
           expose:
-            label: Estado
+            label: Status
           group_info:
             label: 'Estado de publicación'
             group_items:
@@ -55,7 +55,7 @@ display:
       empty:
         area_text_custom:
           content: 'No hay contenido disponible.'
-    display_title: Máster
+    display_title: Master
   page_1:
     display_options:
       menu:
@@ -63,4 +63,4 @@ display:
       tab_options:
         title: Contenido
         description: 'Encuentre y gestione el contenido'
-    display_title: Página
+    display_title: Page

@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Contains list_page.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function list_page_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the list_page module.
+    case 'help.page.list_page':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Content list page') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function list_page_theme() {
+  return [
+    'main_page' => [
+      'variables' => [
+        'result' => NULL,
+      ],
+    ],
+  ];
+}

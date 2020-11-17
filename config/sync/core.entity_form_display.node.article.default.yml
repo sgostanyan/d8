@@ -4,18 +4,17 @@ status: true
 dependencies:
   config:
     - field.field.node.article.body
-    - field.field.node.article.comment
+    - field.field.node.article.field_country
     - field.field.node.article.field_image
     - field.field.node.article.field_media
     - field.field.node.article.field_page
     - field.field.node.article.field_paragraph
     - field.field.node.article.field_pdf
     - field.field.node.article.field_pdf_public
-    - field.field.node.article.field_tags
+    - field.field.node.article.field_type
     - image.style.thumbnail
     - node.type.article
   module:
-    - comment
     - file
     - image
     - media_library
@@ -39,18 +38,22 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
-  comment:
-    type: comment_default
-    weight: 20
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   created:
     type: datetime_timestamp
     weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_country:
+    weight: 127
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_image:
     type: image_image
     weight: 4
@@ -102,16 +105,16 @@ content:
     third_party_settings: {  }
     type: file_generic
     region: content
-  field_tags:
-    type: entity_reference_autocomplete_tags
-    weight: 3
-    region: content
+  field_type:
+    weight: 126
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   langcode:
     type: language_select
     weight: 2

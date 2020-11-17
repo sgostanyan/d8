@@ -2,22 +2,22 @@ label: Archivos
 description: 'Buscar y administrar archivos.'
 display:
   default:
-    display_title: Máster
+    display_title: Master
     display_options:
       exposed_form:
         options:
           submit_button: Filtro
-          reset_button_label: Restablecer
-          exposed_sorts_label: 'Ordenar por'
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
       pager:
         options:
           tags:
             previous: '‹ Anterior'
             next: 'Siguiente >'
           expose:
-            items_per_page_label: 'Elementos por página'
-            items_per_page_options_all_label: '- Todo -'
-            offset_label: Desplazamiento
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
       fields:
         filename:
           label: Nombre
@@ -26,7 +26,7 @@ display:
         filesize:
           label: Tamaño
         status:
-          label: Estado
+          label: Status
           settings:
             format_custom_false: Temporal
             format_custom_true: Permanente
@@ -45,7 +45,7 @@ display:
             label: 'Tipo MIME'
         status:
           expose:
-            label: Estado
+            label: Status
       title: Archivos
       empty:
         area_text_custom:
@@ -64,9 +64,9 @@ display:
             previous: '‹ Anterior'
             next: 'Siguiente >'
           expose:
-            items_per_page_label: 'Elementos por página'
-            items_per_page_options_all_label: '- Todo -'
-            offset_label: Desplazamiento
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
       fields:
         entity_label:
           label: Entidad
