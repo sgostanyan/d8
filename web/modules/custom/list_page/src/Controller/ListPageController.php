@@ -5,6 +5,7 @@ namespace Drupal\list_page\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\list_page\ListPageInterface;
 use Drupal\list_page\Service\ListPageManager;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class ListPageController
@@ -32,7 +33,7 @@ class ListPageController extends ControllerBase implements ListPageInterface {
    *
    * @return mixed|void
    */
-  public function page(\Symfony\Component\HttpFoundation\Request $request) {
+  public function page(Request $request) {
   }
 
   /**
