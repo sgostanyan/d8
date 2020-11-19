@@ -24,11 +24,35 @@ function list_page_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
+ * Implements hook_preprocess().
+ */
+function list_page_preprocess_node(&$variables) {
+  $node = $variables['elements']['#node'];
+  $viewMode = $variables['elements']['#view_mode'];
+  if ($node->bundle() == 'article_list' && $viewMode == 'full') {
+    $form = Drupal::formBuilder()->getForm('Drupal\list_page\Form\ArticleListForm');
+    $variables['content']['form'] = $form;
+
+    // Initiate list manager.
+    $lisPageManager = Drupal::service('list_page.manager')->create();
+
+    // Start search. Use buildConditions() for adding extra conditions.
+    $results = $lisPageManager->getResults('node', [['status', 1]], 4);
+    $stop = '';
+    $variables['content']['result']['#markup'] = implode(',', $results);
+    $variables['content']['pager'] = ['#type' => 'pager'];
+  }
+}
+
+/**
  * Implements hook_theme().
  */
 function list_page_theme() {
   return [
-    'main_page' => [
+    'article_form' => [
+      'render element' => 'form',
+    ],
+    'article_list_page' => [
       'variables' => [
         'result' => NULL,
       ],

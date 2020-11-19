@@ -1,0 +1,16 @@
+uuid: f610c76a-00b9-4186-bc86-44f19328208a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.article_list
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: node.article_list
+target_entity_type_id: node
+target_bundle: article_list
+default_langcode: site_default
+language_alterable: false

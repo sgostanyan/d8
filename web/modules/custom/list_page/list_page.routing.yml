@@ -6,3 +6,11 @@ list_page.list_page_controller_Page:
     _title: 'List Page'
   requirements:
     _permission: 'access content'
+
+list_page.article_list_form:
+  path: '/list_page/form/article_list'
+  defaults:
+    _form: '\Drupal\list_page\Form\ArticleListForm'
+    _title: 'ArticleListForm'
+  requirements:
+    _access: 'TRUE'

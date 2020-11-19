@@ -1,0 +1,40 @@
+uuid: a7211cb1-d7a3-4baf-bb39-c7cdb4400a71
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.article_list.field_image_list
+    - field.field.node.article_list.field_introduction
+    - node.type.article_list
+  module:
+    - text
+    - user
+id: node.article_list.default
+targetEntityType: node
+bundle: article_list
+mode: default
+content:
+  field_image_list:
+    type: entity_reference_entity_view
+    weight: 102
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_introduction:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

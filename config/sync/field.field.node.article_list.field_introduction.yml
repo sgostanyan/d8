@@ -1,0 +1,21 @@
+uuid: 8ceec2d8-536b-4f02-b426-af870eec1f0d
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_introduction
+    - node.type.article_list
+  module:
+    - text
+id: node.article_list.field_introduction
+field_name: field_introduction
+entity_type: node
+bundle: article_list
+label: Introduction
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

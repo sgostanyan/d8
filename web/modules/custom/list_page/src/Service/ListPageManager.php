@@ -60,27 +60,30 @@ class ListPageManager {
     $this->languageManager = $languageManager;
     $this->language = $languageManager->getCurrentLanguage()->getId();
     $this->contentManager = $contentManager;
+    $this->configValues = NULL;
   }
 
   /**
-   * @param string $configEntityTypeId
-   * @param string $configBundleFieldName
-   * @param string $configBundleId
+   * @param string|null $configEntityTypeId
+   * @param string|null $configBundleFieldName
+   * @param string|null $configBundleId
    * @param string|null $language
    *
    * @return $this|null
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function create(string $configEntityTypeId, string $configBundleFieldName, string $configBundleId, string $language = NULL) {
-    $id = $this->configManager->getConfigEntityId($configEntityTypeId, $configBundleFieldName, $configBundleId);
-    if ($id) {
-      $this->listPageId = $id;
-      $this->language = $language ? $language : $this->language;
-      $this->configValues = $this->configManager->getValues($configEntityTypeId, $configBundleFieldName, $configBundleId, $language);
-      return $this;
+  public function create(string $configEntityTypeId = NULL, string $configBundleFieldName = NULL, string $configBundleId = NULL, string $language = NULL) {
+    if ($configEntityTypeId && $configBundleFieldName && $configBundleId) {
+      $id = $this->configManager->getConfigEntityId($configEntityTypeId, $configBundleFieldName, $configBundleId);
+      if ($id) {
+        $this->listPageId = $id;
+        $this->language = $language ? $language : $this->language;
+        $this->configValues = $this->configManager->getValues($configEntityTypeId, $configBundleFieldName, $configBundleId, $language);
+        return $this;
+      }
     }
-    return NULL;
+    return $this;
   }
 
   /**
