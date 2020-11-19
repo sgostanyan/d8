@@ -59,7 +59,7 @@ class ArticleListPageController extends ListPageController {
     // Render.
     $render = [];
     $render[] = [
-      '#theme' => 'main_page',
+      '#theme' => 'article_list_page',
       '#result' => $result,
       '#type' => 'pager',
     ];

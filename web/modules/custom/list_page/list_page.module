@@ -49,9 +49,6 @@ function list_page_preprocess_node(&$variables) {
  */
 function list_page_theme() {
   return [
-    'article_form' => [
-      'render element' => 'form',
-    ],
     'article_list_page' => [
       'variables' => [
         'result' => NULL,
