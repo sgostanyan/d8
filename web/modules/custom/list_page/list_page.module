@@ -30,8 +30,9 @@ function list_page_preprocess_node(&$variables) {
   $node = $variables['elements']['#node'];
   $viewMode = $variables['elements']['#view_mode'];
   if ($node->bundle() == 'article_list' && $viewMode == 'full') {
+
+    // Get Form.
     $form = Drupal::formBuilder()->getForm('Drupal\list_page\Form\ArticleListForm');
-    $variables['content']['form'] = $form;
 
     // Initiate list manager.
     $lisPageManager = Drupal::service('list_page.manager')->create();
@@ -39,6 +40,9 @@ function list_page_preprocess_node(&$variables) {
     // Start search. Use buildConditions() for adding extra conditions.
     $results = $lisPageManager->getResults('node', [['status', 1]], 4);
     $stop = '';
+
+    // Render
+    $variables['content']['form'] = $form;
     $variables['content']['result']['#markup'] = implode(',', $results);
     $variables['content']['pager'] = ['#type' => 'pager'];
   }
