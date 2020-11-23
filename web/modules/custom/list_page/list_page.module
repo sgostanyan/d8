@@ -38,8 +38,13 @@ function list_page_preprocess_node(&$variables) {
     $lisPageManager = Drupal::service('list_page.manager')->create();
 
     // Start search. Use buildConditions() for adding extra conditions.
-    $results = $lisPageManager->getResults('node', [['status', 1]], 4);
-    $stop = '';
+    //getResults(String entityType, array queryConditions, int pager = null)
+    $results = $lisPageManager->getResults('node',
+      [
+        ['status', 1],
+        ['type', 'article'],
+      ],
+      4);
 
     // Render
     $variables['content']['form'] = $form;
