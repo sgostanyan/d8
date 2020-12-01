@@ -66,6 +66,19 @@ class PSEForm extends FormBase {
       '#default_value' => 0,
     ];
 
+    $form['CONJOINT_DATE_NAISSANCE'] = [
+      '#type' => 'date',
+      '#title' => $this->t('Conjoint date de naissance'),
+      '#weight' => '0',
+      '#default_value' => '1983-11-18',
+      '#required' => TRUE,
+      '#states' => [
+        'visible' => [
+          ':input[name="PROTECTION_CONJOINT"]' => ['value' => 1],
+        ],
+      ],
+    ];
+
     $form['PROTECTION_ENFANTS'] = [
       '#type' => 'radios',
       '#title' => $this->t('Protection enfants'),
@@ -75,6 +88,112 @@ class PSEForm extends FormBase {
         1 => 'Oui',
       ],
       '#default_value' => 0,
+    ];
+
+    $form['NOMBRE_ENFANTS'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Nombre d\'enfants'),
+      '#options' => [
+        '0' => '0',
+        '1' => '1',
+        '2' => '2',
+        '3' => '3',
+        '4' => '4',
+        '5' => '5',
+      ],
+      '#weight' => '0',
+      '#default_value' => '0',
+      '#required' => TRUE,
+      '#states' => [
+        'visible' => [
+          ':input[name="PROTECTION_ENFANTS"]' => ['value' => 1],
+        ],
+      ],
+    ];
+
+    $form['ENFANT_DATE_NAISSANCE_1'] = [
+      '#type' => 'date',
+      '#title' => $this->t('Enfant 1 date de naissance'),
+      '#weight' => '0',
+      '#default_value' => '2012-05-20',
+      '#required' => TRUE,
+      '#states' => [
+        'visible' => [
+          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '1']],
+          'xor',
+          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '2']],
+          'xor',
+          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '3']],
+          'xor',
+          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '4']],
+          'xor',
+          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '5']],
+        ],
+      ],
+    ];
+
+    $form['ENFANT_DATE_NAISSANCE_2'] = [
+      '#type' => 'date',
+      '#title' => $this->t('Enfant 2 date de naissance'),
+      '#weight' => '0',
+      '#default_value' => '2012-05-20',
+      '#required' => TRUE,
+      '#states' => [
+        'visible' => [
+          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '2']],
+          'xor',
+          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '3']],
+          'xor',
+          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '4']],
+          'xor',
+          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '5']],
+        ],
+      ],
+    ];
+
+    $form['ENFANT_DATE_NAISSANCE_3'] = [
+      '#type' => 'date',
+      '#title' => $this->t('Enfant 3 date de naissance'),
+      '#weight' => '0',
+      '#default_value' => '2012-05-20',
+      '#required' => TRUE,
+      '#states' => [
+        'visible' => [
+          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '3']],
+          'xor',
+          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '4']],
+          'xor',
+          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '5']],
+        ],
+      ],
+    ];
+
+    $form['ENFANT_DATE_NAISSANCE_4'] = [
+      '#type' => 'date',
+      '#title' => $this->t('Enfant 4 date de naissance'),
+      '#weight' => '0',
+      '#default_value' => '2012-05-20',
+      '#required' => TRUE,
+      '#states' => [
+        'visible' => [
+          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '4']],
+          'xor',
+          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '5']],
+        ],
+      ],
+    ];
+
+    $form['ENFANT_DATE_NAISSANCE_5'] = [
+      '#type' => 'date',
+      '#title' => $this->t('Enfant 5 date de naissance'),
+      '#weight' => '0',
+      '#default_value' => '2012-05-20',
+      '#required' => TRUE,
+      '#states' => [
+        'visible' => [
+          ':input[name="NOMBRE_ENFANTS"]' => ['value' => '5'],
+        ],
+      ],
     ];
 
     $form['REGIME_OBLIGATOIRE'] = [
@@ -112,7 +231,6 @@ class PSEForm extends FormBase {
         'NIVEAU_PRO_3_4' => 'NIVEAU_PRO_3_4',
         'NIVEAU_PRO_4_4' => 'NIVEAU_PRO_4_4',
       ],
-      '#size' => 5,
       '#weight' => '0',
       '#default_value' => 'NIVEAU_PRO_1_1',
       '#multiple' => FALSE,
@@ -120,21 +238,27 @@ class PSEForm extends FormBase {
     ];
 
     $form['CODE_PH'] = [
-      '#type' => 'number',
+      '#type' => 'select',
       '#title' => $this->t('Code PH'),
-      '#maxlength' => 64,
-      '#size' => 64,
+      '#options' => [
+        '0' => '0',
+        '15' => '15',
+        '30' => '30',
+        '45' => '45',
+      ],
       '#weight' => '0',
       '#default_value' => 45,
       '#required' => TRUE,
     ];
 
     $form['STRUCTURE_COTISATION'] = [
-      '#type' => 'textfield',
+      '#type' => 'select',
       '#title' => $this->t('Structure cotisation'),
-      '#maxlength' => 64,
-      '#size' => 64,
       '#weight' => '0',
+      '#options' => [
+        'TNS_STRUCTURE_UNIQUE' => 'TNS_STRUCTURE_UNIQUE',
+        'TNS_STRUCTURE_ADULTE_ENFANT' => 'TNS_STRUCTURE_ADULTE_ENFANT',
+      ],
       '#default_value' => 'TNS_STRUCTURE_UNIQUE',
       '#required' => TRUE,
     ];
@@ -214,7 +338,7 @@ class PSEForm extends FormBase {
     $data = !empty($values) ? $this->apiTarifer->send($values, 'indiv') : NULL;
 
     $renderArray = [
-      '#markup' => json_encode($data)
+      '#markup' => json_encode($data),
     ];
     $renderArray['#prefix'] = '<div id="output">';
     $renderArray['#suffix'] = '</div>';
