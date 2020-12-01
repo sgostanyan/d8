@@ -50,25 +50,25 @@ class ApiTariferService {
   }
 
   /**
-   * @param $body
+   * @param $data
    * @param string $serviceType
    *   Can be 'indiv' or 'coll'.
    *
    * @return mixed|null
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  public function send($body, $serviceType = 'indiv') {
-    return $this->sendRequest($body);
+  public function send(array $data, $serviceType = 'indiv') {
+    return $this->sendRequest($data);
   }
 
   /**
-   * @param array $body
+   * @param array $data
    * @param string $serviceType
    *
    * @return mixed|null
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  protected function sendRequest(array $body, string $serviceType = 'indiv') {
+  protected function sendRequest(array $data, string $serviceType = 'indiv') {
 
     // Build URI.
     $uri = $this->apiParams['scheme'] . '://';
@@ -87,7 +87,7 @@ class ApiTariferService {
             'Apikey' => $this->authParams['apiKey'],
             'Content-Type' => 'application/json',
           ],
-          'json' => $body,
+          'json' => $data,
         ]);
 
       // Response.
