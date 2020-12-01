@@ -1,55 +1,93 @@
 <?php
 
-
 namespace Drupal\pss_pse\Service;
-
 
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\ClientException;
 
+/**
+ * Class ApiTariferService
+ *
+ * @package Drupal\pss_pse\Service
+ */
 class ApiTariferService {
 
   const ENV = 'dev';
 
+  /**
+   * @var mixed
+   */
   protected $authParams;
 
+  /**
+   * @var mixed
+   */
   protected $apiParams;
 
+  /**
+   * @var \GuzzleHttp\ClientInterface
+   */
   protected $client;
 
+  /**
+   * @var \Drupal\Core\Logger\LoggerChannelInterface
+   */
   protected $loggerChannelFactory;
 
+  /**
+   * ApiTariferService constructor.
+   *
+   * @param $authParams
+   * @param $apiParams
+   * @param \GuzzleHttp\ClientInterface $client
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $loggerChannelFactory
+   */
   public function __construct($authParams, $apiParams, ClientInterface $client, LoggerChannelFactoryInterface $loggerChannelFactory) {
-    $this->authParams = self::ENV == 'prod' ? $authParams['dev'] : $authParams['prod'];
-    $this->apiParams = self::ENV == 'prod' ? $apiParams['dev'] : $apiParams['prod'];
+    $this->authParams = self::ENV == 'prod' ? $authParams['prod'] : $authParams['dev'];
+    $this->apiParams = self::ENV == 'prod' ? $apiParams['prod'] : $apiParams['dev'];
     $this->client = $client;
     $this->loggerChannelFactory = $loggerChannelFactory->get('PSS/PSE - ApiTarifer');
   }
 
-  protected function sendRequest(String $body, String $serviceType = 'indiv') {
+  /**
+   * @param $body
+   * @param string $serviceType
+   *   Can be 'indiv' or 'coll'.
+   *
+   * @return mixed|null
+   * @throws \GuzzleHttp\Exception\GuzzleException
+   */
+  public function send($body, $serviceType = 'indiv') {
+    return $this->sendRequest($body);
+  }
+
+  /**
+   * @param array $body
+   * @param string $serviceType
+   *
+   * @return mixed|null
+   * @throws \GuzzleHttp\Exception\GuzzleException
+   */
+  protected function sendRequest(array $body, string $serviceType = 'indiv') {
 
     // Build URI.
-    $uri = $this->apiParams['scheme'] . '/';
+    $uri = $this->apiParams['scheme'] . '://';
     $uri .= $this->apiParams['host'] . '/';
     $uri .= $serviceType == 'indiv' ? $this->apiParams['basePathIndiv'] : $this->apiParams['basePathColl'];
 
-    // Request
+    // Create request.
     try {
 
       // Sending.
       $response = $this->client->request('POST',
         $uri,
         [
-          'auth' => [
-            $this->authParams['user'],
-            $this->authParams['pwd'],
-          ],
+          'auth' => [$this->authParams['user'], $this->authParams['pwd']],
           'headers' => [
-            'Content-Type' => 'application/json',
             'Apikey' => $this->authParams['apiKey'],
+            'Content-Type' => 'application/json',
           ],
-          'body' => [$body],
+          'json' => $body,
         ]);
 
       // Response.
@@ -60,14 +98,10 @@ class ApiTariferService {
     }
 
       // Error.
-    catch (ClientException $e) {
+    catch (\Exception $e) {
       $this->loggerChannelFactory->error($e->getMessage());
     }
     return NULL;
-  }
-
-  public function send($body, $serviceType = 'indiv') {
-    return $this->sendRequest(json_encode($body));
   }
 
 }

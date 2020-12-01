@@ -1,26 +1,26 @@
 services:
   pss_pse.api_tarifer:
-    class: Drupal/pss_pse/ApiTariferService
-    arguments: ['%pss_pse_api_auth%', '%pss_pse_api_tarifer%', '@http_client_factory', '@logger.factory']
+    class: Drupal\pss_pse\Service\ApiTariferService
+    arguments: ['%pss_pse_api_auth%', '%pss_pse_api_tarifer%', '@http_client', '@logger.factory']
 
 parameters:
   pss_pse_api_auth:
     dev:
-      - apiKey: '5F75DDCEDC4593B792556B9844D03703672C5CE1047053C2B407A619D0641702'
-      - user: 'USER_PFS'
-      - pwd: 'ScK5mYa2u8aT6Fgaz'
+      apiKey: '5F75DDCEDC4593B792556B9844D03703672C5CE1047053C2B407A619D0641702'
+      user: 'USER_PFS'
+      pwd: 'ScK5mYa2u8aT6Fgaz'
     prod:
-      - apiKey: '5F75DDCEDC4593B792556B9844D03703672C5CE1047053C2B407A619D0641702'
-      - user: 'USER_PFS'
-      - pwd: 'ScK5mYa2u8aT6Fgaz'
+      apiKey: '5F75DDCEDC4593B792556B9844D03703672C5CE1047053C2B407A619D0641702'
+      user: 'USER_PFS'
+      pwd: 'ScK5mYa2u8aT6Fgaz'
   pss_pse_api_tarifer:
     dev:
-      - scheme: 'https'
-      - host: 'rec.api.harmonie-mutuelle.fr'
-      - basePathIndiv: 'tarifer-indiv/v1'
-      - basePathColl: 'tarifer-coll/v1'
+      scheme: 'https'
+      host: 'rec.api.harmonie-mutuelle.fr'
+      basePathIndiv: 'services/tarifer-indiv/v1'
+      basePathColl: 'services/tarifer-coll/v1'
     prod:
-      - scheme: 'https'
-      - host: 'api.harmonie-mutuelle.fr'
-      - basePathIndiv: 'tarifer-indiv/v1'
-      - basePathColl: 'tarifer-coll/v1'
+      scheme: 'https'
+      host: 'api.harmonie-mutuelle.fr'
+      basePathIndiv: 'services/tarifer-indiv/v1'
+      basePathColl: 'services/tarifer-coll/v1'
