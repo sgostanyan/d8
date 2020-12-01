@@ -65,6 +65,10 @@ class ApiTariferService {
       'donneeTarifantes' => [],
     ];
     foreach ($data as $key => $value) {
+
+    // field is ENFANT_DATE_NAISSANCE, remove end index.
+      $key = strpos($key, 'ENFANT_DATE_NAISSANCE') !== false ? 'ENFANT_DATE_NAISSANCE' : $key;
+
       if (!empty(Mapping::DATA_TYPE[$key])) {
         $builtData['donneeTarifantes'][] = [
           'cle' => $key,
