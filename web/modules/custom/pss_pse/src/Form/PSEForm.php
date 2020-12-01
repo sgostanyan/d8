@@ -10,7 +10,6 @@ use Drupal\Core\Form\FormStateInterface;
  */
 class PSEForm extends FormBase {
 
-
   /**
    * {@inheritdoc}
    */
@@ -22,61 +21,6 @@ class PSEForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-
-
-    /* "donneeTarifantes": [
-     {
-       "cle": "PROSPECT_DATE_NAISSANCE",
-       "dataType": "DATE",
-       "valeur": "01/07/1981"
-     },
-     {
-       "cle": "PROTECTION_CONJOINT",
-       "dataType": "BOOLEAN",
-       "valeur": "false"
-     },
-     {
-       "cle": "PROTECTION_ENFANTS",
-       "dataType": "BOOLEAN",
-       "valeur": "false"
-     },
-     {
-       "cle": "REGIME_OBLIGATOIRE",
-       "dataType": "STRING",
-       "valeur": "RG"
-     },
-     {
-       "cle": "CODE_POSTAL",
-       "dataType": "STRING",
-       "valeur": "75015"
-     },
-     {
-       "cle": "CODE_NIVEAU_PSE",
-       "dataType": "STRING",
-       "valeur": "NIVEAU_PRO_1_1"
-     },
-     {
-       "cle": "CODE_PH",
-       "dataType": "NUMBER",
-       "valeur": "45"
-     },
-     {
-       "cle": "STRUCTURE_COTISATION",
-       "dataType": "STRING",
-       "valeur": "TNS_STRUCTURE_UNIQUE"
-     },
-     {
-       "cle": "REDUCTION_TNS",
-       "dataType": "BOOLEAN",
-       "valeur": "true"
-     },
-     {
-       "cle": "BUDGET_MALIN",
-       "dataType": "BOOLEAN",
-       "valeur": "true"
-     }
-   ]*/
-
 
     $form['PROSPECT_DATE_NAISSANCE'] = [
       '#type' => 'date',
@@ -166,19 +110,16 @@ class PSEForm extends FormBase {
       '#weight' => '0',
     ];
 
-
-    /*$form['date'] = [
-      '#type' => 'date',
-      '#title' => $this->t('data'),
-      '#weight' => '0',
+    $form['codeOffre'] = [
+      '#type' => 'hidden',
+      '#value' => "PSE",
     ];
-    $form['secelt'] = [
-      '#type' => 'select',
-      '#title' => $this->t('selet'),
-      '#options' => ['A' => $this->t('A')],
-      '#size' => 5,
-      '#weight' => '0',
-    ];*/
+
+    $form['dateEffet'] = [
+      '#type' => 'hidden',
+      '#value' => date("Y-m-d\TH:i:s.000\Z"),
+    ];
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -202,9 +143,9 @@ class PSEForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // Display result.
-    foreach ($form_state->getValues() as $key => $value) {
+  /* foreach ($form_state->getValues() as $key => $value) {
       \Drupal::messenger()->addMessage($key . ': ' . ($key === 'text_format' ? $value['value'] : $value));
-    }
+    }*/
   }
 
 }
