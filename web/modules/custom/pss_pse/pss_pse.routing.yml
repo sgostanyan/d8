@@ -1,0 +1,7 @@
+pss_pse.pse_form:
+  path: '/pss_pse/form/pse'
+  defaults:
+    _form: '\Drupal\pss_pse\Form\PSEForm'
+    _title: 'PSEForm'
+  requirements:
+    _access: 'TRUE'
