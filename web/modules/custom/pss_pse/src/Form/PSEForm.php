@@ -214,13 +214,13 @@ class PSEForm extends FormBase {
     $data = !empty($values) ? $this->apiTarifer->send($values, 'indiv') : NULL;
 
     $renderArray = [
-      '#markup' => '<code>' . json_encode($data) . '</code>',
+      '#markup' => json_encode($data)
     ];
-    $renderArray['#prefix'] = '<div id="div-output">';
+    $renderArray['#prefix'] = '<div id="output">';
     $renderArray['#suffix'] = '</div>';
 
     $response = new AjaxResponse();
-    $response->addCommand(new ReplaceCommand('#div-output', $renderArray));
+    $response->addCommand(new ReplaceCommand('#output', $renderArray));
 
     return $response;
   }
