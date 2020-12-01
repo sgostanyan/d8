@@ -5,3 +5,11 @@ pss_pse.pse_form:
     _title: 'PSEForm'
   requirements:
     _access: 'TRUE'
+
+pss_pse.poc_controller_pse:
+  path: '/admin/form/pse'
+  defaults:
+    _controller: pss_pse.poc.controller:pse
+    _title: 'PSE'
+  requirements:
+    _permission: 'access content'

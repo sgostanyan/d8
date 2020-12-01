@@ -1,4 +1,10 @@
 services:
+
+  # Controllers
+  pss_pse.poc.controller:
+    class: Drupal\pss_pse\Controller\POCController
+    autowire: true
+
   pss_pse.api_tarifer:
     class: Drupal\pss_pse\Service\ApiTariferService
     arguments: ['%pss_pse_api_auth%', '%pss_pse_api_tarifer%', '@http_client', '@logger.factory']

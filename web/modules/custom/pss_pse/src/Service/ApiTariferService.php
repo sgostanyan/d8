@@ -58,7 +58,41 @@ class ApiTariferService {
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
   public function send(array $data, $serviceType = 'indiv') {
-    return $this->sendRequest($data);
+    // Build data to send.
+    $builtData = [
+      'codeOffre' => $data['codeOffre'],
+      'dateEffet' => $data['dateEffet'],
+      'donneeTarifantes' => [],
+    ];
+    foreach ($data as $key => $value) {
+      if (!empty(Mapping::DATA_TYPE[$key])) {
+        $builtData['donneeTarifantes'][] = [
+          'cle' => $key,
+          'dataType' => Mapping::DATA_TYPE[$key],
+          'valeur' => $this->prepareValue($key, $value),
+        ];
+      }
+    }
+    return $this->sendRequest($builtData);
+  }
+
+  /**
+   * @param $key
+   * @param $value
+   *
+   * @return bool|string
+   */
+  protected function prepareValue($key, $value) {
+
+    switch (Mapping::DATA_TYPE[$key]) {
+      case 'DATE':
+        return implode("/", array_reverse(explode('-', $value)));
+        break;
+      case 'BOOLEAN':
+        return $value == 0 ? "false" : "true";
+        break;
+    }
+    return $value;
   }
 
   /**

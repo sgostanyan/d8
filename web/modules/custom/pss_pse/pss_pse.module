@@ -23,8 +23,17 @@ function pss_pse_help($route_name, RouteMatchInterface $route_match) {
   }
 }
 
+function pss_pse_theme() {
+  return [
+    'poc_form' => [
+      'variables' => [
+        'form' => NULL,
+      ],
+    ],
+  ];
+}
+
 function pss_pse_preprocess_page(&$page) {
-  $apiService = Drupal::service('pss_pse.api_tarifer');
 
   $body = [
     "codeOffre" => "HGAV",
@@ -52,20 +61,7 @@ function pss_pse_preprocess_page(&$page) {
       ],
     ],
   ];
-
- /* $res = Drupal::httpClient()->post('https://rec.api.harmonie-mutuelle.fr/services/tarifer-indiv/v1',
-    [
-      'auth' => ['USER_PFS', 'ScK5mYa2u8aT6Fgaz'],
-      'headers' => [
-      //  'Authorization' => 'Basic ' . base64_encode('USER_PFS:ScK5mYa2u8aT6Fgaz'),
-        'Apikey' => '5F75DDCEDC4593B792556B9844D03703672C5CE1047053C2B407A619D0641702',
-        'Content-Type' => 'application/json',
-      ],
-      'json' => $body,
-    ]);
-
-  ksm($res->getBody()->getContents());*/
-
-  ksm($apiService->send($body, 'indiv'));
+  /*$apiService = Drupal::service('pss_pse.api_tarifer');
+  ksm($apiService->send($body, 'indiv'));*/
 
 }

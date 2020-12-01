@@ -2,13 +2,38 @@
 
 namespace Drupal\pss_pse\Form;
 
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\pss_pse\Service\ApiTariferService;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class PSEForm.
  */
 class PSEForm extends FormBase {
+
+  /**
+   * @var \Drupal\pss_pse\Service\ApiTariferService
+   */
+  protected $apiTarifer;
+
+  /**
+   * Class constructor.
+   *
+   * @param \Drupal\pss_pse\Service\ApiTariferService $apiTarifer
+   */
+  public function __construct(ApiTariferService $apiTarifer) {
+    $this->apiTarifer = $apiTarifer;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static($container->get('pss_pse.api_tarifer'));
+  }
 
   /**
    * {@inheritdoc}
@@ -27,18 +52,29 @@ class PSEForm extends FormBase {
       '#title' => $this->t('Date de naissance'),
       '#weight' => '0',
       '#default_value' => '1981-07-01',
+      '#required' => TRUE,
     ];
 
     $form['PROTECTION_CONJOINT'] = [
-      '#type' => 'checkbox',
+      '#type' => 'radios',
       '#title' => $this->t('Protection conjoint'),
       '#weight' => '0',
+      '#options' => [
+        0 => 'Non',
+        1 => 'Oui',
+      ],
+      '#default_value' => 0,
     ];
 
     $form['PROTECTION_ENFANTS'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Protection conjoint'),
+      '#type' => 'radios',
+      '#title' => $this->t('Protection enfants'),
       '#weight' => '0',
+      '#options' => [
+        0 => 'Non',
+        1 => 'Oui',
+      ],
+      '#default_value' => 0,
     ];
 
     $form['REGIME_OBLIGATOIRE'] = [
@@ -48,6 +84,7 @@ class PSEForm extends FormBase {
       '#size' => 64,
       '#weight' => '0',
       '#default_value' => 'RG',
+      '#required' => TRUE,
     ];
 
     $form['CODE_POSTAL'] = [
@@ -57,27 +94,29 @@ class PSEForm extends FormBase {
       '#size' => 64,
       '#weight' => '0',
       '#default_value' => '75015',
+      '#required' => TRUE,
     ];
 
     $form['CODE_NIVEAU_PSE'] = [
       '#type' => 'select',
       '#title' => $this->t('Code niveau PSE'),
       '#options' => [
-        'NIVEAU_PRO_1_1',
-        'NIVEAU_PRO_1_2',
-        'NIVEAU_PRO_1_3',
-        'NIVEAU_PRO_2_1',
-        'NIVEAU_PRO_2_2',
-        'NIVEAU_PRO_2_3',
-        'NIVEAU_PRO_3_2',
-        'NIVEAU_PRO_3_3',
-        'NIVEAU_PRO_3_4',
-        'NIVEAU_PRO_4_4',
+        'NIVEAU_PRO_1_1' => 'NIVEAU_PRO_1_1',
+        'NIVEAU_PRO_1_2' => 'NIVEAU_PRO_1_2',
+        'NIVEAU_PRO_1_3' => 'NIVEAU_PRO_1_3',
+        'NIVEAU_PRO_2_1' => 'NIVEAU_PRO_2_1',
+        'NIVEAU_PRO_2_2' => 'NIVEAU_PRO_2_2',
+        'NIVEAU_PRO_2_3' => 'NIVEAU_PRO_2_3',
+        'NIVEAU_PRO_3_2' => 'NIVEAU_PRO_3_2',
+        'NIVEAU_PRO_3_3' => 'NIVEAU_PRO_3_3',
+        'NIVEAU_PRO_3_4' => 'NIVEAU_PRO_3_4',
+        'NIVEAU_PRO_4_4' => 'NIVEAU_PRO_4_4',
       ],
       '#size' => 5,
       '#weight' => '0',
-      '#default_value' => 0,
+      '#default_value' => 'NIVEAU_PRO_1_1',
       '#multiple' => FALSE,
+      '#required' => TRUE,
     ];
 
     $form['CODE_PH'] = [
@@ -87,6 +126,7 @@ class PSEForm extends FormBase {
       '#size' => 64,
       '#weight' => '0',
       '#default_value' => 45,
+      '#required' => TRUE,
     ];
 
     $form['STRUCTURE_COTISATION'] = [
@@ -96,18 +136,29 @@ class PSEForm extends FormBase {
       '#size' => 64,
       '#weight' => '0',
       '#default_value' => 'TNS_STRUCTURE_UNIQUE',
+      '#required' => TRUE,
     ];
 
     $form['REDUCTION_TNS'] = [
-      '#type' => 'checkbox',
+      '#type' => 'radios',
       '#title' => $this->t('Reduction TNS'),
       '#weight' => '0',
+      '#options' => [
+        0 => 'Non',
+        1 => 'Oui',
+      ],
+      '#default_value' => 0,
     ];
 
     $form['BUDGET_MALIN'] = [
-      '#type' => 'checkbox',
+      '#type' => 'radios',
       '#title' => $this->t('Budget malin'),
       '#weight' => '0',
+      '#options' => [
+        0 => 'Non',
+        1 => 'Oui',
+      ],
+      '#default_value' => 0,
     ];
 
     $form['codeOffre'] = [
@@ -123,6 +174,9 @@ class PSEForm extends FormBase {
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
+      '#ajax' => [
+        'callback' => '::loadOutput',
+      ],
     ];
 
     return $form;
@@ -132,9 +186,9 @@ class PSEForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    foreach ($form_state->getValues() as $key => $value) {
-      // @TODO: Validate fields.
-    }
+    /* foreach ($form_state->getValues() as $key => $value) {
+       // @TODO: Validate fields.
+     }*/
     parent::validateForm($form, $form_state);
   }
 
@@ -142,10 +196,33 @@ class PSEForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Display result.
-  /* foreach ($form_state->getValues() as $key => $value) {
+    /*foreach ($form_state->getValues() as $key => $value) {
       \Drupal::messenger()->addMessage($key . ': ' . ($key === 'text_format' ? $value['value'] : $value));
     }*/
+  }
+
+  /**
+   * @param array $form
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *
+   * @return \Drupal\Core\Ajax\AjaxResponse
+   * @throws \GuzzleHttp\Exception\GuzzleException
+   */
+  public function loadOutput(array &$form, FormStateInterface $form_state) {
+
+    $values = $form_state->getValues();
+    $data = !empty($values) ? $this->apiTarifer->send($values, 'indiv') : NULL;
+
+    $renderArray = [
+      '#markup' => '<code>' . json_encode($data) . '</code>',
+    ];
+    $renderArray['#prefix'] = '<div id="div-output">';
+    $renderArray['#suffix'] = '</div>';
+
+    $response = new AjaxResponse();
+    $response->addCommand(new ReplaceCommand('#div-output', $renderArray));
+
+    return $response;
   }
 
 }
