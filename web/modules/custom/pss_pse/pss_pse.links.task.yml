@@ -14,3 +14,8 @@ pss_pse.poc_controller_gav:
   title: GAV
   base_route: pss_pse.poc_controller_pse
   weight: 3
+pss_pse.poc_controller_pd:
+  route_name: pss_pse.poc_controller_pd
+  title: Protection décès
+  base_route: pss_pse.poc_controller_pse
+  weight: 4

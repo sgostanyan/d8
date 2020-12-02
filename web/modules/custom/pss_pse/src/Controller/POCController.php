@@ -49,4 +49,14 @@ class POCController extends ControllerBase {
     ];
   }
 
+  /**
+   * @return array
+   */
+  public function pd() {
+    return [
+      '#theme' => 'poc_form',
+      '#form' => $this->formBuilder->getForm('Drupal\pss_pse\Form\PDForm'),
+    ];
+  }
+
 }

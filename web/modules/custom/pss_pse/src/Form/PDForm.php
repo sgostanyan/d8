@@ -10,9 +10,9 @@ use Drupal\pss_pse\Service\ApiTariferService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class GAVForm.
+ * Class PDForm.
  */
-class GAVForm extends FormBase {
+class PDForm extends FormBase {
 
   /**
    * @var \Drupal\pss_pse\Service\ApiTariferService
@@ -39,7 +39,7 @@ class GAVForm extends FormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'gav_form';
+    return 'pd_form';
   }
 
   /**
@@ -97,9 +97,17 @@ class GAVForm extends FormBase {
       ],
     ];
 
+    $form['MONTANT_CAPITAL'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Montant capital'),
+      '#weight' => '0',
+      '#min' => 0,
+      '#required' => TRUE,
+    ];
+
     $form['codeOffre'] = [
       '#type' => 'hidden',
-      '#value' => "HGAV",
+      '#value' => "PROTECTION_DECES",
     ];
 
     $form['dateEffet'] = [

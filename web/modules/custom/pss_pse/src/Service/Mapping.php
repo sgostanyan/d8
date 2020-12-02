@@ -33,6 +33,7 @@ class Mapping {
     "SOINS_MEDICAUX" => "BOOLEAN",
     "OPTIQUE_DENTAIRE" => "BOOLEAN",
     "CHAMBRE_PARTICULIERE" => "BOOLEAN",
+    "MONTANT_CAPITAL" => "NUMBER",
   ];
 
 }

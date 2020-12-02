@@ -30,3 +30,11 @@ pss_pse.poc_controller_gav:
     _title: 'GAV'
   requirements:
     _permission: 'access content'
+# PD
+pss_pse.poc_controller_pd:
+  path: '/admin/form/pd'
+  defaults:
+    _controller: pss_pse.poc.controller:pd
+    _title: 'Protection décès'
+  requirements:
+    _permission: 'access content'

@@ -102,6 +102,7 @@ class HSPARTForm extends FormBase {
       ],
       '#weight' => '0',
       '#required' => TRUE,
+      '#default_value' => '1',
       '#states' => [
         'visible' => [
           ':input[name="PROTECTION_ENFANTS"]' => ['value' => 1],
