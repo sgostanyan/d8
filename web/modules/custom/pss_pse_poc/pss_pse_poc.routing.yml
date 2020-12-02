@@ -1,0 +1,33 @@
+
+# PSE
+pss_pse_poc.controller_pse:
+  path: '/admin/poc/pse'
+  defaults:
+    _controller: pss_pse_poc.controller:pse
+    _title: 'PSE'
+  requirements:
+    _permission: 'access content'
+# HSPART
+pss_pse_poc.controller_hspart:
+  path: '/admin/poc/hspart'
+  defaults:
+    _controller: pss_pse_poc.controller:hspart
+    _title: 'HSPART'
+  requirements:
+    _permission: 'access content'
+# GAV
+pss_pse_poc.controller_gav:
+  path: '/admin/poc/gav'
+  defaults:
+    _controller: pss_pse_poc.controller:gav
+    _title: 'GAV'
+  requirements:
+    _permission: 'access content'
+# PD
+pss_pse_poc.controller_pd:
+  path: '/admin/poc/protection-deces'
+  defaults:
+    _controller: pss_pse_poc.controller:pd
+    _title: 'Protection décès'
+  requirements:
+    _permission: 'access content'

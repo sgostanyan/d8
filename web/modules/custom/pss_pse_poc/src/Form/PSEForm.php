@@ -1,28 +1,28 @@
 <?php
 
-namespace Drupal\pss_pse\Form;
+namespace Drupal\pss_pse_poc\Form;
 
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\pss_pse\Service\ApiTariferService;
+use Drupal\pss_pse_poc\Service\ApiTariferService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class HSPARTForm.
+ * Class PSEForm.
  */
-class HSPARTForm extends FormBase {
+class PSEForm extends FormBase {
 
   /**
-   * @var \Drupal\pss_pse\Service\ApiTariferService
+   * @var \Drupal\pss_pse_poc\Service\ApiTariferService
    */
   protected $apiTarifer;
 
   /**
    * Class constructor.
    *
-   * @param \Drupal\pss_pse\Service\ApiTariferService $apiTarifer
+   * @param \Drupal\pss_pse_poc\Service\ApiTariferService $apiTarifer
    */
   public function __construct(ApiTariferService $apiTarifer) {
     $this->apiTarifer = $apiTarifer;
@@ -39,7 +39,7 @@ class HSPARTForm extends FormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'hspart_form';
+    return 'pse_form';
   }
 
   /**
@@ -266,25 +266,21 @@ class HSPARTForm extends FormBase {
     ];
 
     // Specific fields.
-    $form['CODE_NIVEAU_GARANTIE'] = [
+    $form['STRUCTURE_COTISATION'] = [
       '#type' => 'select',
-      '#title' => $this->t('Code niveau de garantie'),
-      '#options' => [
-        'NIVEAU_HSPART_SECURITE' => 'NIVEAU_HSPART_SECURITE',
-        'NIVEAU_HSPART_TRANQUILITE' => 'NIVEAU_HSPART_TRANQUILITE',
-        'NIVEAU_HSPART_SERENITE' => 'NIVEAU_HSPART_SERENITE',
-        'NIVEAU_HSPART_EQUILIBRE' => 'NIVEAU_HSPART_EQUILIBRE',
-        'NIVEAU_HSPART_CONFORT' => 'NIVEAU_HSPART_CONFORT',
-        'NIVEAU_HSPART_PERFORMANCE' => 'NIVEAU_HSPART_PERFORMANCE',
-      ],
+      '#title' => $this->t('Structure cotisation'),
       '#weight' => '0',
-      '#default_value' => 'NIVEAU_HSPART_SECURITE',
+      '#options' => [
+        'TNS_STRUCTURE_UNIQUE' => 'TNS_STRUCTURE_UNIQUE',
+        'TNS_STRUCTURE_ADULTE_ENFANT' => 'TNS_STRUCTURE_ADULTE_ENFANT',
+      ],
+      '#default_value' => 'TNS_STRUCTURE_UNIQUE',
       '#required' => TRUE,
     ];
 
-    $form['MEDICAMENTS_SANS_ORDONNANCE'] = [
+    $form['REDUCTION_TNS'] = [
       '#type' => 'radios',
-      '#title' => $this->t('Médicaments sans ordonnance'),
+      '#title' => $this->t('Reduction TNS'),
       '#weight' => '0',
       '#options' => [
         0 => 'Non',
@@ -293,47 +289,20 @@ class HSPARTForm extends FormBase {
       '#default_value' => 0,
     ];
 
-    $form['SOINS_MEDICAUX'] = [
+    $form['BUDGET_MALIN'] = [
       '#type' => 'radios',
-      '#title' => $this->t('Soins médicaux'),
+      '#title' => $this->t('Budget malin'),
       '#weight' => '0',
       '#options' => [
         0 => 'Non',
         1 => 'Oui',
       ],
       '#default_value' => 0,
-    ];
-
-    $form['OPTIQUE_DENTAIRE'] = [
-      '#type' => 'radios',
-      '#title' => $this->t('Optique / Dentaire'),
-      '#weight' => '0',
-      '#options' => [
-        0 => 'Non',
-        1 => 'Oui',
-      ],
-      '#default_value' => 0,
-    ];
-
-    $form['CHAMBRE_PARTICULIERE'] = [
-      '#type' => 'radios',
-      '#title' => $this->t('Chambre particuliere'),
-      '#weight' => '0',
-      '#options' => [
-        0 => 'Non',
-        1 => 'Oui',
-      ],
-      '#default_value' => 0,
-    ];
-
-    $form['budgetMalin'] = [
-      '#type' => 'hidden',
-      '#value' => 1,
     ];
 
     $form['codeOffre'] = [
       '#type' => 'hidden',
-      '#value' => "HSPART",
+      '#value' => "PSE",
     ];
 
     $form['dateEffet'] = [

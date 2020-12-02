@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\pss_pse\Controller;
+namespace Drupal\pss_pse_poc\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Form\FormBuilderInterface;
@@ -25,7 +25,7 @@ class POCController extends ControllerBase {
   public function pse() {
     return [
       '#theme' => 'poc_form',
-      '#form' => $this->formBuilder->getForm('Drupal\pss_pse\Form\PSEForm'),
+      '#form' => $this->formBuilder->getForm('Drupal\pss_pse_poc\Form\PSEForm'),
     ];
   }
 
@@ -35,7 +35,7 @@ class POCController extends ControllerBase {
   public function hspart() {
     return [
       '#theme' => 'poc_form',
-      '#form' => $this->formBuilder->getForm('Drupal\pss_pse\Form\HSPARTForm'),
+      '#form' => $this->formBuilder->getForm('Drupal\pss_pse_poc\Form\HSPARTForm'),
     ];
   }
 
@@ -45,7 +45,7 @@ class POCController extends ControllerBase {
   public function gav() {
     return [
       '#theme' => 'poc_form',
-      '#form' => $this->formBuilder->getForm('Drupal\pss_pse\Form\GAVForm'),
+      '#form' => $this->formBuilder->getForm('Drupal\pss_pse_poc\Form\GAVForm'),
     ];
   }
 
@@ -55,7 +55,7 @@ class POCController extends ControllerBase {
   public function pd() {
     return [
       '#theme' => 'poc_form',
-      '#form' => $this->formBuilder->getForm('Drupal\pss_pse\Form\PDForm'),
+      '#form' => $this->formBuilder->getForm('Drupal\pss_pse_poc\Form\PDForm'),
     ];
   }
 

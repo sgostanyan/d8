@@ -1,0 +1,21 @@
+pss_pse_poc.controller_pse:
+  route_name: pss_pse_poc.controller_pse
+  title: PSE
+  base_route: pss_pse_poc.controller_pse
+
+pss_pse_poc.controller_hspart:
+  route_name: pss_pse_poc.controller_hspart
+  title: HSPART
+  base_route: pss_pse_poc.controller_pse
+  weight: 2
+
+pss_pse_poc.controller_gav:
+  route_name: pss_pse_poc.controller_gav
+  title: GAV
+  base_route: pss_pse_poc.controller_pse
+  weight: 3
+pss_pse_poc.controller_pd:
+  route_name: pss_pse_poc.controller_pd
+  title: Protection décès
+  base_route: pss_pse_poc.controller_pse
+  weight: 4

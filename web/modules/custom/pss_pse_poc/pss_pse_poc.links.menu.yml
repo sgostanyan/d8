@@ -1,0 +1,6 @@
+pss_pse_poc:
+  title: 'PSS/PSE POC'
+  description: 'PSS/PSE POC'
+  route_name: pss_pse_poc.controller_pse
+  parent: system.admin
+  weight: 100

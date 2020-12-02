@@ -1,28 +1,28 @@
 <?php
 
-namespace Drupal\pss_pse\Form;
+namespace Drupal\pss_pse_poc\Form;
 
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\pss_pse\Service\ApiTariferService;
+use Drupal\pss_pse_poc\Service\ApiTariferService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class GAVForm.
+ * Class PDForm.
  */
-class GAVForm extends FormBase {
+class PDForm extends FormBase {
 
   /**
-   * @var \Drupal\pss_pse\Service\ApiTariferService
+   * @var \Drupal\pss_pse_poc\Service\ApiTariferService
    */
   protected $apiTarifer;
 
   /**
    * Class constructor.
    *
-   * @param \Drupal\pss_pse\Service\ApiTariferService $apiTarifer
+   * @param \Drupal\pss_pse_poc\Service\ApiTariferService $apiTarifer
    */
   public function __construct(ApiTariferService $apiTarifer) {
     $this->apiTarifer = $apiTarifer;
@@ -39,7 +39,7 @@ class GAVForm extends FormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'gav_form';
+    return 'pd_form';
   }
 
   /**
@@ -97,9 +97,18 @@ class GAVForm extends FormBase {
       ],
     ];
 
+    $form['MONTANT_CAPITAL'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Montant capital'),
+      '#weight' => '0',
+      '#default_value' => 25000,
+      '#min' => 10000,
+      '#required' => TRUE,
+    ];
+
     $form['codeOffre'] = [
       '#type' => 'hidden',
-      '#value' => "HGAV",
+      '#value' => "PROTECTION_DECES",
     ];
 
     $form['dateEffet'] = [

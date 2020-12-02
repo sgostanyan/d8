@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\pss_pse\Service;
+namespace Drupal\pss_pse_poc\Service;
 
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use GuzzleHttp\ClientInterface;

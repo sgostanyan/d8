@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\pss_pse\Service;
+namespace Drupal\pss_pse_poc\Service;
 
 /**
  * Class Mapping
  *
- * @package Drupal\pss_pse\Service
+ * @package Drupal\pss_pse_poc\Service
  */
 class Mapping {
 
