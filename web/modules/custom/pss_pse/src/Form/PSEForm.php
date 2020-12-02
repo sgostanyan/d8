@@ -102,6 +102,7 @@ class PSEForm extends FormBase {
       ],
       '#weight' => '0',
       '#required' => TRUE,
+      '#default_value' => '1',
       '#states' => [
         'visible' => [
           ':input[name="PROTECTION_ENFANTS"]' => ['value' => 1],
@@ -117,15 +118,16 @@ class PSEForm extends FormBase {
       '#required' => TRUE,
       '#states' => [
         'visible' => [
-          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '1']],
-          'xor',
-          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '2']],
-          'xor',
-          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '3']],
-          'xor',
-          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '4']],
-          'xor',
-          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '5']],
+          [
+            ':input[name="PROTECTION_ENFANTS"]' => ['value' => 1],
+            [
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '1']],
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '2']],
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '3']],
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '4']],
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '5']],
+            ],
+          ],
         ],
       ],
     ];
@@ -138,13 +140,15 @@ class PSEForm extends FormBase {
       '#required' => TRUE,
       '#states' => [
         'visible' => [
-          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '2']],
-          'xor',
-          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '3']],
-          'xor',
-          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '4']],
-          'xor',
-          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '5']],
+          [
+            ':input[name="PROTECTION_ENFANTS"]' => ['value' => 1],
+            [
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '2']],
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '3']],
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '4']],
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '5']],
+            ],
+          ],
         ],
       ],
     ];
@@ -157,11 +161,14 @@ class PSEForm extends FormBase {
       '#required' => TRUE,
       '#states' => [
         'visible' => [
-          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '3']],
-          'xor',
-          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '4']],
-          'xor',
-          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '5']],
+          [
+            ':input[name="PROTECTION_ENFANTS"]' => ['value' => 1],
+            [
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '3']],
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '4']],
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '5']],
+            ],
+          ],
         ],
       ],
     ];
@@ -174,9 +181,13 @@ class PSEForm extends FormBase {
       '#required' => TRUE,
       '#states' => [
         'visible' => [
-          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '4']],
-          'xor',
-          [':input[name="NOMBRE_ENFANTS"]' => ['value' => '5']],
+          [
+            ':input[name="PROTECTION_ENFANTS"]' => ['value' => 1],
+            [
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '4']],
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '5']],
+            ],
+          ],
         ],
       ],
     ];
@@ -189,7 +200,12 @@ class PSEForm extends FormBase {
       '#required' => TRUE,
       '#states' => [
         'visible' => [
-          ':input[name="NOMBRE_ENFANTS"]' => ['value' => '5'],
+          [
+            ':input[name="PROTECTION_ENFANTS"]' => ['value' => 1],
+            [
+              [':input[name="NOMBRE_ENFANTS"]' => ['value' => '5']],
+            ],
+          ],
         ],
       ],
     ];
