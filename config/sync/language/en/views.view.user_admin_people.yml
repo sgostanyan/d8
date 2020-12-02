@@ -30,6 +30,8 @@ display:
           settings:
             format_custom_true: Activo
             format_custom_false: Bloqueado
+        roles_target_id:
+          label: Rôles
         created:
           label: 'Miembro desde hace'
         access:
@@ -55,6 +57,9 @@ display:
           expose:
             label: Permiso
       title: Usuarios
+      empty:
+        area_text_custom:
+          content: 'Personne n''est disponible.'
       use_more_text: más
   page_1:
     display_title: Page

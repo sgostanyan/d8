@@ -1,3 +1,5 @@
+label: Contenu
+description: 'Trouver et gérer le contenu.'
 display:
   default:
     display_options:
@@ -5,11 +7,11 @@ display:
         options:
           reset_button_label: Restablecer
           exposed_sorts_label: 'Ordenar por'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
       fields:
         title:
           label: Título
+        type:
+          label: 'Type de contenu'
         status:
           label: Estado
         operations:
@@ -18,9 +20,22 @@ display:
         title:
           expose:
             label: Título
+        type:
+          expose:
+            label: 'Type de contenu'
         status:
           expose:
             label: Estado
+      title: Contenu
+      empty:
+        area_text_custom:
+          content: 'Aucun contenu disponible.'
     display_title: Máster
   page_1:
+    display_options:
+      menu:
+        title: Contenu
+      tab_options:
+        title: Contenu
+        description: 'Trouver et gérer le contenu'
     display_title: Página

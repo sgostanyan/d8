@@ -19,6 +19,8 @@ display:
             items_per_page_options_all_label: '- All -'
             offset_label: Offset
       fields:
+        fid:
+          label: 'Identifiant (FID)'
         filename:
           label: Nombre
         filemime:

@@ -1,13 +1,13 @@
+description: 'Tous les contenus, triés par lettre.'
 display:
   default:
     display_title: Máster
     display_options:
       exposed_form:
         options:
+          submit_button: Appliquer
           reset_button_label: Restablecer
           exposed_sorts_label: 'Ordenar por'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
       pager:
         options:
           expose:
@@ -17,5 +17,9 @@ display:
       fields:
         title:
           label: Título
+        changed:
+          label: 'Dernière mise à jour'
+  attachment_1:
+    display_title: 'Fichier attaché'
   page_1:
     display_title: Página
