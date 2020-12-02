@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Class PSEForm.
  */
-class PSEForm extends FormBase {
+class HSPARTForm extends FormBase {
 
   /**
    * @var \Drupal\pss_pse\Service\ApiTariferService
@@ -252,21 +252,25 @@ class PSEForm extends FormBase {
     ];
 
     // Specific fields.
-    $form['STRUCTURE_COTISATION'] = [
+    $form['CODE_NIVEAU_GARANTIE'] = [
       '#type' => 'select',
-      '#title' => $this->t('Structure cotisation'),
-      '#weight' => '0',
+      '#title' => $this->t('Code niveau de garantie'),
       '#options' => [
-        'TNS_STRUCTURE_UNIQUE' => 'TNS_STRUCTURE_UNIQUE',
-        'TNS_STRUCTURE_ADULTE_ENFANT' => 'TNS_STRUCTURE_ADULTE_ENFANT',
+        'NIVEAU_HSPART_SECURITE' => 'NIVEAU_HSPART_SECURITE',
+        'NIVEAU_HSPART_TRANQUILITE' => 'NIVEAU_HSPART_TRANQUILITE',
+        'NIVEAU_HSPART_SERENITE' => 'NIVEAU_HSPART_SERENITE',
+        'NIVEAU_HSPART_EQUILIBRE' => 'NIVEAU_HSPART_EQUILIBRE',
+        'NIVEAU_HSPART_CONFORT' => 'NIVEAU_HSPART_CONFORT',
+        'NIVEAU_HSPART_PERFORMANCE' => 'NIVEAU_HSPART_PERFORMANCE',
       ],
-      '#default_value' => 'TNS_STRUCTURE_UNIQUE',
+      '#weight' => '0',
+      '#default_value' => 'NIVEAU_HSPART_SECURITE',
       '#required' => TRUE,
     ];
 
-    $form['REDUCTION_TNS'] = [
+    $form['MEDICAMENTS_SANS_ORDONNANCE'] = [
       '#type' => 'radios',
-      '#title' => $this->t('Reduction TNS'),
+      '#title' => $this->t('Médicaments sans ordonnance'),
       '#weight' => '0',
       '#options' => [
         0 => 'Non',
@@ -275,20 +279,47 @@ class PSEForm extends FormBase {
       '#default_value' => 0,
     ];
 
-    $form['BUDGET_MALIN'] = [
+    $form['SOINS_MEDICAUX'] = [
       '#type' => 'radios',
-      '#title' => $this->t('Budget malin'),
+      '#title' => $this->t('Soins médicaux'),
       '#weight' => '0',
       '#options' => [
         0 => 'Non',
         1 => 'Oui',
       ],
       '#default_value' => 0,
+    ];
+
+    $form['OPTIQUE_DENTAIRE'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Optique / Dentaire'),
+      '#weight' => '0',
+      '#options' => [
+        0 => 'Non',
+        1 => 'Oui',
+      ],
+      '#default_value' => 0,
+    ];
+
+    $form['CHAMBRE_PARTICULIERE'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Chambre particuliere'),
+      '#weight' => '0',
+      '#options' => [
+        0 => 'Non',
+        1 => 'Oui',
+      ],
+      '#default_value' => 0,
+    ];
+
+    $form['budgetMalin'] = [
+      '#type' => 'hidden',
+      '#value' => 1,
     ];
 
     $form['codeOffre'] = [
       '#type' => 'hidden',
-      '#value' => "PSE",
+      '#value' => "HSPART",
     ];
 
     $form['dateEffet'] = [

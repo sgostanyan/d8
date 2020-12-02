@@ -1,0 +1,10 @@
+pss_pse.poc_controller_pse:
+  route_name: pss_pse.poc_controller_pse
+  title: PSE
+  base_route: pss_pse.poc_controller_pse
+
+pss_pse.poc_controller_hspart:
+  route_name: pss_pse.poc_controller_hspart
+  title: HSPART
+  base_route: pss_pse.poc_controller_pse
+  weight: 2

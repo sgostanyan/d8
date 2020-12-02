@@ -6,10 +6,19 @@ pss_pse.pse_form:
   requirements:
     _access: 'TRUE'
 
+# PSE
 pss_pse.poc_controller_pse:
   path: '/admin/form/pse'
   defaults:
     _controller: pss_pse.poc.controller:pse
     _title: 'PSE'
+  requirements:
+    _permission: 'access content'
+# HSPART
+pss_pse.poc_controller_hspart:
+  path: '/admin/form/hspart'
+  defaults:
+    _controller: pss_pse.poc.controller:hspart
+    _title: 'HSPART'
   requirements:
     _permission: 'access content'

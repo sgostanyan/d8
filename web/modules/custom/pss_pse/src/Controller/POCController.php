@@ -29,4 +29,14 @@ class POCController extends ControllerBase {
     ];
   }
 
+  /**
+   * @return array
+   */
+  public function hspart() {
+    return [
+      '#theme' => 'poc_form',
+      '#form' => $this->formBuilder->getForm('Drupal\pss_pse\Form\HSPARTForm'),
+    ];
+  }
+
 }
