@@ -8,3 +8,9 @@ pss_pse.poc_controller_hspart:
   title: HSPART
   base_route: pss_pse.poc_controller_pse
   weight: 2
+
+pss_pse.poc_controller_gav:
+  route_name: pss_pse.poc_controller_gav
+  title: GAV
+  base_route: pss_pse.poc_controller_pse
+  weight: 3

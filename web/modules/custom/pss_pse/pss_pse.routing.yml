@@ -22,3 +22,11 @@ pss_pse.poc_controller_hspart:
     _title: 'HSPART'
   requirements:
     _permission: 'access content'
+# GAV
+pss_pse.poc_controller_gav:
+  path: '/admin/form/gav'
+  defaults:
+    _controller: pss_pse.poc.controller:gav
+    _title: 'GAV'
+  requirements:
+    _permission: 'access content'

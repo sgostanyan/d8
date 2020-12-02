@@ -10,7 +10,7 @@ use Drupal\pss_pse\Service\ApiTariferService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class PSEForm.
+ * Class HSPARTForm.
  */
 class HSPARTForm extends FormBase {
 
@@ -39,7 +39,7 @@ class HSPARTForm extends FormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'pse_form';
+    return 'hspart_form';
   }
 
   /**
