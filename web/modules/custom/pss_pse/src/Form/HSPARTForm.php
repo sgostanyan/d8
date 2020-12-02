@@ -94,7 +94,6 @@ class HSPARTForm extends FormBase {
       '#type' => 'select',
       '#title' => $this->t('Nombre d\'enfants'),
       '#options' => [
-        '0' => '0',
         '1' => '1',
         '2' => '2',
         '3' => '3',
@@ -102,7 +101,6 @@ class HSPARTForm extends FormBase {
         '5' => '5',
       ],
       '#weight' => '0',
-      '#default_value' => '0',
       '#required' => TRUE,
       '#states' => [
         'visible' => [
