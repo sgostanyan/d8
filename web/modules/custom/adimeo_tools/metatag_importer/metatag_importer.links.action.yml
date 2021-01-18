@@ -1,5 +1,0 @@
-metatag_importer.metatag_import:
-  route_name: 'metatag_importer.metatag_import'
-  title: 'CSV Import metatags'
-  appears_on:
-    - entity.metatag_defaults.collection

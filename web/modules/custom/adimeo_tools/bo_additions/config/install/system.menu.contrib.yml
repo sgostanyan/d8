@@ -1,7 +1,0 @@
-langcode: fr
-status: true
-dependencies: {  }
-id: contrib
-label: Contribuer
-description: 'Menu de contribution du Back-office'
-locked: true

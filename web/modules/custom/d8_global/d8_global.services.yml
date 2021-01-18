@@ -1,0 +1,5 @@
+services:
+  d8_global.articles_breadcrumb:
+    class: Drupal\d8_global\Breadcrumb\ArticleBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 100 }
