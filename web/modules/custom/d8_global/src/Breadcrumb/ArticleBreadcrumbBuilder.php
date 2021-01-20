@@ -2,10 +2,12 @@
 
 namespace Drupal\d8_global\Breadcrumb;
 
-use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
-use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Breadcrumb\Breadcrumb;
+use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
+use Drupal\Core\Controller\TitleResolverInterface;
 use Drupal\Core\Link;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class ArticleBreadcrumbBuilder
@@ -13,6 +15,33 @@ use Drupal\Core\Link;
  * @package Drupal\d8_global\Breadcrumb
  */
 class ArticleBreadcrumbBuilder implements BreadcrumbBuilderInterface {
+
+  /**
+   * @var \Symfony\Component\HttpFoundation\RequestStack
+   */
+  protected $request;
+
+  /**
+   * @var \Drupal\Core\Controller\TitleResolverInterface
+   */
+  protected $titleResolver;
+
+  /**
+   * @var \Drupal\Core\Breadcrumb\Breadcrumb
+   */
+  protected $breadcrumb;
+
+  /**
+   * ArticleBreadcrumbBuilder constructor.
+   *
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request
+   * @param \Drupal\Core\Controller\TitleResolverInterface $titleResolver
+   */
+  public function __construct(RequestStack $request, TitleResolverInterface $titleResolver) {
+    $this->request = $request;
+    $this->titleResolver = $titleResolver;
+    $this->breadcrumb = new Breadcrumb();
+  }
 
   /**
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
@@ -24,6 +53,7 @@ class ArticleBreadcrumbBuilder implements BreadcrumbBuilderInterface {
     if (isset($parameters['node'])) {
       return $parameters['node']->getType() === 'article';
     }
+    return FALSE;
   }
 
   /**
@@ -33,21 +63,24 @@ class ArticleBreadcrumbBuilder implements BreadcrumbBuilderInterface {
    */
   public function build(RouteMatchInterface $route_match) {
 
-    $breadcrumb = new Breadcrumb();
+    $this->breadcrumb->addCacheContexts(["url"]);
 
-    $breadcrumb->addCacheContexts(["url"]);
+    $this->breadcrumb->addLink(Link::createFromRoute(t('Home'), '<front>'));
 
-    $breadcrumb->addLink(Link::createFromRoute(t('Home'), '<front>'));
-    $breadcrumb->addLink(Link::createFromRoute(t('Articles'), '<none>'));
+    $category = $this->request->getCurrentRequest()->get('category');
 
-    $request = \Drupal::request();
-    $route_match = \Drupal::routeMatch();
-    $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
-
-    if (!empty($page_title)) {
-      $breadcrumb->addLink(Link::createFromRoute($page_title, '<none>'));
+    if ($category) {
+      $this->breadcrumb->addLink(Link::createFromRoute(t($category), '<none>'));
     }
 
-    return $breadcrumb;
+    //$this->breadcrumb->addLink(Link::createFromRoute(t('Articles'), '<none>'));
+
+    $page_title = $this->titleResolver->getTitle($this->request->getCurrentRequest(), $route_match->getRouteObject());
+
+    if (!empty($page_title)) {
+      $this->breadcrumb->addLink(Link::createFromRoute($page_title, '<none>'));
+    }
+
+    return $this->breadcrumb;
   }
 }
