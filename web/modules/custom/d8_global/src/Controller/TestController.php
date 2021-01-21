@@ -17,17 +17,30 @@ class TestController extends ControllerBase {
    */
   public function test1() {
 
-   // $this->testWS();
+    $result = 'TEST';
+
+    /**
+     * @var \Drupal\pss_pse_poc\Service\ApiCoconutService $coconut
+     */
+    $coconut = \Drupal::service('pss_pse.api_coconut');
+
+    $result = $coconut->getCCNs(["6312Z", "7022Z"]);
+
+    include 'graphql.php';
+
+   // \graphql::go();
+
+ /*  // $this->testWS();
     $this->sgEntityServices();
 
     /**
      * @var \Drupal\sg_entity_services\Services\SgEntityServices $sgServices
      */
-    $sgServices = \Drupal::service('sg_entity_services.service');
+    //$sgServices = \Drupal::service('sg_entity_services.service');
 
     return [
       '#type' => 'markup',
-      '#markup' => $this->t('Implement method: test1'),
+      '#markup' => json_encode($result),
     ];
   }
 
