@@ -24,7 +24,16 @@ class TestController extends ControllerBase {
      */
     $coconut = \Drupal::service('pss_pse.api_coconut');
 
+    /**
+     * @var \Drupal\pss_pse_poc\Service\ApiSireneService $sirene
+     */
+    $sirene = \Drupal::service('pss_pse.api_sirene');
+
     $result = $coconut->getCCNs(["6312Z", "7022Z"]);
+
+    $result = $sirene->getDataFromCode("48098035800059");
+
+    $result = $sirene->getDataFromName("Adimeo");
 
     include 'graphql.php';
 

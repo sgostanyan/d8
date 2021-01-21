@@ -13,6 +13,10 @@ services:
     class: Drupal\pss_pse_poc\Service\ApiCoconutService
     arguments: [ '%pss_pse_api_coconut_auth%', '%pss_pse_api_coconut%', '@http_client', '@logger.factory' ]
 
+  pss_pse.api_sirene:
+    class: Drupal\pss_pse_poc\Service\ApiSireneService
+    arguments: [ '@http_client', '@logger.factory' ]
+
 parameters:
   # API TARIFER
   pss_pse_api_auth:

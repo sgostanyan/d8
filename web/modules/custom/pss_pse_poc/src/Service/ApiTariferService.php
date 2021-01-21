@@ -146,7 +146,7 @@ class ApiTariferService {
     $uri .= $this->apiParams['host'] . '/';
     $uri .= $serviceType == 'indiv' ? $this->apiParams['basePathIndiv'] : $this->apiParams['basePathColl'];
 
-    // Create request.
+    // Request.
     try {
 
       // Sending.

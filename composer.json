@@ -23,7 +23,7 @@
         "drupal-composer/drupal-scaffold": "^2.5",
         "drupal/admin_toolbar": "^2.0",
         "drupal/console": "^1.0.2",
-        "drupal/core": "8.9.10",
+        "drupal/core": "^8.9.13",
         "drupal/devel": "^2.1",
         "drupal/entity_clone": "^1.0@beta",
         "drupal/entity_popin": "^1.1",

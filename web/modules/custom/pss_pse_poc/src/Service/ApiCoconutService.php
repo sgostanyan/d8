@@ -124,7 +124,7 @@ class ApiCoconutService {
     $uri .= $this->apiParams['host'] . '/';
     $uri .= $this->apiParams['basePath'];
 
-    // Create request.
+    // Request.
     try {
 
       // Sending.
