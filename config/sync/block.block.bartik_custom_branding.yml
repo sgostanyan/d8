@@ -1,0 +1,25 @@
+uuid: b52223ad-91c6-4ba4-b60d-a4235f25a537
+langcode: fr
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bartik_custom
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: bartik_custom_branding
+theme: bartik_custom
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Marque du site'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

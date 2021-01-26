@@ -1,0 +1,6 @@
+services:
+
+  #Manager
+  article_list.manager:
+    class: Drupal\article_list\Manager\ArticleListManager
+    autowire: true

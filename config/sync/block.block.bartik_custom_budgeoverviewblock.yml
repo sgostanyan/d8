@@ -1,0 +1,29 @@
+uuid: 41bb3fe6-bc74-4415-9224-2dd8acce110b
+langcode: fr
+status: true
+dependencies:
+  module:
+    - budge
+    - system
+  theme:
+    - bartik_custom
+id: bartik_custom_budgeoverviewblock
+theme: bartik_custom
+region: sidebar_first
+weight: 0
+provider: null
+plugin: budge_overview_block
+settings:
+  id: budge_overview_block
+  label: 'Budge overview block'
+  provider: budge
+  label_display: '0'
+  show_monthly_expenses_amount: 1
+  show_ponctual_expenses_amount: 1
+  show_credits_amounts: 0
+visibility:
+  request_path:
+    id: request_path
+    pages: /budge
+    negate: false
+    context_mapping: {  }

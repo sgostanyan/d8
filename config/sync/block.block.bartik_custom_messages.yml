@@ -1,0 +1,22 @@
+uuid: 06fbeab0-1380-4436-b636-8f815e9f29c1
+langcode: fr
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bartik_custom
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: bartik_custom_messages
+theme: bartik_custom
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Messages de statut'
+  provider: system
+  label_display: '0'
+visibility: {  }

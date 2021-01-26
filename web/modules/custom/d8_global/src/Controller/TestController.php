@@ -22,18 +22,18 @@ class TestController extends ControllerBase {
     /**
      * @var \Drupal\pss_pse_poc\Service\ApiCoconutService $coconut
      */
-    $coconut = \Drupal::service('pss_pse.api_coconut');
+   /* $coconut = \Drupal::service('pss_pse.api_coconut');*/
 
     /**
      * @var \Drupal\pss_pse_poc\Service\ApiSireneService $sirene
      */
-    $sirene = \Drupal::service('pss_pse.api_sirene');
+/*    $sirene = \Drupal::service('pss_pse.api_sirene');
 
     $result = $coconut->getCCNs(["6312Z", "7022Z"]);
 
     $result = $sirene->getDataFromCode("48098035800059");
 
-    $result = $sirene->getDataFromName("Adimeo");
+    $result = $sirene->getDataFromName("Adimeo");*/
 
     include 'graphql.php';
 
@@ -46,6 +46,14 @@ class TestController extends ControllerBase {
      * @var \Drupal\sg_entity_services\Services\SgEntityServices $sgServices
      */
     //$sgServices = \Drupal::service('sg_entity_services.service');
+
+    /**
+     * @var \Drupal\article_list\Manager\ArticleListManager $articleList
+     */
+    $articleList = \Drupal::service('article_list.manager');
+    $result = $articleList->getList();
+
+    return $result;
 
     return [
       '#type' => 'markup',
