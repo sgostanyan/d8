@@ -5,6 +5,8 @@
  * Contains article_list.module.
  */
 
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
@@ -40,7 +42,9 @@ function article_list_preprocess_node(&$variables) {
      */
     $articleListManager = Drupal::service('article_list.manager');
 
+    // Getting results.
     $result = $articleListManager->getResults();
+    // Building exposed filters form.
     $form = Drupal::formBuilder()->getForm('Drupal\article_list\Form\ArticleListForm');
 
     /* Sending variables to template. */
@@ -50,8 +54,22 @@ function article_list_preprocess_node(&$variables) {
     /* Managing caches. */
     // Adding cache context for url query args.
     $variables['content']['result']['#cache']['contexts'][] = 'url.query_args';
-    // Adding custom cache tags to be invalidate when an node Article will be created or updated.
-    $variables['elements']['#cache']['tags'][] = 'article_list_page';
+    // Adding custom cache tags to be invalidated when an node Article will be created or updated.
+    $variables['elements']['#cache']['tags'][] = 'article_list_results';
 
   }
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function article_list_entity_presave(EntityInterface $entity) {
+  $type = $entity->getEntityTypeId();
+  $bundle = $entity->bundle();
+
+  if ($type == 'node' && $bundle == 'article') {
+    // Invalidating results cache in article list page.
+    Cache::invalidateTags(['article_list_results']);
+  }
+
 }
