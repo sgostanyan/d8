@@ -42,20 +42,14 @@ function article_list_preprocess_node(&$variables) {
      */
     $articleListManager = Drupal::service('article_list.manager');
 
-    // Getting results.
-    $result = $articleListManager->getResults();
-    // Building exposed filters form.
+    /* Getting results. */
+    $results = $articleListManager->getResults();
+    /* Building exposed filters form. */
     $form = Drupal::formBuilder()->getForm('Drupal\article_list\Form\ArticleListForm');
 
     /* Sending variables to template. */
     $variables['content']['form'] = $form;
-    $variables['content']['result'] = $result;
-
-    /* Managing caches. */
-    // Adding cache context for url query args.
-    $variables['content']['result']['#cache']['contexts'][] = 'url.query_args';
-    // Adding custom cache tags to be invalidated when an node Article will be created or updated.
-    $variables['elements']['#cache']['tags'][] = 'article_list_results';
+    $variables['content']['results'] = $results;
 
   }
 }
