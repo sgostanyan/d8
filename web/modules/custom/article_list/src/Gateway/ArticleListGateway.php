@@ -51,6 +51,7 @@ class ArticleListGateway {
         }
       }
     }
+    // Adding pager.
     $this->query->pager(self::PAGER);
     return $this->query->execute();
   }
