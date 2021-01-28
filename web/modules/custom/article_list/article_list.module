@@ -47,9 +47,12 @@ function article_list_preprocess_node(&$variables) {
     /* Building exposed filters form. */
     $form = Drupal::formBuilder()->getForm('Drupal\article_list\Form\ArticleListForm');
 
-    /* Sending variables to template. */
+    /* Sending render arrays to template. */
     $variables['content']['form'] = $form;
     $variables['content']['results'] = $results;
+
+    /* Adding pager. */
+    $variables['content']['pager'] = ['#type' => 'pager'];
 
   }
 }

@@ -12,6 +12,8 @@ use Drupal\node\NodeInterface;
  */
 class ArticleListGateway {
 
+  const PAGER =  2;
+
   /**
    * @var \Drupal\Core\Entity\Query\QueryInterface
    */
@@ -49,6 +51,7 @@ class ArticleListGateway {
         }
       }
     }
+    $this->query->pager(self::PAGER);
     return $this->query->execute();
   }
 
