@@ -98,10 +98,11 @@ class ArticleListForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    $currentStack = $this->requestStack->getCurrentRequest();
     $type = $form_state->getValue('type');
     $country = $form_state->getValue('country');
-    $type ? $this->requestStack->getCurrentRequest()->query->set('type', $type) : '';
-    $country ? $this->requestStack->getCurrentRequest()->query->set('type', $country) : '';
+    $type ? $currentStack->query->set('type', $type) : $currentStack->query->remove('type');
+    $country ? $currentStack->query->set('country', $country) : $currentStack->query->remove('country');;
   }
 
 }
