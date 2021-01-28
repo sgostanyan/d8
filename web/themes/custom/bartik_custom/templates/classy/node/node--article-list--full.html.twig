@@ -83,7 +83,8 @@
 <article{{ attributes.addClass(classes) }}>
   <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
     {{ content.form }}
-    {{ content | without('results', 'form') }}
+    {{ content | without('results', 'form', 'pager') }}
     {{ content.results }}
+    {{ content.pager }}
   </div>
 </article>
