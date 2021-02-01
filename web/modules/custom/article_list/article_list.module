@@ -44,6 +44,7 @@ function article_list_preprocess_node(&$variables) {
 
     /* Getting results. */
     $results = $articleListManager->getResults();
+
     /* Building exposed filters form. */
     $form = Drupal::formBuilder()->getForm('Drupal\article_list\Form\ArticleListForm');
 
