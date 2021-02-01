@@ -12,7 +12,7 @@ use Drupal\node\NodeInterface;
  */
 class ArticleListGateway {
 
-  const PAGER =  2;
+  const PAGER = 2;
 
   /**
    * @var \Drupal\Core\Entity\Query\QueryInterface
