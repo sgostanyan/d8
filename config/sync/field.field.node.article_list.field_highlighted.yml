@@ -1,0 +1,28 @@
+uuid: 3b02edff-3899-4b22-b07e-bef14429e6b8
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_highlighted
+    - node.type.article
+    - node.type.article_list
+id: node.article_list.field_highlighted
+field_name: field_highlighted
+entity_type: node
+bundle: article_list
+label: 'Mise en avant'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      article: article
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

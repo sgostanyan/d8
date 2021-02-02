@@ -50,11 +50,13 @@ class ArticleListManager {
   }
 
   /**
+   * @param null $excludeId
+   *
    * @return array
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getResults() {
+  public function getResults($excludeId = NULL) {
 
     // URL query params.
     $type = $this->requestStack->getCurrentRequest()->get('type');
@@ -65,6 +67,8 @@ class ArticleListManager {
     // Check if value is not null and is numeric.
     !empty($type) && is_numeric($type) ? $conditions['type'] = $type : '';
     !empty($country) && is_numeric($country) ? $conditions['country'] = $country : '';
+    // If node to exclude.
+    $conditions['exclude'] = $excludeId;
 
     // Getting node ids.
     $nids = $this->articleListGateway->fetchResults($conditions);
@@ -92,6 +96,24 @@ class ArticleListManager {
 
         return $results;
       }
+    }
+    return [];
+  }
+
+  /**
+   * @return array
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  public function getHighlightedNews(): array {
+    $nid = $this->articleListGateway->fetchLastNews();
+    if (!empty($nid)) {
+      $node = $this->entityTypeManager->getStorage('node')->load(reset($nid));
+      $node = $this->entityRepository->getTranslationFromContext($node);
+      $results = $this->entityTypeManager->getViewBuilder('node')->view($node, 'highlight');
+      $results['#cache']['contexts'][] = 'url.query_args';
+      $results['#cache']['tags'][] = 'article_list_results';
+      return $results;
     }
     return [];
   }

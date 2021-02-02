@@ -42,11 +42,15 @@ function article_list_preprocess_node(&$variables) {
      */
     $articleListManager = Drupal::service('article_list.manager');
 
-    /* Getting results. */
-    $results = $articleListManager->getResults();
-
     /* Building exposed filters form. */
     $form = Drupal::formBuilder()->getForm('Drupal\article_list\Form\ArticleListForm');
+
+    /* Highlighted content. */
+    $variables['content']['field_highlighted'] = isset($variables['content']['field_highlighted'][0]) ? $variables['content']['field_highlighted'] : $articleListManager->getHighlightedNews();
+    $highlightedId = $variables['content']['field_highlighted'][0]['#node']->id();
+
+    /* Getting results. */
+    $results = $articleListManager->getResults($highlightedId);
 
     /* Sending render arrays to template. */
     $variables['content']['form'] = $form;

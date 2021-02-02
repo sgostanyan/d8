@@ -1,0 +1,10 @@
+uuid: 8679ff70-f699-49ee-aca7-c797c60de653
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+id: node.highlight
+label: 'Mise en avant'
+targetEntityType: node
+cache: true

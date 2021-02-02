@@ -48,12 +48,23 @@ class ArticleListGateway {
           case 'country' :
             $this->query->condition('field_country', $value);
             break;
+          case 'exclude' :
+            $this->query->condition('nid', $value, '!=');
+            break;
         }
       }
     }
     // Adding pager.
     $this->query->pager(self::PAGER);
     return $this->query->execute();
+  }
+
+  /**
+   * @return array|int
+   */
+  public function fetchLastNews() {
+    return $this->query->sort('created', 'DESC')->range(0, 1)->execute();
+
   }
 
 }

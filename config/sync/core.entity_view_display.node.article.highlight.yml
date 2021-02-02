@@ -1,8 +1,9 @@
-uuid: 3456b16c-8ea8-4416-a414-04ac45213a93
+uuid: 014c8e6a-803c-4e04-8acd-e18ae18a2c40
 langcode: fr
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.highlight
     - field.field.node.article.body
     - field.field.node.article.field_country
     - field.field.node.article.field_image
@@ -12,17 +13,17 @@ dependencies:
     - field.field.node.article.field_pdf
     - field.field.node.article.field_pdf_public
     - field.field.node.article.field_type
-    - image.style.large
+    - image.style.medium
     - node.type.article
   module:
     - image
     - user
 _core:
   default_config_hash: ChmU3AVqDKU32A_fyChG0W9dTRKmVBR58B6OClCLvZI
-id: node.article.default
+id: node.article.highlight
 targetEntityType: node
 bundle: article
-mode: default
+mode: highlight
 content:
   field_image:
     type: image
@@ -30,7 +31,7 @@ content:
     region: content
     label: above
     settings:
-      image_style: large
+      image_style: medium
       image_link: ''
     third_party_settings: {  }
 hidden:
