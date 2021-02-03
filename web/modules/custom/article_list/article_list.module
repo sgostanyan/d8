@@ -47,7 +47,8 @@ function article_list_preprocess_node(&$variables) {
 
     /* Highlighted content. */
     $variables['content']['field_highlighted'] = isset($variables['content']['field_highlighted'][0]) ? $variables['content']['field_highlighted'] : $articleListManager->getHighlightedNews();
-    $highlightedId = $variables['content']['field_highlighted'][0]['#node']->id();
+    $highlightedNode = isset($variables['content']['field_highlighted'][0]['#node']) ? $variables['content']['field_highlighted'][0]['#node'] : $variables['content']['field_highlighted']['#node'];
+    $highlightedId = $highlightedNode->id() ;
 
     /* Getting results. */
     $results = $articleListManager->getResults($highlightedId);
