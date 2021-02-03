@@ -1,0 +1,21 @@
+uuid: f59898b9-2068-4966-a7fd-5ab65800aa2a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_clear_fields
+    - node.type.budget
+  module:
+    - options
+id: node.budget.field_clear_fields
+field_name: field_clear_fields
+entity_type: node
+bundle: budget
+label: Vider
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -34,7 +34,7 @@ function budge_theme($existing, $type, $theme, $path) {
       ],
     ],
     'budge_export' => [
-      'variables' => []
+      'variables' => [],
     ],
     'budge_block' => [
       'variables' => [
@@ -48,7 +48,15 @@ function budge_theme($existing, $type, $theme, $path) {
  * Implements hook_entity_presave().
  */
 function budge_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
- if ($entity->bundle() == 'budget') {
-   Drupal::service('cache.render')->invalidate('route');
- }
+  if ($entity->bundle() == 'budget') {
+    Drupal::service('cache.render')->invalidate('route');
+
+    $fieldValues = $entity->get('field_clear_fields')->getValue();
+    if (!empty($fieldValues)) {
+      foreach ($fieldValues as $fieldValue) {
+        $entity->set($fieldValue['value'], []);
+      }
+    }
+    $entity->set('field_clear_fields', []);
+  }
 }

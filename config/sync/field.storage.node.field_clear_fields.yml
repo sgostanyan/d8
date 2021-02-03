@@ -1,0 +1,30 @@
+uuid: 293766a1-7c9b-4069-88b0-827e4063cfdb
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_clear_fields
+field_name: field_clear_fields
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: field_credits
+      label: Crédits
+    -
+      value: field_monthly_expenses
+      label: 'Dépenses mensuelles'
+    -
+      value: field_ponctual_expenses
+      label: 'Dépenses ponctuelles'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

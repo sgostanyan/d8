@@ -3,6 +3,7 @@ langcode: fr
 status: true
 dependencies:
   config:
+    - field.field.node.budget.field_clear_fields
     - field.field.node.budget.field_credits
     - field.field.node.budget.field_monthly_expenses
     - field.field.node.budget.field_ponctual_expenses
@@ -10,12 +11,20 @@ dependencies:
     - node.type.budget
   module:
     - entity_reference_revisions
+    - options
     - user
 id: node.budget.default
 targetEntityType: node
 bundle: budget
 mode: default
 content:
+  field_clear_fields:
+    weight: 105
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
   field_credits:
     type: entity_reference_revisions_entity_view
     weight: 101
@@ -61,3 +70,4 @@ content:
     region: content
 hidden:
   langcode: true
+  search_api_excerpt: true
