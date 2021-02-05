@@ -17,35 +17,41 @@ class TestController extends ControllerBase {
    */
   public function test1() {
 
+    return [
+      '#theme' => 'test_template',
+      '#var' => $this->t('Test Value'),
+      '#attached' => [
+        'library' => ['d8_global/global-styling'],
+      ],
+    ];
+
     $result = 'TEST';
 
     /**
      * @var \Drupal\pss_pse_poc\Service\ApiCoconutService $coconut
-     */
-   /* $coconut = \Drupal::service('pss_pse.api_coconut');*/
+     */ /* $coconut = \Drupal::service('pss_pse.api_coconut');*/
 
     /**
      * @var \Drupal\pss_pse_poc\Service\ApiSireneService $sirene
      */
-/*    $sirene = \Drupal::service('pss_pse.api_sirene');
+    /*    $sirene = \Drupal::service('pss_pse.api_sirene');
 
-    $result = $coconut->getCCNs(["6312Z", "7022Z"]);
+        $result = $coconut->getCCNs(["6312Z", "7022Z"]);
 
-    $result = $sirene->getDataFromCode("48098035800059");
+        $result = $sirene->getDataFromCode("48098035800059");
 
-    $result = $sirene->getDataFromName("Adimeo");*/
+        $result = $sirene->getDataFromName("Adimeo");*/
 
     include 'graphql.php';
 
-   // \graphql::go();
+    // \graphql::go();
 
- /*  // $this->testWS();
-    $this->sgEntityServices();
+    /*  // $this->testWS();
+       $this->sgEntityServices();
 
-    /**
-     * @var \Drupal\sg_entity_services\Services\SgEntityServices $sgServices
-     */
-    //$sgServices = \Drupal::service('sg_entity_services.service');
+       /**
+        * @var \Drupal\sg_entity_services\Services\SgEntityServices $sgServices
+        */ //$sgServices = \Drupal::service('sg_entity_services.service');
 
     /**
      * @var \Drupal\article_list\Manager\ArticleListManager $articleList
@@ -115,56 +121,57 @@ class TestController extends ControllerBase {
      $imageUrl = $sgEntityService->getImageManager()->getImageStyleUrl(298, 'thumbnail');
      $imageStyles = $sgEntityService->getImageManager()->getImageStyles();*/
 
-/*     $entities = $sgEntityService->getEntityStorageManager()->getEntities('node', NULL, [4]);
-     $viewModes = $sgEntityService->getEntityDisplayManager()->getViewModes('node');
-     $renderArray = $sgEntityService->getEntityDisplayManager()->renderEntity(reset($entities['article']));
-     $markup = $sgEntityService->getEntityDisplayManager()->renderArrayToMarkup($renderArray);
-     $tag = $sgEntityService->getEntityDisplayManager()->htmlTagRender('a', 'TOTO', ['href' => 'http://top.com']);
-     $markup = $sgEntityService->getEntityDisplayManager()->renderArrayToMarkup($tag);*/
+    /*     $entities = $sgEntityService->getEntityStorageManager()->getEntities('node', NULL, [4]);
+         $viewModes = $sgEntityService->getEntityDisplayManager()->getViewModes('node');
+         $renderArray = $sgEntityService->getEntityDisplayManager()->renderEntity(reset($entities['article']));
+         $markup = $sgEntityService->getEntityDisplayManager()->renderArrayToMarkup($renderArray);
+         $tag = $sgEntityService->getEntityDisplayManager()->htmlTagRender('a', 'TOTO', ['href' => 'http://top.com']);
+         $markup = $sgEntityService->getEntityDisplayManager()->renderArrayToMarkup($tag);*/
 
-     $trans = [
-       'en' => [
-         'title' => 'EN title',
-         'body' => [
-           'value' => 'English summary',
-         ],
-         'field_tags' => [
-           [
-             'target_id' => 1,
-           ],
-         ],
-       ],
-       'es' => [
-         'title' => 'ES title',
-         'body' => [
-           'value' => 'Spanish summary',
-         ],
-         'field_tags' => [
-           [
-             'target_id' => 1,
-           ],
-         ],
-       ],
-     ];
+    $trans = [
+      'en' => [
+        'title' => 'EN title',
+        'body' => [
+          'value' => 'English summary',
+        ],
+        'field_tags' => [
+          [
+            'target_id' => 1,
+          ],
+        ],
+      ],
+      'es' => [
+        'title' => 'ES title',
+        'body' => [
+          'value' => 'Spanish summary',
+        ],
+        'field_tags' => [
+          [
+            'target_id' => 1,
+          ],
+        ],
+      ],
+    ];
 
-     $fieldValues = [
-       'title' => 'Title',
-       'body' => [
-         'value' => 'summary text',
-       ],
-       'field_tags' => [
-         [
-           'target_id' => 1,
-         ],
-       ],
-     ];
+    $fieldValues = [
+      'title' => 'Title',
+      'body' => [
+        'value' => 'summary text',
+      ],
+      'field_tags' => [
+        [
+          'target_id' => 1,
+        ],
+      ],
+    ];
 
 
-    $newEntity = \Drupal::service('sg_entity_services.service')
-       ->getEntityStorageManager()
-       ->createEntity('node', [
-         'type' => 'article',
-         'title' => 'TaSoeur'], $trans);
+    $newEntity = \Drupal::service('sg_entity_services.service')->getEntityStorageManager()->createEntity('node',
+        [
+          'type' => 'article',
+          'title' => 'TaSoeur',
+        ],
+        $trans);
 
     /*$transEntity = Drupal::service('sg_entity_services.service')
       ->getEntityStorageManager()
