@@ -17,6 +17,8 @@ jQuery(document).ready(function() {
 
 
 
+
+
 (function ($, Drupal) {
   Drupal.behaviors.d8global = {
     attach: function (context, settings) {
