@@ -2,7 +2,10 @@
 
 namespace Drupal\d8_global\Controller;
 
+use Drupal;
+use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Controller\ControllerBase;
+use SoapFault;
 
 /**
  * Class TestController.
@@ -36,27 +39,27 @@ class TestController extends ControllerBase {
      */
     /*    $sirene = \Drupal::service('pss_pse.api_sirene');
 
-        $result = $coconut->getCCNs(["6312Z", "7022Z"]);
+    $result = $coconut->getCCNs(["6312Z", "7022Z"]);
 
-        $result = $sirene->getDataFromCode("48098035800059");
+    $result = $sirene->getDataFromCode("48098035800059");
 
-        $result = $sirene->getDataFromName("Adimeo");*/
+    $result = $sirene->getDataFromName("Adimeo");*/
 
     include 'graphql.php';
 
     // \graphql::go();
 
     /*  // $this->testWS();
-       $this->sgEntityServices();
+    $this->sgEntityServices();
 
-       /**
-        * @var \Drupal\sg_entity_services\Services\SgEntityServices $sgServices
-        */ //$sgServices = \Drupal::service('sg_entity_services.service');
+    /**
+    * @var \Drupal\sg_entity_services\Services\SgEntityServices $sgServices
+    */ //$sgServices = \Drupal::service('sg_entity_services.service');
 
     /**
      * @var \Drupal\article_list\Manager\ArticleListManager $articleList
      */
-    $articleList = \Drupal::service('article_list.manager');
+    $articleList = Drupal::service('article_list.manager');
     $result = $articleList->getList();
 
     return $result;
@@ -65,6 +68,10 @@ class TestController extends ControllerBase {
       '#type' => 'markup',
       '#markup' => json_encode($result),
     ];
+  }
+
+  public function ajax() {
+    return new AjaxResponse();
   }
 
   public function testWS() {
@@ -94,7 +101,7 @@ class TestController extends ControllerBase {
         'SOAPAction' => 'http://c3rb.org/GetToken',
       ]);
     }
-    catch (\SoapFault $e) {
+    catch (SoapFault $e) {
       ksm($e->getMessage());
       return;
     }
@@ -109,24 +116,23 @@ class TestController extends ControllerBase {
     //ksm($client->__soapCall('getToken', ["key" => $cle]));
     //$_SESSION['orphee_id'] = $rslt->GetTokenResult;
     //$client->__setCookie("ASP.NET_SessionId", $_SESSION['orphee_id']);
-
   }
 
   public function sgEntityServices() {
-    $sgEntityService = \Drupal::service('sg_entity_services.service');
+    $sgEntityService = Drupal::service('sg_entity_services.service');
     /*$fid = $sgEntityService->getFileManager()->generateFileEntity('public://sources/', 'tiger.jpg', 'private://animals/');
-     $fileInfo = $sgEntityService->getFileManager()->getFileInfos(281);
-     $fileSize = $sgEntityService->getFileManager()->sanitizeFileSize(286567); //287 Ko
-     $image = $sgEntityService->getEntityDisplayManager()->imageStyleRender(298, 'thumbnail', ['class' => ['thumb-style']]);
-     $imageUrl = $sgEntityService->getImageManager()->getImageStyleUrl(298, 'thumbnail');
-     $imageStyles = $sgEntityService->getImageManager()->getImageStyles();*/
+    $fileInfo = $sgEntityService->getFileManager()->getFileInfos(281);
+    $fileSize = $sgEntityService->getFileManager()->sanitizeFileSize(286567); //287 Ko
+    $image = $sgEntityService->getEntityDisplayManager()->imageStyleRender(298, 'thumbnail', ['class' => ['thumb-style']]);
+    $imageUrl = $sgEntityService->getImageManager()->getImageStyleUrl(298, 'thumbnail');
+    $imageStyles = $sgEntityService->getImageManager()->getImageStyles();*/
 
     /*     $entities = $sgEntityService->getEntityStorageManager()->getEntities('node', NULL, [4]);
-         $viewModes = $sgEntityService->getEntityDisplayManager()->getViewModes('node');
-         $renderArray = $sgEntityService->getEntityDisplayManager()->renderEntity(reset($entities['article']));
-         $markup = $sgEntityService->getEntityDisplayManager()->renderArrayToMarkup($renderArray);
-         $tag = $sgEntityService->getEntityDisplayManager()->htmlTagRender('a', 'TOTO', ['href' => 'http://top.com']);
-         $markup = $sgEntityService->getEntityDisplayManager()->renderArrayToMarkup($tag);*/
+     $viewModes = $sgEntityService->getEntityDisplayManager()->getViewModes('node');
+     $renderArray = $sgEntityService->getEntityDisplayManager()->renderEntity(reset($entities['article']));
+     $markup = $sgEntityService->getEntityDisplayManager()->renderArrayToMarkup($renderArray);
+     $tag = $sgEntityService->getEntityDisplayManager()->htmlTagRender('a', 'TOTO', ['href' => 'http://top.com']);
+     $markup = $sgEntityService->getEntityDisplayManager()->renderArrayToMarkup($tag);*/
 
     $trans = [
       'en' => [
@@ -166,25 +172,24 @@ class TestController extends ControllerBase {
     ];
 
 
-    $newEntity = \Drupal::service('sg_entity_services.service')->getEntityStorageManager()->createEntity('node',
-        [
-          'type' => 'article',
-          'title' => 'TaSoeur',
-        ],
-        $trans);
+    $newEntity = Drupal::service('sg_entity_services.service')->getEntityStorageManager()->createEntity('node',
+      [
+        'type' => 'article',
+        'title' => 'TaSoeur',
+      ],
+      $trans);
 
     /*$transEntity = Drupal::service('sg_entity_services.service')
-      ->getEntityStorageManager()
-      ->addTranslations(reset($entities['article']), $trans);*/
+    ->getEntityStorageManager()
+    ->addTranslations(reset($entities['article']), $trans);*/
 
     //return;
   }
 
   public function deleteFiles() {
-    $files = \Drupal::entityTypeManager()->getStorage('file')->loadMultiple();
+    $files = Drupal::entityTypeManager()->getStorage('file')->loadMultiple();
     foreach ($files as $file) {
       $file->delete();
     }
   }
-
 }

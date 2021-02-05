@@ -14,3 +14,11 @@ d8_global.adimeo_test_controller_main:
     _title: 'main'
   requirements:
     _permission: 'access content'
+
+d8_global.adimeo_test_controller_ajax:
+  path: '/adimeo-test/ajax'
+  defaults:
+    _controller: '\Drupal\d8_global\Controller\TestController::ajax'
+    _title: 'main'
+  requirements:
+    _permission: 'access content'
