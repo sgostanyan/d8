@@ -1,0 +1,23 @@
+uuid: add33c25-73b5-40b9-9fb9-093fd21af5f8
+langcode: fr
+status: true
+dependencies:
+  config:
+    - facets.facet.type
+  module:
+    - facets
+  theme:
+    - bartik_custom
+id: type
+theme: bartik_custom
+region: sidebar_first
+weight: -6
+provider: null
+plugin: 'facet_block:type'
+settings:
+  id: 'facet_block:type'
+  label: Type
+  provider: facets
+  label_display: '0'
+  block_id: type
+visibility: {  }

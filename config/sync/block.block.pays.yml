@@ -1,0 +1,23 @@
+uuid: 905b0387-4560-401f-8522-7189a3fb2d6f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - facets.facet.pays
+  module:
+    - facets
+  theme:
+    - bartik_custom
+id: pays
+theme: bartik_custom
+region: sidebar_first
+weight: -5
+provider: null
+plugin: 'facet_block:pays'
+settings:
+  id: 'facet_block:pays'
+  label: Pays
+  provider: facets
+  label_display: '0'
+  block_id: pays
+visibility: {  }

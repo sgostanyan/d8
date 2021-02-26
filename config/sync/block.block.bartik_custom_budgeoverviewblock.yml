@@ -10,7 +10,7 @@ dependencies:
 id: bartik_custom_budgeoverviewblock
 theme: bartik_custom
 region: sidebar_first
-weight: 0
+weight: -7
 provider: null
 plugin: budge_overview_block
 settings:

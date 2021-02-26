@@ -1,0 +1,92 @@
+uuid: 4bafec4d-4dcf-4c57-a45e-3aaae0f1bc1a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - field.storage.node.field_country
+    - field.storage.node.field_type
+    - search_api.server.database
+  module:
+    - taxonomy
+    - node
+    - search_api
+id: article
+name: Article
+description: ''
+read_only: false
+field_settings:
+  body:
+    label: Corps
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  name:
+    label: 'Type » Terme de taxonomie » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_type:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_type
+      module:
+        - taxonomy
+  name_1:
+    label: 'Pays » Terme de taxonomie » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_country:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_country
+      module:
+        - taxonomy
+  status:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - node
+  title:
+    label: Titre
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - article
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  entity_status: {  }
+  ignorecase:
+    all_fields: false
+    fields:
+      - body
+      - title
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: database

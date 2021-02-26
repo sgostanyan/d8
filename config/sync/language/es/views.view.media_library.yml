@@ -25,6 +25,7 @@ display:
         delete_media:
           text: Eliminar
   widget:
+    display_title: Control
     display_options:
       filters:
         name:
