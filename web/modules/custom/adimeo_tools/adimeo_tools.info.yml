@@ -1,0 +1,5 @@
+name: 'List Page'
+type: module
+description: 'Content list page'
+core: 8.x
+package: 'Custom'
