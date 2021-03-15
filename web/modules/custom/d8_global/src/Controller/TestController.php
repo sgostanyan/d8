@@ -3,9 +3,7 @@
 namespace Drupal\d8_global\Controller;
 
 use Drupal;
-use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Controller\ControllerBase;
-use SoapFault;
 
 /**
  * Class TestController.
@@ -18,7 +16,8 @@ class TestController extends ControllerBase {
    * @return array Return Hello string.
    *   Return Hello string.
    */
-  public function test1() {
+  public function test() {
+
 
     return [
       '#theme' => 'test_template',
@@ -28,94 +27,36 @@ class TestController extends ControllerBase {
       ],
     ];
 
-    $result = 'TEST';
+  }
 
-    /**
-     * @var \Drupal\pss_pse_poc\Service\ApiCoconutService $coconut
-     */ /* $coconut = \Drupal::service('pss_pse.api_coconut');*/
+  /**
+   * @return array
+   */
+  public function testEmail() {
+    $currentUser = Drupal::currentUser();
+    if ($currentUser->isAuthenticated()) {
+      $to = $currentUser->getEmail();
+    }
+    else {
+      $to = 'sgostanyan@gmail.com';
+    }
+    $replyTo = Drupal::config('system.site')->get('mail');
+    $langcode = 'fr';
+    $params = [
+      'subject' => 'TEST EMAIL',
+      'body' => 'YOLOLO',
+    ];
 
-    /**
-     * @var \Drupal\pss_pse_poc\Service\ApiSireneService $sirene
-     */
-    /*    $sirene = \Drupal::service('pss_pse.api_sirene');
-
-    $result = $coconut->getCCNs(["6312Z", "7022Z"]);
-
-    $result = $sirene->getDataFromCode("48098035800059");
-
-    $result = $sirene->getDataFromName("Adimeo");*/
-
-    include 'graphql.php';
-
-    // \graphql::go();
-
-    /*  // $this->testWS();
-    $this->sgEntityServices();
-
-    /**
-    * @var \Drupal\sg_entity_services\Services\SgEntityServices $sgServices
-    */ //$sgServices = \Drupal::service('sg_entity_services.service');
-
-    /**
-     * @var \Drupal\article_list\Manager\ArticleListManager $articleList
-     */
-    $articleList = Drupal::service('article_list.manager');
-    $result = $articleList->getList();
-
-    return $result;
+    Drupal::service('plugin.manager.mail')->mail('d8_global', 'test_email', $to, $langcode, $params, $replyTo, TRUE);
 
     return [
-      '#type' => 'markup',
-      '#markup' => json_encode($result),
+      '#theme' => 'test_template',
+      '#var' => $this->t('Test Value'),
+      '#attached' => [
+        'library' => ['d8_global/global-styling'],
+      ],
     ];
-  }
 
-  public function ajax() {
-    return new AjaxResponse();
-  }
-
-  public function testWS() {
-    $orphee = 'https://wsorphee.gironde.fr/serviceopac.asmx';
-    $opac = 'https://wsopac.gironde.fr/service.asmx?WSDL';
-    $cle = '82ba29e9906bad99122c9b68e5552ec8';
-
-    $header = 'Host: wsorphee.gironde.fr
-  Content-Type: text/xml; charset=utf-8
-  Content-Length: length
-  SOAPAction: "http://c3rb.org/GetToken"';
-
-    $xml = '<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <GetToken xmlns="http://c3rb.org/">
-      <key>string</key>
-    </GetToken>
-  </soap:Body>
-</soap:Envelope>';
-
-    try {
-      $client = new \SoapClient($opac, [
-        'Host' => 'wsorphee.gironde.fr',
-        'Content-Type' => 'text/xml; charset=utf-8',
-        'Content-Length' => 'length',
-        'SOAPAction' => 'http://c3rb.org/GetToken',
-      ]);
-    }
-    catch (SoapFault $e) {
-      ksm($e->getMessage());
-      return;
-    }
-
-
-    //$client = new SoapClient("http://localhost/wsOpac/ServiceOpac.asmx?WSDL");
-
-    //$client = new SoapClient($opac, ["key" => $cle]);
-    //ksm($client);
-    //$rslt = $client->__getToken(["key" => $cle]);
-    //ksm($client->__getFunctions());
-    //ksm($client->__soapCall('getToken', ["key" => $cle]));
-    //$_SESSION['orphee_id'] = $rslt->GetTokenResult;
-    //$client->__setCookie("ASP.NET_SessionId", $_SESSION['orphee_id']);
   }
 
   public function sgEntityServices() {

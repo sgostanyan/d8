@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains pss_pse.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function pss_pse_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the pss_pse module.
+    case 'help.page.pss_pse':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Harmo,ie Mutuelle PSS/PSE') . '</p>';
+      return $output;
+
+    default:
+  }
+}

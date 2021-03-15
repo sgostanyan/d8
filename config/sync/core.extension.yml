@@ -39,6 +39,7 @@ module:
   language: 0
   link: 0
   locale: 0
+  mail_safety: 0
   media: 0
   media_library: 0
   media_pdf_thumbnail: 0
@@ -49,7 +50,6 @@ module:
   path: 0
   path_alias: 0
   pdf_slideshow: 0
-  pss_pse_poc: 0
   quickedit: 0
   rdf: 0
   redis: 0

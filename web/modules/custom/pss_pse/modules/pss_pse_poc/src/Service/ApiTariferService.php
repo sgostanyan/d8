@@ -121,7 +121,7 @@ class ApiTariferService {
     // Clean general field's value.
     foreach ($data as $key => $value) {
       switch (Mapping::DATA_TYPE[$key]) {
-       /* case 'DATE':
+        /*case 'DATE':
           $data[$key] = implode("/", array_reverse(explode('-', $value)));
           break;*/
         case 'BOOLEAN':
