@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\d8_global\Breadcrumb;
+namespace Drupal\d8_breadcrumb\Breadcrumb;
 
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 /**
  * Class ArticleBreadcrumbBuilder
  *
- * @package Drupal\d8_global\Breadcrumb
+ * @package Drupal\d8_breadcrumb\Breadcrumb
  */
 class ArticleBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 

@@ -29,36 +29,6 @@ class TestController extends ControllerBase {
 
   }
 
-  /**
-   * @return array
-   */
-  public function testEmail() {
-    $currentUser = Drupal::currentUser();
-    if ($currentUser->isAuthenticated()) {
-      $to = $currentUser->getEmail();
-    }
-    else {
-      $to = 'sgostanyan@gmail.com';
-    }
-    $replyTo = Drupal::config('system.site')->get('mail');
-    $langcode = 'fr';
-    $params = [
-      'subject' => 'TEST EMAIL',
-      'body' => 'YOLOLO',
-    ];
-
-    Drupal::service('plugin.manager.mail')->mail('d8_global', 'test_email', $to, $langcode, $params, $replyTo, TRUE);
-
-    return [
-      '#theme' => 'test_template',
-      '#var' => $this->t('Test Value'),
-      '#attached' => [
-        'library' => ['d8_global/global-styling'],
-      ],
-    ];
-
-  }
-
   public function sgEntityServices() {
     $sgEntityService = Drupal::service('sg_entity_services.service');
     /*$fid = $sgEntityService->getFileManager()->generateFileEntity('public://sources/', 'tiger.jpg', 'private://animals/');

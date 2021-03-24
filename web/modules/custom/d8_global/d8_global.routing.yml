@@ -6,11 +6,3 @@ d8_global.test_controller_test:
     _title: 'test'
   requirements:
     _permission: 'access content'
-
-d8_global.test_controller_testEmai:
-  path: '/admin/email'
-  defaults:
-    _controller: '\Drupal\d8_global\Controller\TestController::testEmail'
-    _title: 'test'
-  requirements:
-    _permission: 'access content'

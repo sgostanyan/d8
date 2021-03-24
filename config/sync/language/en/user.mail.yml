@@ -24,4 +24,3 @@ status_blocked:
   subject: 'Detalles de la cuenta de [user:display-name] en [site:name] (bloqueada)'
 status_canceled:
   body: "[user:display-name],\r\n\r\nSu cuenta en [site:name] ha sido cancelada.\r\n\r\n--  El equipo de [site:name]"
-  subject: 'Detalles de cuenta para [user:display-name] en [site:name] (cancelado)'

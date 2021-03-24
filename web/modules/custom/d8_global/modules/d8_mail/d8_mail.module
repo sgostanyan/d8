@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function d8_mail_theme($existing, $type, $theme, $path) {
+  return [
+    'mail_template' => [
+      'variables' => ['var' => NULL],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_mail().
+ */
+function d8_mail_mail($key, &$message, $params) {
+
+  $message['subject'] = $params['subject'];
+
+  $markup = "<p>Bonjour,</p>
+<p>Votre Offre \"[node:title]\" vient d'être publiée sur Hoptisoins.</p>
+<p>Bien à vous,</p>
+<p>L'équipe</p>";
+  $message['body'] = [\Drupal\Core\Render\Markup::create(($markup))];
+}
