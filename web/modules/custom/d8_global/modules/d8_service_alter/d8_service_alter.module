@@ -1,0 +1,9 @@
+<?php
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function d8_service_alter_preprocess_html(&$variables) {
+  $messageService = Drupal::service('d8_service_alter.message.service');
+  $messageService->display();
+}

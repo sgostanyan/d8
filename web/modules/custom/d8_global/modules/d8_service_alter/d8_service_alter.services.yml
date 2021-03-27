@@ -1,0 +1,4 @@
+services:
+  d8_service_alter.message.service:
+    class: 'Drupal\d8_service_alter\Service\MessageService'
+    arguments: [ '@language_manager' , '@messenger', '@current_route_match' ]

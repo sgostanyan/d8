@@ -21,6 +21,7 @@ module:
   d8_global: 0
   d8_mail: 0
   d8_queue: 0
+  d8_service_alter: 0
   datetime: 0
   dblog: 0
   devel: 0
