@@ -1,0 +1,16 @@
+services:
+  d8_service_decorator.message.service:
+    class: 'Drupal\d8_service_decorator\Service\MessageService'
+    arguments: [ '@language_manager' , '@messenger', '@current_route_match' ]
+
+  d8_service_decorator.message_decoration.service:
+    decorates: d8_service_decorator.message.service
+
+    # Control the Behavior When the Decorated Service Does Not Exist :
+    # exception: A ServiceNotFoundException will be thrown telling that decorator’s dependency is missing. (default)
+    # ignore: The container will remove the decorator.
+    # null: The container will keep the decorator service and will set the decorated one to null.
+    decoration_on_invalid: ignore
+    class: 'Drupal\d8_service_decorator\Service\MessageServiceDecorator'
+    autowire: true
+    decoration_priority: 5
