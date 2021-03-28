@@ -202,7 +202,7 @@ Deploy to production:
     name: production
     url: http://${PRODUCTION_HOST}
   script:
-    - echo -e "${PRODUCTION_PRIVATE_KEY}" > ~/.ssh/id_rsa
+    - echo "${PRODUCTION_PRIVATE_KEY}" > ~/.ssh/id_rsa
     - chmod 400 ~/.ssh/id_rsa
     # We can now ssh and run any deploy script.
     - echo ssh $USER_NAME@$PRODUCTION_HOST "${DRUPAL_FOLDER_PROD}/scripts/prod_deploy_script.sh;"
