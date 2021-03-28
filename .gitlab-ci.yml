@@ -1,163 +1,224 @@
-################################################################################
-# Gitlab CI integration for Drupal 8/9 project or module: tests, code quality,
-# linting, metrics and deploy samples.
-#
-# Project: https://gitlab.com/mog33/gitlab-ci-drupal
-# Documentation: https://mog33.gitlab.io/gitlab-ci-drupal
-# Issues: https://gitlab.com/mog33/gitlab-ci-drupal/-/issues
-# Author: Jean Valverde contact@dev-drupal.com
-# License: GPL-3
-#
-# If you want to support this project, you can
-# - Buy me a coffee: https://bit.ly/34jPKcE
-# - Hire me as a freelance for any Drupal related work
-# - Promote me to any company looking for any Drupal related work
-# - Help me with testing / documentation / grammar fixes / use cases
-#
-################################################################################
-
-# The ref is relative to the version of the project to use, best to use a tag.
-include:
-  # If hosted on gitlab.com.
-  - project: 'mog33/gitlab-ci-drupal'
-    ref: 3.x-dev
-    file: '/.gitlab-ci/.gitlab-ci-template.yml'
-  # If hosted on an other Gitlab instance.
-  # - remote: 'https://gitlab.com/mog33/gitlab-ci-drupal/-/raw/3.x-dev/.gitlab-ci/.gitlab-ci-template.yml'
-
-# If needed by your Gitlab-ci instance, you can set global tags for all jobs.
-# default:
-#   tags:
-#     - docker
-
-################################################################################
-# Gitlab-CI variables documentation:
-# https://docs.gitlab.com/ee/ci/variables/
-#
-# Variables, can be set here or on
-#   Gitlab CI UI > settings > CI/CD > variables
-# UI take precedence on variables here.
-# https://docs.gitlab.com/ee/ci/variables/README.html#priority-of-environment-variables
-################################################################################
-
 variables:
-  # This is mandatory to get default variables.
-  extends: .default_variables
-
-  # Global config remote files ref.
-  # MUST be the same as include: ref: from above.
-  CI_REF: 3.x-dev
-
-  # Minor Drupal version to work with, limited to tags on
-  # https://hub.docker.com/r/mogtofu33/drupal8ci/tags?name=3.x
-  # CI_DRUPAL_VERSION: "9.0"
+  ##############################################################################
+  # Common variables for all jobs, edit this part to your needs.
+  #
+  # Make CI more verbose in case of problem.
+  # CI_DEBUG_TRACE: "1"
+  #
+  # [COMPOSER.JSON] Path is relative to project root, 'web' is for Drupal
+  # Composer template, change it if you are using 'docroot'.
+  WEB_ROOT: "web"
 
   ##############################################################################
-  # Tests disabled by default because need a specific setup / configuration.
+  # [DEPLOY] Global settings for all env used for deploy.
+  # Just an example, adapt with 'Deploy jobs definition' at the end of this
+  # file.
+  ##############################################################################
   #
-  # Only needed if you have Behat tests, comment or set to 0 to enable.
-  # https://mog33.gitlab.io/gitlab-ci-drupal/advanced-usage/#behat-tests
-  SKIP_TEST_BEHAT: 1
-
-  # Accessibility tests, need a profile and setup.
-  # https://mog33.gitlab.io/gitlab-ci-drupal/advanced-usage/#accessibility-with-pa11y
-  SKIP_TEST_PA11Y: 1
-
-  # Only if you have Nightwatch tests in your code.
-  # https://mog33.gitlab.io/gitlab-ci-drupal/advanced-usage/#nightwatchjs
-  SKIP_TEST_NIGHTWATCH: 1
-  # Default is '--skiptags core', add your tag.
-  # NIGHTWATCH_TESTS: --tag my_module
-
-  # Phpunit tests to run, default provide only custom code or if this variable
-  # is empty all tests (including Drupal core).
-  # https://mog33.gitlab.io/gitlab-ci-drupal/advanced-usage/#phpunit-tests
-  PHPUNIT_TESTS: "custom"
-
-  # Specify a group of tests to run rather than all tests in the suite.
-  # PHPUNIT_GROUP: my_group_1,my_group_2
+  # Remote machine access and information.
+  # USER_NAME: "ubuntu"
+  # DRUPAL_FOLDER: "/var/www/html/MY_DRUPAL_ROOT"
+  # Deploy environments configuration, add or remove depending deploy jobs.
+  # Testing config, set host or ip
+  TESTING_HOST: "localhost"
+  # Staging config, set host or ip
+  STAGING_HOST: "localhost"
+  # Production config, set host or ip
+  PRODUCTION_HOST: "localhost"
 
   ##############################################################################
-  # Override default variables for a module.
-  #
-  # Default CI setup is for a 'project' (full Drupal with a composer.json), next
-  # section contains common variables to change for a module (module, theme or
-  # profile). Simply uncomment and adapt dirs to set the CI for a module.
-  #
-  # CI_TYPE: module
-  # # Code quality dirs, must include your PHP code to check.
-  # # Phpstan need autoloading, that's why we use web_root.
-  # DIRS_QA: "${WEB_ROOT}/modules/custom"
-  # # Eslint / Stylelint files to test.
-  # DIRS_JS: "${CI_PROJECT_DIR}/js/*.js"
-  # DIRS_CSS: "${CI_PROJECT_DIR}/css/*.css"
-  # # Twig files to test.
-  # DIRS_TWIG: "${CI_PROJECT_DIR}/templates"
-  # # phpmetrics / phpstats dirs to include.
-  # DIRS_PHP: "${CI_PROJECT_DIR}"
-  # # Set SKIP_XXX variable to 1 to skip.
-  # # Security is for a Drupal project with third party.
-  # SKIP_TEST_SECURITY: 1
-  # # If you don't have any css files, you can skip with
-  # SKIP_LINT_CSS: 1
-  # # If you don't have any javascript files, you can skip with
-  # SKIP_LINT_JS: 1
-  # # If you don't have any twig files, you can skip with
-  # SKIP_LINT_TWIG: 1
-  #
-  ##############################################################################
-
-  ##############################################################################
-  # As a sample here is a list of some variables, see documentation for more
-  # variables.
-  #
-  # List of DIRS_* variables to define dirs to analyse for specific jobs.
-  # Code quality dirs, must include your PHP code to check.
-  #
-  # DIRS_QA: "${WEB_ROOT}/modules/custom,${WEB_ROOT}/themes/custom"
-  #
-  # Eslint / Stylelint files to test.
-  # Space separated for multiple folders.
-  # Default is to check files under all custom folders.
-  #
-  # DIRS_JS: "${WEB_ROOT}/**/custom/**/*.js"
-  # DIRS_CSS: "${WEB_ROOT}/**/custom/**/css/*.css"
-  #
-  # Twig files to test, recursive.
-  #
-  # DIRS_TWIG: "${WEB_ROOT}/themes/custom"
-  #
-  # Phpmetrics / Phpstats dirs to include.
-  # Default is to check all dirs.
-  #
-  # DIRS_PHP: "${WEB_ROOT}/modules/custom,${WEB_ROOT}/themes/custom"
-  #
-  # # ALL SKIP variables, uncomment and set to 1 to skip a job.
-  # SKIP_BUILD: 1 # if not running any tests or deploy.
-  #
-  # SKIP_TESTS: 1 # Skip all tests, ignore SKIP_TEST_*.
-  # SKIP_TEST_UNITKERNEL: 1
-  # SKIP_TEST_FUNCTIONAL: 1
-  # SKIP_TEST_FUNCTIONALJS: 1
-  # SKIP_TEST_SECURITY: 1
-  #
-  # SKIP_QA: 1
-  #
-  # SKIP_LINT: 1 # Skip all lint, ignore SKIP_LINT_*.
-  # SKIP_LINT_CSS: 1
-  # SKIP_LINT_JS: 1
-  # SKIP_LINT_TWIG: 1
-  #
-  # SKIP_METRICS: 1
-
-  # QA and Metrics tools.
-  # See Phpqa available tools: https://github.com/EdgedesignCZ/phpqa#available-tools
-  # ':0' is the number of errors allowed, default here is very strict.
-  #
-  # TOOLS_QA: "phpcs:0,phpmd:0,parallel-lint:0,phpstan:0,phpcpd:0"
-  # TOOLS_METRICS: "phpmetrics,phploc,pdepend"
+  # All reports will be available in artifacts from this folder.
+  REPORT_DIR: "reports"
 
 ################################################################################
-# Advanced usage with this file, see doc.
-# https://mog33.gitlab.io/gitlab-ci-drupal/advanced-usage
+# Define your stages, this will be "pipelines" in gitlab.
+#   https://docs.gitlab.com/ee/ci/pipelines.html
 ################################################################################
+
+stages:
+  - build
+  - deploy to testing
+  - deploy to staging
+  - deploy to production
+
+################################################################################
+# Base image for all ci actions, see https://gitlab.com/mog33/drupal8ci
+################################################################################
+
+image: mogtofu33/drupal8ci:8.6-no-drupal
+
+################################################################################
+# Gitlab ci templates for common jobs to avoid repeat, see
+#   https://docs.gitlab.com/ee/ci/yaml/#anchors
+################################################################################
+
+# Small repetitive tasks.
+.ensure_report:
+  - &ensure_report
+      mkdir -p ${REPORT_DIR} && chmod -R 777 ${REPORT_DIR}
+
+.default_artifacts: &default_artifacts
+  paths:
+    - ${REPORT_DIR}/*.html
+    - ${REPORT_DIR}/*.svg
+  # Name will be based on job and branch.
+  name: "${CI_JOB_NAME}-${CI_COMMIT_REF_NAME}"
+  # How long do we keep reports files?
+  expire_in: 2 day
+  # Force artifacts even if the job fail.
+  when: always
+
+# Common for all jobs.
+before_script:
+  - *ensure_report
+
+################################################################################
+# Jobs definition.
+#   https://docs.gitlab.com/ee/ci/pipelines.html#jobs
+#
+# All jobs are set in a stage.
+################################################################################
+
+################################################################################
+# Build and tests jobs, not for master.
+################################################################################
+
+# Sample of a build, considering a Drupal 8 with composer.
+# For more samples see
+#   https://docs.gitlab.com/ee/ci/examples/deployment/composer-npm-deploy.html
+# Two scenarios here:
+# - Your repo include only custom code for a composer based project
+# - Your repo include at least a composer.json file to install Drupal
+Build:
+  stage: build
+  tags:
+    - docker
+  except:
+    - master
+  only:
+    - testing
+    - tags
+  script:
+    # [COMPOSER.JSON]
+    # Download Drupal project when no composer.json.
+    - robo download:drupal-project
+    # Because create-project need an empty folder we copy the downloaded drupal.
+    - cp -rf drupal/* ${CI_PROJECT_DIR} && cp -f drupal/.e* ${CI_PROJECT_DIR} && cp -f drupal/.g* ${CI_PROJECT_DIR} || true
+    #
+    # If a composer.json is present, validate file and install.
+    # - composer --verbose --no-check-all --no-check-publish validate
+    # - robo install:drupal
+  # On build we cache the composer, web folders.
+  cache:
+    key: drupal-$CI_BUILD_REF_NAME
+    paths:
+      # [COMPOSER.JSON] Remove drupal if you are using your composer.json
+      - drupal
+      - vendor
+      - web
+  artifacts:
+    paths:
+      # Build files for deploy/release.
+      - vendor
+      - web
+      - drush
+      - scripts
+      - composer.json
+      - composer.lock
+      # [COMPOSER.JSON] Specific to drupal-composer/drupal-project.
+      - .env.example
+      - load.environment.php
+    expire_in: 1 day
+
+Security report:
+  stage: tests
+  tags:
+    - docker
+  except:
+    - master
+  only:
+    - testing
+    - tags
+  script:
+    - if [ -f "composer.lock" ];
+      then
+      security-checker security:check;
+      fi
+  dependencies:
+    - Build
+
+################################################################################
+# [DEPLOY] Deploy jobs definition.
+#
+# This is a sample workflow, testing is run on master and testing branches
+# pushes or merge, other deploy are manual. Using a basic bash deploy, you must
+# adapt if you are using a specific deploy process.
+#
+# You need to be sure we can ssh to the machine, a deploy key must be manually
+# added on the target in  ~/.ssh/authorized_keys
+# Private key name and values must be set on Gitlab:
+#   Settings > CI / CD > Variables
+################################################################################
+
+# Basic docker image with ssh to be able to access a remote.
+# Each access must add a ssh key, see samples below.
+.deploy_template: &deploy_template
+  image: alpine:latest
+  tags:
+    - docker
+  before_script:
+    - apk --no-cache add openssh-client
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    # Avoid warning on connection.
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+  when: manual
+
+Deploy to testing:
+  stage: deploy to testing
+  <<: *deploy_template
+  only:
+    - testing
+    - master
+    - tags
+  environment:
+    name: testing
+    url: http://${TESTING_HOST}
+  script:
+    - echo -e "${TESTING_PRIVATE_KEY}" > ~/.ssh/id_rsa
+    - chmod 400 ~/.ssh/id_rsa
+    # We can now ssh and run any deploy script.
+    # - ssh -T $USER_NAME@$TESTING_HOST
+    #     "${DRUPAL_FOLDER}/scripts/my_deploy_script.sh;"
+
+Deploy to staging:
+  stage: deploy to staging
+  <<: *deploy_template
+  only:
+    - master
+    - tags
+  environment:
+    name: staging
+    url: http://${STAGING_HOST}
+  script:
+    - echo -e "${STAGING_PRIVATE_KEY}" > ~/.ssh/id_rsa
+    - chmod 400 ~/.ssh/id_rsa
+    # We can now ssh and run any deploy script.
+    # - ssh -T $USER_NAME@$TESTING_HOST
+    #     "${DRUPAL_FOLDER}/scripts/my_deploy_script.sh;"
+
+Deploy to production:
+  stage: deploy to production
+  <<: *deploy_template
+  only:
+    - master
+    - tags
+  environment:
+    name: production
+    url: http://${PRODUCTION_HOST}
+  script:
+    - echo -e "${PRODUCTION_PRIVATE_KEY}" > ~/.ssh/id_rsa
+    - chmod 400 ~/.ssh/id_rsa
+    # We can now ssh and run any deploy script.
+    # - ssh -T $USER_NAME@$TESTING_HOST
+    #     "${DRUPAL_FOLDER}/scripts/my_deploy_script.sh;"
