@@ -157,35 +157,35 @@ Build:
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
   when: manual
 
-Deploy to testing:
-  stage: deploy to testing
-  <<: *deploy_template
-  only:
-    - testing
-    - master
-    - tags
-  environment:
-    name: testing
-    url: http://${TESTING_HOST}
-  script:
-    - echo -e "${TESTING_PRIVATE_KEY}" > ~/.ssh/id_rsa
-    - chmod 400 ~/.ssh/id_rsa
+#Deploy to testing:
+#  stage: deploy to testing
+#  <<: *deploy_template
+#  only:
+#    - testing
+#    - master
+#    - tags
+#  environment:
+#    name: testing
+#    url: http://${TESTING_HOST}
+#  script:
+#    - echo -e "${TESTING_PRIVATE_KEY}" > ~/.ssh/id_rsa
+#    - chmod 400 ~/.ssh/id_rsa
     # We can now ssh and run any deploy script.
     # - ssh -T $USER_NAME@$TESTING_HOST
     #     "${DRUPAL_FOLDER}/scripts/my_deploy_script.sh;"
 
-Deploy to staging:
-  stage: deploy to staging
-  <<: *deploy_template
-  only:
-    - master
-    - tags
-  environment:
-    name: staging
-    url: http://${STAGING_HOST}
-  script:
-    - echo -e "${STAGING_PRIVATE_KEY}" > ~/.ssh/id_rsa
-    - chmod 400 ~/.ssh/id_rsa
+#Deploy to staging:
+#  stage: deploy to staging
+#  <<: *deploy_template
+#  only:
+#    - master
+#    - tags
+#  environment:
+#    name: staging
+#    url: http://${STAGING_HOST}
+#  script:
+#    - echo -e "${STAGING_PRIVATE_KEY}" > ~/.ssh/id_rsa
+#    - chmod 400 ~/.ssh/id_rsa
     # We can now ssh and run any deploy script.
     # - ssh -T $USER_NAME@$TESTING_HOST
     #     "${DRUPAL_FOLDER}/scripts/my_deploy_script.sh;"
