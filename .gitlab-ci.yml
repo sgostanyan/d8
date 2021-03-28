@@ -156,8 +156,7 @@ Build:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     # Avoid warning on connection.
-    - ssh -o StrictHostKeyChecking=no -i id.rsa $USER_NAME@$PRODUCTION_HOST
-#    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 #  when: manual
 
 #Deploy to testing:
@@ -208,4 +207,5 @@ Deploy to production:
     # We can now ssh and run any deploy script.
     - echo ${PRODUCTION_PRIVATE_KEY}
     - echo ssh $USER_NAME@$PRODUCTION_HOST "${DRUPAL_FOLDER_PROD}/scripts/prod_deploy_script.sh;"
+    - ssh -o StrictHostKeyChecking=no -i id.rsa $USER_NAME@$PRODUCTION_HOST
     - ssh -T $USER_NAME@$PRODUCTION_HOST "${DRUPAL_FOLDER_PROD}/scripts/prod_deploy_script.sh;"
