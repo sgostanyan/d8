@@ -156,7 +156,7 @@ Build:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     # Avoid warning on connection.
-#    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 #  when: manual
 
 #Deploy to testing:
