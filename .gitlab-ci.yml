@@ -95,10 +95,10 @@ Build:
   stage: build
   tags:
     - docker
-  except:
-    - master
+  #except:
+  #  - master
   only:
-    - testing
+   # - testing
     - tags
   script:
     # [COMPOSER.JSON]
