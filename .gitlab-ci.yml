@@ -19,7 +19,7 @@ variables:
   USER_NAME: "ubuntu"
   DRUPAL_FOLDER_TESTING: "/var/www/html/MY_DRUPAL_ROOT"
   DRUPAL_FOLDER_STAGING: "/var/www/html/MY_DRUPAL_ROOT"
-  DRUPAL_FOLDER_PROD: "/var/www/d8"
+  DRUPAL_FOLDER_PROD: "/var/www/html/d8"
   # Deploy environments configuration, add or remove depending deploy jobs.
   # Testing config, set host or ip
   TESTING_HOST: "localhost"
@@ -75,36 +75,62 @@ before_script:
   - *ensure_report
 
 ################################################################################
-# [BUILD]
+# Jobs definition.
+#   https://docs.gitlab.com/ee/ci/pipelines.html#jobs
+#
+# All jobs are set in a stage.
 ################################################################################
 
-## Création d'une archive de livraison avec gestion des dépendances par composer
-Build Drupal:
+################################################################################
+# Build and tests jobs, not for master.
+################################################################################
+
+# Sample of a build, considering a Drupal 8 with composer.
+# For more samples see
+#   https://docs.gitlab.com/ee/ci/examples/deployment/composer-npm-deploy.html
+# Two scenarios here:
+# - Your repo include only custom code for a composer based project
+# - Your repo include at least a composer.json file to install Drupal
+Build:
   stage: build
-  variables:
-    GIT_STRATEGY: fetch
-  before_script:
-    # suppression du répertoire packages qui contient les anciennes archives de livraison
-    - rm -rf packages
-    # recréation de ce répertoire
-    - mkdir -p packages
-    # mise en variable du chemin de l'archive de livraison du build en cours
-    - DRUPAL_PACKAGE_NAME="packages/${CI_PROJECT_NAME}_${CI_PIPELINE_ID}.tar.bz2"
-  script:
-    # installation des dépendances
-    - composer install
-    # création de l'archive de déploiement
-    # les fichiers à packager
-    - tar cfj ${DRUPAL_PACKAGE_NAME} #./composer.json ./load.environment.php ./views_infinite_scroll.post_update.php ./web ./vendor ./config ./drush ./src ./scripts ./patches
-  artifacts:
-    # permet l'upload de ce package de livraison buildé sur notre gitlab afin que les tâche de deploy (VA, PREPROD, PROD) puisse l'utiliser
-    paths:
-      - packages/drupal_*.tar.bz2
-    expire_in: 20 minutes
   tags:
-    # seul un runner tagé biblio-drupal pour effectuer ce job
-    - deployment
-  #when: manual
+    - docker
+  except:
+    - master
+  only:
+    - testing
+    - tags
+  script:
+    # [COMPOSER.JSON]
+    # Download Drupal project when no composer.json.
+    - robo download:drupal-project
+    # Because create-project need an empty folder we copy the downloaded drupal.
+    - cp -rf drupal/* ${CI_PROJECT_DIR} && cp -f drupal/.e* ${CI_PROJECT_DIR} && cp -f drupal/.g* ${CI_PROJECT_DIR} || true
+    #
+    # If a composer.json is present, validate file and install.
+    # - composer --verbose --no-check-all --no-check-publish validate
+    # - robo install:drupal
+  # On build we cache the composer, web folders.
+  cache:
+    key: drupal-$CI_BUILD_REF_NAME
+    paths:
+      # [COMPOSER.JSON] Remove drupal if you are using your composer.json
+      - drupal
+      - vendor
+      - web
+  artifacts:
+    paths:
+      # Build files for deploy/release.
+      - vendor
+      - web
+      - drush
+      - scripts
+      - composer.json
+      - composer.lock
+      # [COMPOSER.JSON] Specific to drupal-composer/drupal-project.
+      - .env.example
+      - load.environment.php
+    expire_in: 1 day
 
 ################################################################################
 # [DEPLOY] Deploy jobs definition.
@@ -175,13 +201,8 @@ Deploy to production:
   environment:
     name: production
     url: http://${PRODUCTION_HOST}
-  dependencies:
-    - Build Drupal
   script:
     - echo -e "${PRODUCTION_PRIVATE_KEY}" > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
     # We can now ssh and run any deploy script.
-    - tar jxf ${DRUPAL_PACKAGE_NAME} -C ~/deploy_dir
-    - scp ${DRUPAL_PACKAGE_NAME} $USER_NAME@$PRODUCTION_HOST:/var/www/deploy
-    - ssh -T $USER_NAME@$PRODUCTION_HOST "tar jxf /var/www/deploy/${DRUPAL_PACKAGE_NAME} -C ${DRUPAL_FOLDER_PROD}"
-    - ssh -T $USER_NAME@$PRODUCTION_HOST "cd ${DRUPAL_FOLDER_PROD}/${WEB_ROOT} && git pull && ${DRUPAL_FOLDER_PROD}/scripts/prod_deploy_script.sh;"
+    - ssh -T $USER_NAME@$PRODUCTION_HOST "cd ${DRUPAL_FOLDER_PROD}/${WEB_ROOT} && git pull &&${DRUPAL_FOLDER_PROD}/scripts/prod_deploy_script.sh;"
