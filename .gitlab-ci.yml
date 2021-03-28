@@ -155,8 +155,8 @@ Build:
     - apk --no-cache add openssh-client
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    - touch ~/.ssh/$PRODUCTION_HOST
-    - ssh-keygen -R ~/.ssh/$PRODUCTION_HOST
+    - touch ~/.ssh/known_hosts
+    - ssh-keygen -R $PRODUCTION_HOST
     # Avoid warning on connection.
  #   - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 #  when: manual
