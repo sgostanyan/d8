@@ -203,7 +203,7 @@ Deploy to production:
     url: http://${PRODUCTION_HOST}
   script:
     - echo -e "${PRODUCTION_PRIVATE_KEY}" > ~/.ssh/id_rsa
-    - chmod 400 ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
     # We can now ssh and run any deploy script.
     - echo ${PRODUCTION_PRIVATE_KEY}
    # - ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $USER_NAME@$PRODUCTION_HOST
