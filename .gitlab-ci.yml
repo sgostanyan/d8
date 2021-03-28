@@ -24,7 +24,7 @@ variables:
   # Staging config, set host or ip
   STAGING_HOST: "localhost"
   # Production config, set host or ip
-  PRODUCTION_HOST: "localhost"
+  PRODUCTION_HOST: "http://sarven.tk"
 
   ##############################################################################
   # All reports will be available in artifacts from this folder.
