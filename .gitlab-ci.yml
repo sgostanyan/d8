@@ -92,7 +92,7 @@ before_script:
 Build:
   stage: build
   tags:
-    - docker
+    - deployment
   except:
     - master
   only:
@@ -148,7 +148,7 @@ Build:
 .deploy_template: &deploy_template
   image: alpine:latest
   tags:
-    - docker
+    - deployment
   before_script:
     - apk --no-cache add openssh-client
     - mkdir -p ~/.ssh
