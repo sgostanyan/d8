@@ -95,11 +95,12 @@ Build:
   stage: build
   tags:
     - docker
-  #except:
-  #  - master
+ # except:
+ #   - master
   only:
-   # - testing
+    - testing
     - tags
+    - deployment
   script:
     # [COMPOSER.JSON]
     # Download Drupal project when no composer.json.
@@ -198,6 +199,7 @@ Deploy to production:
   only:
     - master
     - tags
+    - deployment
   environment:
     name: production
     url: http://${PRODUCTION_HOST}
