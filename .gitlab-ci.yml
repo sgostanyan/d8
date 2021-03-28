@@ -95,6 +95,7 @@ Build:
   stage: build
   tags:
     - docker
+    - deployment
  # except:
  #   - master
   only:
