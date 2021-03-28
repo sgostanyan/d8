@@ -158,7 +158,7 @@ Build:
     - touch ~/.ssh/known_hosts
     - ssh-keygen -R $PRODUCTION_HOST
     # Avoid warning on connection.
- #   - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 #  when: manual
 
 #Deploy to testing:
