@@ -130,23 +130,6 @@ Build:
       - load.environment.php
     expire_in: 1 day
 
-Security report:
-  stage: tests
-  tags:
-    - docker
-  except:
-    - master
-  only:
-    - testing
-    - tags
-  script:
-    - if [ -f "composer.lock" ];
-      then
-      security-checker security:check;
-      fi
-  dependencies:
-    - Build
-
 ################################################################################
 # [DEPLOY] Deploy jobs definition.
 #
