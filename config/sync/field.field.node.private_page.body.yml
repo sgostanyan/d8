@@ -1,0 +1,23 @@
+uuid: c5180997-548b-4bd0-9bb8-838e812ea7ae
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.private_page
+  module:
+    - text
+id: node.private_page.body
+field_name: body
+entity_type: node
+bundle: private_page
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

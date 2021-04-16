@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Contains d8_event.module.
+ */
+
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\d8_event\Event\NodeViewEvent;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_help().
+ */
+function d8_event_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the d8_event module.
+    case 'help.page.d8_event':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My Awesome Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_view().
+ */
+function d8_event_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if ($entity instanceof NodeInterface) {
+    $event = new NodeViewEvent($entity, $display, $view_mode);
+    $event_dispatcher = Drupal::service('event_dispatcher');
+    $event_dispatcher->dispatch(NodeViewEvent::EVENT_NAME, $event);
+  }
+}
