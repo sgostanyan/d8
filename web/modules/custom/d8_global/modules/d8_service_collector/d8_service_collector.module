@@ -22,3 +22,11 @@ function d8_service_collector_help($route_name, RouteMatchInterface $route_match
     default:
   }
 }
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function d8_service_collector_preprocess_page(&$variables) {
+  $customAliasManager = Drupal::service('d8.infos_display.manager');
+  $customAliasManager->showInfos();
+}

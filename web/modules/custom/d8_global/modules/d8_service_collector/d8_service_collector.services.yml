@@ -1,0 +1,18 @@
+services:
+  d8.infos_display.manager:
+    class: Drupal\d8_service_collector\Display\InfosDisplayManager
+    arguments: [ '@messenger' ]
+    tags:
+      - { name: service_collector, tag: d8.infos_display_manager, call: addManager }
+
+  d8.custom_infos_display.manager:
+    class: Drupal\d8_service_collector\Display\CustomInfosDisplayManager
+    arguments: [ '@current_user', '@messenger' ]
+    tags:
+      - { name: d8.infos_display_manager, priority: 0 }
+
+  d8.custom2_infos_display.manager:
+    class: Drupal\d8_service_collector\Display\Custom2InfosDisplayManager
+    arguments: [ '@language_manager', '@messenger' ]
+    tags:
+      - { name: d8.infos_display_manager, priority: 1 }
