@@ -1,5 +1,5 @@
 name: 'D8 Queue'
 type: module
-description: 'My Awesome Module'
+description: 'Queue and worker'
 core: 8.x
-package: 'Custom'
+package: 'D8 Training'

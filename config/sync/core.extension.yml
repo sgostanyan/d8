@@ -23,6 +23,7 @@ module:
   d8_mail: 0
   d8_queue: 0
   d8_service_alter: 0
+  d8_service_collector: 0
   d8_service_decorator: 0
   datetime: 0
   dblog: 0

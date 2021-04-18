@@ -1,0 +1,5 @@
+name: 'D8 Service Collector'
+type: module
+description: 'Custom service collector'
+core: 8.x
+package: 'D8 Training'

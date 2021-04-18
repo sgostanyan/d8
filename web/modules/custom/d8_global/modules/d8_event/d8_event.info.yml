@@ -1,5 +1,5 @@
 name: 'D8 Event'
 type: module
-description: 'My Awesome Module'
+description: 'Drupal 8 events'
 core: 8.x
-package: 'Custom'
+package: 'D8 Training'

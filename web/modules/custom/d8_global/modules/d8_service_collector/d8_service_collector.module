@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains d8_service_collector.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function d8_service_collector_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the d8_service_collector module.
+    case 'help.page.d8_service_collector':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My Awesome Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}

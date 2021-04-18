@@ -1,5 +1,5 @@
 name: 'D8 Service Alter'
 type: module
-description: 'My Awesome Module'
+description: 'Altering a service'
 core: 8.x
-package: 'Custom'
+package: 'D8 Training'
