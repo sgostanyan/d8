@@ -7,7 +7,7 @@ use Drupal\Core\Queue\QueueInterface;
 /**
  * Implements hook_entity_insert().
  */
-function d8_queue_entity_insert(EntityInterface $entity) {
+function d8_queue_entity_update(EntityInterface $entity) {
   if ($entity->getEntityTypeId() !== 'node') {
     return;
   }
@@ -22,10 +22,12 @@ function d8_queue_entity_insert(EntityInterface $entity) {
   /** @var QueueInterface $queue */
   // With Cron.
   $queue = $queue_factory->get('cron_node_publisher');
+  $item = new \stdClass();
+  $item->nid = $entity->id();
+  $queue->createItem($item);
 
   // Manual.
   $queue = $queue_factory->get('manual_node_publisher');
-
   $item = new \stdClass();
   $item->nid = $entity->id();
   $queue->createItem($item);

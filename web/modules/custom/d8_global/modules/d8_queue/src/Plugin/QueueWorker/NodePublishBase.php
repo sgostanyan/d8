@@ -27,10 +27,9 @@ abstract class NodePublishBase extends QueueWorkerBase implements ContainerFacto
   protected $nodeStorage;
 
   /**
-   * Creates a new NodePublishBase.
+   * NodePublishBase constructor.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $node_storage
-   *   The node storage.
    */
   public function __construct(EntityStorageInterface $node_storage) {
     $this->nodeStorage = $node_storage;

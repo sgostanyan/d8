@@ -10,8 +10,6 @@ namespace Drupal\d8_queue\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Queue\QueueFactory;
-use Drupal\Core\Queue\QueueInterface;
-use Drupal\Core\Queue\QueueWorkerInterface;
 use Drupal\Core\Queue\QueueWorkerManagerInterface;
 use Drupal\Core\Queue\SuspendQueueException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -34,11 +32,23 @@ class NodePublisherQueueForm extends FormBase {
   protected $queueManager;
 
   /**
+   * @var \Drupal\Core\Queue\QueueInterface
+   */
+  protected $nodePublishQueue;
+
+  /**
+   * @var object
+   */
+  protected object $manualQueueWorker;
+
+  /**
    * {@inheritdoc}
    */
   public function __construct(QueueFactory $queue, QueueWorkerManagerInterface $queue_manager) {
     $this->queueFactory = $queue;
     $this->queueManager = $queue_manager;
+    $this->nodePublishQueue = $this->queueFactory->get('manual_node_publisher');
+    $this->manualQueueWorker = $this->queueManager->createInstance('manual_node_publisher');
   }
 
   /**
@@ -59,12 +69,10 @@ class NodePublisherQueueForm extends FormBase {
    * {@inheritdoc}.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /** @var QueueInterface $queue */
-    $queue = $this->queueFactory->get('node_publisher');
 
     $form['help'] = [
       '#type' => 'markup',
-      '#markup' => $this->t('Submitting this form will process the Manual Queue which contains @number items.', ['@number' => $queue->numberOfItems()]),
+      '#markup' => $this->t('Submitting this form will process the Manual Queue which contains @number items.', ['@number' => $this->nodePublishQueue->numberOfItems()]),
     ];
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
@@ -80,18 +88,14 @@ class NodePublisherQueueForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    /** @var QueueInterface $queue */
-    $queue = $this->queueFactory->get('manual_node_publisher');
-    /** @var QueueWorkerInterface $queue_worker */
-    $queue_worker = $this->queueManager->createInstance('manual_node_publisher');
 
-    while ($item = $queue->claimItem()) {
+    while ($item = $this->nodePublishQueue->claimItem()) {
       try {
-        $queue_worker->processItem($item->data);
-        $queue->deleteItem($item);
+        $this->manualQueueWorker->processItem($item->data);
+        $this->nodePublishQueue->deleteItem($item);
       }
       catch (SuspendQueueException $e) {
-        $queue->releaseItem($item);
+        $this->nodePublishQueue->releaseItem($item);
         break;
       }
       catch (\Exception $e) {
