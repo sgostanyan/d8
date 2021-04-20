@@ -1,0 +1,10 @@
+## Defining permissions
+
+# Simple permission
+special permission:
+  title: 'Custom special permission'
+  description: 'Gets special permission'
+
+# With callback
+permission_callbacks:
+  - \Drupal\d8_permission\Permission\PrivatePagePermissions::permissions

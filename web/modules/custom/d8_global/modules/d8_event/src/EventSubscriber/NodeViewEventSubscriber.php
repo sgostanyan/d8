@@ -5,7 +5,6 @@ namespace Drupal\d8_event\EventSubscriber;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\d8_event\Event\NodeViewEvent;
-use Drupal\d8_event\Permission\PrivatePagePermissions;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -70,7 +69,7 @@ class NodeViewEventSubscriber implements EventSubscriberInterface, ContainerInje
    */
   public function onCheckPermission(NodeViewEvent $event) {
     if ($event->bundle == 'private_page') {
-      if (!$this->user->hasPermission(PrivatePagePermissions::PERMISSION_NAME)) {
+      if (!$this->user->isAuthenticated()) {
         throw new AccessDeniedHttpException();
       }
     }

@@ -16,11 +16,13 @@ module:
   contact: 0
   contextual: 0
   ctools: 0
+  d8_access: 0
   d8_account_settings_form: 0
   d8_breadcrumb: 0
   d8_event: 0
   d8_global: 0
   d8_mail: 0
+  d8_permission: 0
   d8_queue: 0
   d8_service_alter: 0
   d8_service_collector: 0

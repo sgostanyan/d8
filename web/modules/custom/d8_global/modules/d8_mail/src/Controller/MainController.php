@@ -6,11 +6,11 @@ use Drupal;
 use Drupal\Core\Controller\ControllerBase;
 
 /**
- * Class MailController
+ * Class MainController
  *
  * @package Drupal\d8_mail\Controller
  */
-class MailController extends ControllerBase {
+class MainController extends ControllerBase {
 
   /**
    * @return array
