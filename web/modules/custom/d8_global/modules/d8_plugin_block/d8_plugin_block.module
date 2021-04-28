@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains d8_plugin_block.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function d8_plugin_block_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the d8_plugin_block module.
+    case 'help.page.d8_plugin_block':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('D8 Training') . '</p>';
+      return $output;
+
+    default:
+  }
+}

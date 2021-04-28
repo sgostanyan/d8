@@ -1,0 +1,51 @@
+<?php
+
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function d8_cache_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the d8_cache module.
+    case 'help.page.d8_cache':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Drupal 8 cache') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function d8_cache_page_attachments(array &$attachments) {
+
+  ## Cache statique ##
+  $lang = Drupal::languageManager()->getCurrentLanguage()->getId();
+  $cid = 'd8_cache_' . $lang;
+  $data = NULL;
+  $cache = \Drupal::cache()->get($cid);
+  if ($cache) {
+    $data = 'From Cache: ' . $cache->data;
+  }
+  else {
+    $data = _longFunction($lang);
+    \Drupal::cache()->set($cid, $data, Cache::PERMANENT, ['d8_cache_lang', 'd8_cache_lang_' . $lang]);
+  }
+  Drupal::messenger()->addStatus($data, 'notice');
+}
+
+/**
+ * @param $lang
+ *
+ * @return mixed
+ */
+function _longFunction($lang) {
+  sleep('5');
+  return $lang;
+}
+

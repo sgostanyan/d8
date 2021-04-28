@@ -1,0 +1,29 @@
+
+d8_route.main_controller_route:
+  path: '/admin/route'
+  defaults:
+    _controller: '\Drupal\d8_route\Controller\MainController::page'
+    _title: 'Routes'
+  requirements:
+    _permission: 'access content'
+
+# Entity as parameter
+d8_route.main_controller_route_user:
+  path: '/admin/route/{user}'
+  defaults:
+    _controller: '\Drupal\d8_route\Controller\UserController::page'
+    _title: 'User'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      user:
+        type: entity:user
+
+d8_route.main_controller_route_csrf_token:
+  path: '/admin/route/csrftoken'
+  defaults:
+    _controller: '\Drupal\d8_route\Controller\TokenController::csrftoken'
+    _title: 'Routes'
+  requirements:
+    _csrf_token: 'TRUE'

@@ -18,6 +18,29 @@ class TestController extends ControllerBase {
    */
   public function test() {
 
+    $build = [];
+
+    $build['#title'] = 'TITRE';
+    $build['#attributes'] = [
+      'class' => ['announcement'],
+    ];
+
+    $build['announcement'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['announcement__content']],
+      'wrapper' => [
+        '#type' => 'container',
+        '#attributes' => ['class' => ['wrapper_content']],
+        'content' => [
+          '#type' => 'processed_text',
+          '#text' => "<p>Mon text</p>",
+          '#format' => "full_html",
+        ],
+      ],
+    ];
+
+    return $build;
+
 
     return [
       '#theme' => 'test_template',

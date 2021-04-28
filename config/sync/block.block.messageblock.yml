@@ -1,0 +1,22 @@
+uuid: 190781f6-bd9c-49b5-9404-f1c67a1d5fa9
+langcode: fr
+status: true
+dependencies:
+  module:
+    - d8_plugin_block
+  theme:
+    - bartik_custom
+id: messageblock
+theme: bartik_custom
+region: sidebar_second
+weight: 0
+provider: null
+plugin: message_block
+settings:
+  id: message_block
+  label: 'Message block'
+  provider: d8_plugin_block
+  label_display: '0'
+  date_start: '2021-04-28'
+  date_end: '2021-04-28'
+visibility: {  }

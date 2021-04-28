@@ -1,0 +1,5 @@
+name: 'D8 route'
+type: module
+description: 'Using routes'
+core: 8.x
+package: 'D8 Training'
