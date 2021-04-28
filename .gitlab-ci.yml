@@ -19,7 +19,7 @@ variables:
   USER_NAME: "ubuntu"
   DRUPAL_FOLDER_TESTING: "/var/www/html/MY_DRUPAL_ROOT"
   DRUPAL_FOLDER_STAGING: "/var/www/html/MY_DRUPAL_ROOT"
-  DRUPAL_FOLDER_PROD: "/var/www/d8"
+  DRUPAL_FOLDER_PROD: "/var/www/html/d8"
   # Deploy environments configuration, add or remove depending deploy jobs.
   # Testing config, set host or ip
   TESTING_HOST: "localhost"
