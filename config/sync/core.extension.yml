@@ -22,6 +22,7 @@ module:
   d8_breadcrumb: 0
   d8_cache: 0
   d8_development: 0
+  d8_drush_command: 0
   d8_event: 0
   d8_global: 0
   d8_mail: 0

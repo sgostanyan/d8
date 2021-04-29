@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\d8_global\Drush;
+namespace Drupal\d8_drush_command\Drush;
 
 use Drush\Commands\DrushCommands;
 
 /**
- * A drush command file.
+ * Class Drush9CustomCommands
  *
- * @package Drupal\drush9_custom_commands\Drush
+ * @package Drupal\d8_drush_command\Drush
  */
 class Drush9CustomCommands extends DrushCommands {
 
