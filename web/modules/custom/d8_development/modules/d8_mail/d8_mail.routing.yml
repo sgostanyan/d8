@@ -1,0 +1,8 @@
+
+d8_mail.mail:
+  path: '/admin/d8_development/mail'
+  defaults:
+    _controller: '\Drupal\d8_mail\Controller\MainController::mail'
+    _title: 'Mail'
+  requirements:
+    _permission: 'administer site configuration'

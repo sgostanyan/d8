@@ -1,5 +1,0 @@
-name: 'D8 Mail'
-type: module
-description: 'Sending emails'
-core: 8.x
-package: 'D8 Training'

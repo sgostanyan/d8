@@ -1,0 +1,16 @@
+d8_api.controller_graphqlquery:
+  route_name: d8_api.controller_grqphqlquery
+  title: GraphQLQuery
+  base_route: d8_api.controller_api
+
+d8_api.controller_siren:
+  route_name: d8_api.controller_siren
+  title: SIREN
+  base_route: d8_api.controller_api
+  weight: 2
+
+d8_api.controller_tarifer:
+  route_name: d8_api.controller_tarifer
+  title: TARIFER
+  base_route: d8_api.controller_api
+  weight: 3

@@ -1,0 +1,5 @@
+name: 'D8 API'
+type: module
+description: 'Drupal 8 api'
+core: 8.x
+package: 'D8 Development'

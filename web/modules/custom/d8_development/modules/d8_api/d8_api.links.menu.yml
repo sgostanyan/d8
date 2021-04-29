@@ -1,0 +1,7 @@
+d8_api:
+  title: 'D8 API'
+  description: 'Drupal 8 API'
+  route_name: d8_api.controller_grqphqlquery
+  menu_name: system.admin
+  parent: d8_development
+  weight: 5

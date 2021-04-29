@@ -1,0 +1,5 @@
+name: 'D8 Service Alter'
+type: module
+description: 'Altering a service'
+core: 8.x
+package: 'D8 Development'

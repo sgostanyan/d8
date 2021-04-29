@@ -1,5 +1,0 @@
-name: 'PSS / PSE'
-type: module
-description: 'Harmonie Mutuelle PSS/PSE'
-core: 8.x
-package: 'PSS/PSE'

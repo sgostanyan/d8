@@ -1,0 +1,7 @@
+d8_mail:
+  title: 'D8 Mail'
+  description: 'Drupal 8 Mail'
+  route_name: d8_mail.mail
+  menu_name: system.admin
+  parent: d8_development
+  weight: 2

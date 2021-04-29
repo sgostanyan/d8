@@ -18,8 +18,10 @@ module:
   ctools: 0
   d8_access: 0
   d8_account_settings_form: 0
+  d8_api: 0
   d8_breadcrumb: 0
   d8_cache: 0
+  d8_development: 0
   d8_event: 0
   d8_global: 0
   d8_mail: 0

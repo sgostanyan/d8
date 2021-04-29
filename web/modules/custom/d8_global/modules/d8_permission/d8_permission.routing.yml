@@ -1,8 +1,0 @@
-
-d8_permission.permission_controller_page:
-  path: '/admin/permissions'
-  defaults:
-    _controller: '\Drupal\d8_permission\Controller\MainController::page'
-    _title: 'Permissions'
-  requirements:
-    _permission: 'access private pages,special permission'

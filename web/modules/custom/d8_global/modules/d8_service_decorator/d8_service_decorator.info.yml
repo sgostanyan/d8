@@ -1,5 +1,0 @@
-name: 'D8 Service Decorator'
-type: module
-description: 'Decorate a service'
-core: 8.x
-package: 'D8 Training'

@@ -1,0 +1,5 @@
+name: 'D8 Cache'
+type: module
+description: 'Drupal 8 cache'
+core: 8.x
+package: 'D8 Development'

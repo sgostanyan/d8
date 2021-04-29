@@ -1,8 +1,0 @@
-
-d8_access.access_controller_page:
-  path: '/admin/access'
-  defaults:
-    _controller: '\Drupal\d8_access\Controller\MainController::page'
-    _title: 'Permissions'
-  requirements:
-    _custom_access: '\Drupal\d8_access\Access\CheckAccess::check'

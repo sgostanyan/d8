@@ -1,0 +1,52 @@
+services:
+
+  # Controllers
+  d8_api.controller:
+    class: Drupal\d8_api\Controller\APIController
+    autowire: true
+
+ # Services
+  d8_api.api_tarifer:
+    class: Drupal\d8_api\Service\ApiTariferService
+    arguments: ['%d8_api_tarifer_auth%', '%d8_api_tarifer%', '@http_client', '@logger.factory']
+
+  d8_api.graphqlquery:
+    class: Drupal\d8_api\Service\ApiGraphQLQueryService
+    arguments: [ '%d8_api_graphqlquery_token_auth%', '%d8_api_graphqlquery%', '@http_client', '@logger.factory' ]
+
+  d8_api.api_sirene:
+    class: Drupal\d8_api\Service\ApiSireneService
+    arguments: [ '@http_client', '@logger.factory' ]
+
+parameters:
+  # API TARIFER
+  d8_api_tarifer_auth:
+    dev:
+      apiKey: '4302448078F5844C54D56F84D4F05AA2B33EFFDF374EC3CB25EEC369DE8D0905'
+      user: 'USER_PFS'
+      pwd: 'ScK5mYa2u8aT6Fgaz'
+    prod:
+      apiKey: '4302448078F5844C54D56F84D4F05AA2B33EFFDF374EC3CB25EEC369DE8D0905'
+      user: 'USER_PFS'
+      pwd: 'ScK5mYa2u8aT6Fgaz'
+  d8_api_tarifer:
+    dev:
+      scheme: 'https'
+      host: 'rec.api.harmonie-mutuelle.fr'
+      basePathIndiv: 'services/tarifer-indiv/v1'
+    prod:
+      scheme: 'https'
+      host: 'api.harmonie-mutuelle.fr'
+      basePathIndiv: 'services/tarifer-indiv/v1'
+
+  # API GRAPHQLQUERY
+  d8_api_graphqlquery_token_auth:
+    scheme: 'https'
+    host: 'ccn.harmonie-mutuelle.fr'
+    basePath: 'api/login'
+    user: 'hm-api'
+    pwd: 'HM:aPi6-8CCnGQL'
+  d8_api_graphqlquery:
+    scheme: 'https'
+    host: 'ccn.harmonie-mutuelle.fr'
+    basePath: 'api/gql'

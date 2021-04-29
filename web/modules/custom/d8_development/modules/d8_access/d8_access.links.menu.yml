@@ -1,0 +1,7 @@
+d8_access:
+  title: 'D8 Access'
+  description: 'Drupal 8 Access'
+  route_name: d8_access.access_controller_page
+  menu_name: system.admin
+  parent: d8_development
+  weight: 1

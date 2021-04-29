@@ -1,0 +1,7 @@
+d8_queue.form:
+  path: '/admin/d8_development/queue'
+  defaults:
+    _form: '\Drupal\d8_queue\Form\NodePublisherQueueForm'
+    _title: 'Node Publisher'
+  requirements:
+    _permission: 'administer site configuration'

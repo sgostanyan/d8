@@ -1,0 +1,7 @@
+d8_queue:
+  title: 'D8 Queue'
+  description: 'Drupal 8 Queue'
+  route_name: d8_queue.form
+  menu_name: system.admin
+  parent: d8_development
+  weight: 4

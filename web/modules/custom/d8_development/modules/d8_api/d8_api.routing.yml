@@ -1,0 +1,26 @@
+# GraphQLQuery
+d8_api.controller_grqphqlquery:
+  path: '/admin/d8_api/graphqlquery'
+  defaults:
+    _controller: d8_api.controller:graphqlquery
+    _title: 'GraphQLQuery'
+  requirements:
+    _permission: 'access content'
+
+# Siren
+d8_api.controller_siren:
+  path: '/admin/d8_api/siren'
+  defaults:
+    _controller: d8_api.controller:siren
+    _title: 'Siren'
+  requirements:
+    _permission: 'access content'
+
+# Tarifer
+d8_api.controller_tarifer:
+  path: '/admin/d8_api/tarifer'
+  defaults:
+    _controller: d8_api.controller:tarifer
+    _title: 'PSE'
+  requirements:
+    _permission: 'access content'

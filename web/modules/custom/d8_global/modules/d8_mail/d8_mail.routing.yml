@@ -1,8 +1,0 @@
-
-d8_mail.mail:
-  path: '/admin/mail'
-  defaults:
-    _controller: '\Drupal\d8_mail\Controller\MainController::mail'
-    _title: 'Mail'
-  requirements:
-    _permission: 'access content'

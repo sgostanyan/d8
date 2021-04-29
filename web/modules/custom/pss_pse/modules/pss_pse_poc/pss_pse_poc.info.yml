@@ -1,5 +1,0 @@
-name: 'PSS_PSE_POC'
-type: module
-description: 'Harmonie Mutuelle PSS PSE POC'
-core: 8.x
-package: 'PSS PSE'

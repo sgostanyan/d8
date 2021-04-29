@@ -1,5 +1,0 @@
-name: 'D8 Account settings form'
-type: module
-description: 'Customize default user account settings form'
-core: 8.x
-package: 'D8 Training'

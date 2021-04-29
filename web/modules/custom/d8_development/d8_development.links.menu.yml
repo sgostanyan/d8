@@ -1,0 +1,7 @@
+d8_development:
+  title: 'D8 Development'
+  description: 'D8 development examples'
+  route_name: '<nolink>'
+  menu_name: system.admin
+  parent: system.admin
+  weight: 100
