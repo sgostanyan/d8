@@ -19,6 +19,7 @@ module:
   d8_access: 0
   d8_account_settings_form: 0
   d8_api: 0
+  d8_batch: 0
   d8_breadcrumb: 0
   d8_cache: 0
   d8_development: 0

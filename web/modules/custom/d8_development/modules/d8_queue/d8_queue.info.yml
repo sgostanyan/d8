@@ -1,5 +1,5 @@
 name: 'D8 Queue'
 type: module
-description: 'Queue and worker'
+description: 'Drupal 8 queue and worker'
 core: 8.x
 package: 'D8 Development'

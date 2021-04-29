@@ -1,5 +1,5 @@
 name: 'D8 Mail'
 type: module
-description: 'Sending emails'
+description: 'Drupal 8 sending emails'
 core: 8.x
 package: 'D8 Development'

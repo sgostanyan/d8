@@ -1,0 +1,7 @@
+d8_batch:
+  path: '/admin/d8_development/batch'
+  defaults:
+    _form: '\Drupal\d8_batch\Form\BatchTaskForm'
+    _title: 'Batch'
+  requirements:
+    _permission: 'administer site configuration'

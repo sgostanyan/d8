@@ -1,0 +1,7 @@
+d8_batch:
+  title: 'D8 Batch'
+  description: 'Drupal 8 Batch'
+  route_name: d8_batch
+  menu_name: system.admin
+  parent: d8_development
+  weight: 6
