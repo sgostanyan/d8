@@ -127,6 +127,8 @@ class MessageBlock extends BlockBase implements ContainerFactoryPluginInterface 
       'class' => ['announcement'],
     ];
 
+    $dates = $this->getDates();
+
     $build['announcement'] = [
       '#type' => 'container',
       '#attributes' => ['class' => ['announcement__content']],
@@ -135,11 +137,12 @@ class MessageBlock extends BlockBase implements ContainerFactoryPluginInterface 
         '#attributes' => ['class' => ['wrapper_content']],
         'content' => [
           '#type' => 'processed_text',
-          '#text' => '<p>' . $this->dateFormatter->format($this->start, '', 'd/m/Y') . ' - ' . $this->dateFormatter->format($this->end, '', 'd/n/Y') . '</p>',
+          '#text' => '<p>' . $this->dateFormatter->format($dates['start'], '', 'd/m/Y') . ' - ' . $this->dateFormatter->format($dates['end'], '', 'd/n/Y') . '</p>',
           '#format' => "full_html",
         ],
       ],
     ];
+
     return $build;
   }
 
