@@ -19,21 +19,24 @@ function d8_cache_help($route_name, RouteMatchInterface $route_match) {
   }
 }
 
+/**
+ * Implements hook_preprocess_page().
+ */
 function d8_cache_preprocess_page(&$variables) {
 
   ## Cache statique ##
   $lang = Drupal::languageManager()->getCurrentLanguage()->getId();
-  $cid = 'd8_cache_' . $lang;
+  $cid = 'd8_cache:' . $lang;
   $data = NULL;
   $cache = \Drupal::cache()->get($cid);
   if ($cache) {
-    $data = 'From Cache: ' . $cache->data;
+    $message = 'From cache: ' .  $cache->data;
   }
   else {
-    $data = _longFunction($lang);
-    \Drupal::cache()->set($cid, $data, Cache::PERMANENT, ['d8_cache_lang', 'd8_cache_lang_' . $lang]);
+    $message = 'No cache: ' . _longFunction($lang);
+    \Drupal::cache()->set($cid, $data, Cache::PERMANENT, ['d8_cache_custom']);
   }
-  Drupal::messenger()->addStatus($data, 'notice');
+  Drupal::messenger()->addStatus($message, 'notice');
 }
 
 /**

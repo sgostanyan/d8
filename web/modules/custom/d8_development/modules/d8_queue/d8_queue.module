@@ -19,7 +19,6 @@ function d8_queue_entity_update(EntityInterface $entity) {
   /** @var QueueFactory $queue_factory */
   $queue_factory = \Drupal::service('queue');
 
-  /** @var QueueInterface $queue */
   // With Cron.
   $queue = $queue_factory->get('cron_node_publisher');
   $item = new \stdClass();

@@ -15,7 +15,9 @@ dependencies:
     - image.style.large
     - node.type.article
   module:
+    - file
     - image
+    - media_pdf_thumbnail
     - text
     - user
 _core:
@@ -50,13 +52,13 @@ content:
       image_link: ''
     third_party_settings: {  }
   field_media:
-    type: entity_reference_entity_view
+    type: media_pdf_thumbnail_field_formatter
     weight: 4
     region: content
     label: above
     settings:
-      link: true
-      view_mode: default
+      image_style: ''
+      image_link: media
     third_party_settings: {  }
   field_page:
     type: entity_reference_entity_view
@@ -67,10 +69,24 @@ content:
       link: true
       view_mode: default
     third_party_settings: {  }
+  field_pdf:
+    type: file_default
+    weight: 5
+    region: content
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+  field_pdf_public:
+    type: file_default
+    weight: 6
+    region: content
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
 hidden:
   field_paragraph: true
-  field_pdf: true
-  field_pdf_public: true
   field_type: true
   langcode: true
   links: true
