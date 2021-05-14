@@ -17,13 +17,13 @@ display:
             offset_label: Offset
       fields:
         title:
-          label: Título
+          label: Title
         name:
-          label: Autor
+          label: Author
         changed:
-          label: 'Última actualización'
+          label: 'Last update'
   attachment_1:
-    display_title: Adjunto
+    display_title: Attachment
   page_1:
     display_title: Page
     display_options:

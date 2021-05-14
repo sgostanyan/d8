@@ -1,7 +1,7 @@
-label: Idioma
+label: Language
 tips:
   language-overview:
-    label: Idiomas
+    label: Languages
     body: '<p>La página “Idiomas” le permite añadir, editar, borrar y reordenar idiomas para el sitio.</p>'
   language-add:
     label: 'Añadiendo idiomas'

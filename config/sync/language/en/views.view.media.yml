@@ -5,7 +5,7 @@ display:
     display_options:
       exposed_form:
         options:
-          submit_button: Filtro
+          submit_button: Filter
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
       pager:
@@ -21,7 +21,7 @@ display:
             last: 'Último »'
       fields:
         media_bulk_form:
-          action_title: Acción
+          action_title: Action
         thumbnail__target_id:
           label: Miniatura
         name:
@@ -29,16 +29,16 @@ display:
         bundle:
           label: Type
         uid:
-          label: Autor
+          label: Author
         status:
           label: Status
           settings:
-            format_custom_true: Publicado
+            format_custom_true: Published
             format_custom_false: 'Sin publicar'
         changed:
           label: Actualizado
         operations:
-          label: Operaciones
+          label: Operations
       filters:
         name:
           expose:
@@ -53,12 +53,12 @@ display:
             label: 'Estado de publicación'
             group_items:
               1:
-                title: Publicado
+                title: Published
               2:
                 title: 'Sin publicar'
         langcode:
           expose:
-            label: Idioma
+            label: Language
       title: Multimedia
       empty:
         area_text_custom:

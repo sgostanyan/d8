@@ -6,7 +6,7 @@ display:
     display_options:
       exposed_form:
         options:
-          submit_button: Filtro
+          submit_button: Filter
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
       pager:
@@ -23,13 +23,13 @@ display:
         type:
           label: Type
         timestamp:
-          label: Fecha
+          label: Date
         message:
           label: Mensaje
         name:
-          label: Usuario
+          label: User
         link:
-          label: Operaciones
+          label: Operations
       filters:
         type:
           expose:

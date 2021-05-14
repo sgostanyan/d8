@@ -20,17 +20,17 @@ display:
             offset_label: Offset
       fields:
         info:
-          label: 'Descripción del bloque'
+          label: 'Block description'
         type:
           label: 'Tipo de bloque'
         changed:
           label: Actualizado
         operations:
-          label: Operaciones
+          label: Operations
       filters:
         info:
           expose:
-            label: 'Descripción del bloque'
+            label: 'Block description'
         type:
           expose:
             label: 'Tipo de bloque'

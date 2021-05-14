@@ -1,15 +1,15 @@
-label: 'Comentarios recientes'
+label: 'Recent comments'
 description: 'Comentarios recientes.'
 display:
   default:
     display_title: Master
     display_options:
-      title: 'Comentarios recientes'
+      title: 'Recent comments'
       empty:
         area_text_custom:
           content: 'No hay comentarios disponibles.'
   block_1:
-    display_title: Bloque
+    display_title: Block
     display_options:
-      block_description: 'Comentarios recientes'
+      block_description: 'Recent comments'
       block_category: 'Listas (Views)'

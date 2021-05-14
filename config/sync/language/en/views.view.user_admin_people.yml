@@ -1,4 +1,4 @@
-label: Usuarios
+label: People
 description: 'Encuentre y gestione a las personas que interactúan con su sitio.'
 display:
   default:
@@ -6,7 +6,7 @@ display:
     display_options:
       exposed_form:
         options:
-          submit_button: Filtro
+          submit_button: Filter
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
       pager:
@@ -24,20 +24,20 @@ display:
         user_bulk_form:
           label: 'Actualización masiva'
         name:
-          label: 'Nombre de usuario'
+          label: Username
         status:
           label: Status
           settings:
-            format_custom_true: Activo
-            format_custom_false: Bloqueado
+            format_custom_true: Active
+            format_custom_false: Blocked
         roles_target_id:
-          label: Rôles
+          label: Roles
         created:
           label: 'Miembro desde hace'
         access:
-          label: 'Último acceso'
+          label: 'Last access'
         operations:
-          label: Operaciones
+          label: Operations
       filters:
         combine:
           expose:
@@ -47,26 +47,26 @@ display:
             label: Status
             group_items:
               1:
-                title: Activo
+                title: Active
               2:
-                title: Bloqueado
+                title: Blocked
         roles_target_id:
           expose:
-            label: Rol
+            label: Role
         permission:
           expose:
-            label: Permiso
-      title: Usuarios
+            label: Permission
+      title: People
       empty:
         area_text_custom:
-          content: 'Personne n''est disponible.'
+          content: 'No people available.'
       use_more_text: más
   page_1:
     display_title: Page
     display_options:
       menu:
-        title: Listado
+        title: List
         description: 'Encuentre y gestione a las personas que interactúan con su sitio.'
       tab_options:
-        title: Usuarios
-        description: 'Gestionar cuentas, roles y permisos de usuarios.'
+        title: People
+        description: 'Manage user accounts, roles, and permissions.'

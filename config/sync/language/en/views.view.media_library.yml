@@ -16,21 +16,21 @@ display:
             offset_label: Offset
       fields:
         media_bulk_form:
-          action_title: Acción
+          action_title: Action
       filters:
         status:
           expose:
             label: 'Estado de publicación'
           group_info:
-            label: Publicado
+            label: Published
             group_items:
               1:
-                title: Publicado
+                title: Published
               2:
                 title: 'Sin publicar'
         name:
           expose:
-            label: Nombre
+            label: Name
         bundle:
           expose:
             label: 'Tipos multimedia'
@@ -38,7 +38,7 @@ display:
             label: 'Tipos multimedia'
         langcode:
           expose:
-            label: Idioma
+            label: Language
       sorts:
         created:
           expose:
@@ -58,54 +58,54 @@ display:
     display_options:
       fields:
         media_bulk_form:
-          action_title: Acción
+          action_title: Action
         edit_media:
           alter:
             text: 'Editar {{ nombre }}'
             alt: 'Editar {{ nombre }}'
-          text: Editar
+          text: Edit
         delete_media:
           alter:
             text: 'Borrar {{ nombre }}'
             alt: 'Borrar {{ nombre }}'
-          text: Eliminar
+          text: Delete
   widget:
     display_title: Control
     display_options:
       filters:
         name:
           expose:
-            label: Nombre
+            label: Name
       arguments:
         bundle:
           exception:
-            title: Todo(s)
+            title: All
       header:
         display_link_grid:
           label: Cuadrícula
         display_link_table:
-          label: Tabla
+          label: Table
   widget_table:
     display_options:
       fields:
         thumbnail__target_id:
           label: Miniatura
         name:
-          label: Nombre
+          label: Name
         uid:
-          label: Autor
+          label: Author
         changed:
           label: Actualizado
       filters:
         name:
           expose:
-            label: Nombre
+            label: Name
       arguments:
         bundle:
           exception:
-            title: Todo(s)
+            title: All
       header:
         display_link_grid:
           label: Cuadrícula
         display_link_table:
-          label: Tabla
+          label: Table

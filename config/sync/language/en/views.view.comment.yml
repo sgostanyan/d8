@@ -1,4 +1,4 @@
-label: Comentarios
+label: Comments
 description: 'Buscar y gestionar comentarios.'
 display:
   default:
@@ -14,36 +14,36 @@ display:
           tags:
             previous: '‹ previous'
             next: 'next ›'
-            first: '« primero'
-            last: 'último »'
+            first: '« first'
+            last: 'last »'
           expose:
             items_per_page_label: 'Items per page'
             items_per_page_options_all_label: '- All -'
             offset_label: Offset
       fields:
         comment_bulk_form:
-          action_title: Acción
+          action_title: Action
         subject:
-          label: Asunto
+          label: Subject
         name:
-          label: Autor
+          label: Author
         entity_id:
           label: 'Enviado en'
         changed:
           label: Actualizado
         operations:
-          label: Operaciones
+          label: Operations
       filters:
         subject:
           expose:
-            label: Asunto
+            label: Subject
         combine:
           expose:
             label: 'Nombre del autor'
         langcode:
           expose:
-            label: Idioma
-      title: Comentarios
+            label: Language
+      title: Comments
       empty:
         area_text_custom:
           content: 'No hay comentarios disponibles.'
@@ -52,7 +52,7 @@ display:
     display_title: 'Comentarios publicados'
     display_options:
       menu:
-        title: Comentarios
+        title: Comments
         description: 'Comentarios publicados'
       display_description: 'La lista de comentarios aprobados.'
   page_unapproved:
@@ -65,23 +65,23 @@ display:
       filters:
         subject:
           expose:
-            label: Asunto
+            label: Subject
         combine:
           expose:
             label: 'Nombre del autor'
         langcode:
           expose:
-            label: Idioma
+            label: Language
       fields:
         comment_bulk_form:
-          action_title: Acción
+          action_title: Action
         subject:
-          label: Asunto
+          label: Subject
         name:
-          label: Autor
+          label: Author
         entity_id:
           label: 'Enviado en'
         changed:
           label: Actualizado
         operations:
-          label: Operaciones
+          label: Operations

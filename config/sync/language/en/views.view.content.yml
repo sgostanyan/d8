@@ -1,11 +1,11 @@
-label: Contenido
+label: Content
 description: 'Encontrar y administrar contenido.'
 display:
   default:
     display_options:
       exposed_form:
         options:
-          submit_button: Filtro
+          submit_button: Filter
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
       pager:
@@ -17,24 +17,24 @@ display:
             last: 'Último »'
       fields:
         title:
-          label: Título
+          label: Title
         type:
           label: 'Tipo de contenido'
         name:
-          label: Autor
+          label: Author
         status:
           label: Status
           settings:
-            format_custom_true: Publicado
+            format_custom_true: Published
             format_custom_false: 'Sin publicar'
         changed:
           label: Actualizado
         operations:
-          label: Operaciones
+          label: Operations
       filters:
         title:
           expose:
-            label: Título
+            label: Title
         type:
           expose:
             label: 'Tipo de contenido'
@@ -45,13 +45,13 @@ display:
             label: 'Estado de publicación'
             group_items:
               1:
-                title: Publicado
+                title: Published
               2:
                 title: 'Sin publicar'
         langcode:
           expose:
-            label: Idioma
-      title: Contenido
+            label: Language
+      title: Content
       empty:
         area_text_custom:
           content: 'No hay contenido disponible.'
@@ -59,8 +59,8 @@ display:
   page_1:
     display_options:
       menu:
-        title: Contenido
+        title: Content
       tab_options:
-        title: Contenido
+        title: Content
         description: 'Encuentre y gestione el contenido'
     display_title: Page

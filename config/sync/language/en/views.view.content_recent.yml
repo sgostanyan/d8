@@ -1,4 +1,4 @@
-label: 'Contenido reciente'
+label: 'Recent content'
 description: 'Contenido reciente.'
 display:
   default:
@@ -9,10 +9,10 @@ display:
           submit_button: Aplicar
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
-      title: 'Contenido reciente'
+      title: 'Recent content'
       empty:
         area_text_custom:
           content: 'No hay contenido disponible.'
-      use_more_text: Más
+      use_more_text: More
   block_1:
-    display_title: Bloque
+    display_title: Block

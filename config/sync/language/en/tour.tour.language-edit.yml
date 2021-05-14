@@ -4,7 +4,7 @@ tips:
     label: 'Edición de idiomas'
     body: '<p>Esta página ofrece la posibilidad de editar un idioma en su sitio, incluyendo idiomas personalizados.</p>'
   language-edit-langcode:
-    label: 'Código de idioma'
+    label: 'Language code'
     body: '<p>No se puede cambiar el código de un idioma en el sitio, ya que el sistema lo utiliza para hacer un seguimiento del idioma.</p>'
   language-edit-label:
     label: 'Nombre del idioma'

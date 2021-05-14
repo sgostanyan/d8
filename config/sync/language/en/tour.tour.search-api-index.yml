@@ -3,6 +3,8 @@ tips:
     label: 'Statut de l''index'
   search-api-index-status:
     label: Status
+  search-api-index-tracker:
+    label: Tracker
   search-api-index-server:
     label: Serveur
   search-api-index-server-index-status:

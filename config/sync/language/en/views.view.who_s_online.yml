@@ -12,9 +12,9 @@ display:
       filters:
         access:
           expose:
-            label: 'Último acceso'
-            description: 'Un usuario es considerado conectado durante este tiempo después de haber visto una página por última vez.'
-      title: 'Quién está conectado'
+            label: 'Last access'
+            description: 'A user is considered online for this long after they have last viewed a page.'
+      title: 'Who''s online'
       header:
         result:
           content: 'Actualmente hay un total de  @total usuario en linea.'
@@ -22,7 +22,7 @@ display:
         area_text_custom:
           content: 'Hay 0 usuarios en línea.'
   who_s_online_block:
-    display_title: 'Quién está conectado'
+    display_title: 'Who''s online'
     display_options:
-      block_description: 'Quién está conectado'
+      block_description: 'Who''s online'
       display_description: 'Una lista de los usuarios que están conectados actualmente.'

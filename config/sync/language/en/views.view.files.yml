@@ -1,4 +1,4 @@
-label: Archivos
+label: Files
 description: 'Buscar y administrar archivos.'
 display:
   default:
@@ -6,7 +6,7 @@ display:
     display_options:
       exposed_form:
         options:
-          submit_button: Filtro
+          submit_button: Filter
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
       pager:
@@ -22,11 +22,11 @@ display:
         fid:
           label: 'Identifiant (FID)'
         filename:
-          label: Nombre
+          label: Name
         filemime:
-          label: 'Tipo MIME'
+          label: 'MIME type'
         filesize:
-          label: Tamaño
+          label: Size
         status:
           label: Status
           settings:
@@ -37,18 +37,18 @@ display:
         changed:
           label: 'Fecha de modificación'
         count:
-          label: 'Usado en'
+          label: 'Used in'
       filters:
         filename:
           expose:
             label: 'Nombre de archivo'
         filemime:
           expose:
-            label: 'Tipo MIME'
+            label: 'MIME type'
         status:
           expose:
             label: Status
-      title: Archivos
+      title: Files
       empty:
         area_text_custom:
           content: 'No hay archivos disponibles.'
@@ -56,7 +56,7 @@ display:
     display_title: 'Resumen de ficheros'
     display_options:
       menu:
-        title: Archivos
+        title: Files
   page_2:
     display_title: 'Usos del archivo'
     display_options:
@@ -82,5 +82,5 @@ display:
       arguments:
         fid:
           exception:
-            title: Todo(s)
+            title: All
           title: 'Información de uso de archivos para {{ arguments.fid }}'
