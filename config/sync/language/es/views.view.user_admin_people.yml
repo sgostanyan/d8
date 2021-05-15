@@ -1,15 +1,23 @@
-label: Personnes
-description: 'Trouver et gérer les personnes interagissant avec votre site.'
+label: Usuarios
+description: 'Encuentre y gestione a las personas que interactúan con su sitio.'
 display:
   default:
     display_title: Máster
     display_options:
       exposed_form:
         options:
+          submit_button: Filtro
           reset_button_label: Restablecer
           exposed_sorts_label: 'Ordenar por'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       pager:
         options:
+          tags:
+            previous: '‹ Anterior'
+            next: 'Siguiente >'
+            first: '« Primero'
+            last: 'Último »'
           expose:
             items_per_page_label: 'Elementos por página'
             items_per_page_options_all_label: '- Todo -'
@@ -18,47 +26,51 @@ display:
         user_bulk_form:
           label: 'Actualización masiva'
         name:
-          label: 'Nom d''utilisateur'
+          label: 'Nombre de usuario'
         status:
           label: Estado
           settings:
-            format_custom_true: Actif
-            format_custom_false: Bloqué
+            format_custom_true: Activo
+            format_custom_false: Bloqueado
+        roles_target_id:
+          label: Roles
         created:
-          label: 'Membre depuis'
+          label: 'Miembro desde hace'
         access:
-          label: 'Dernier accès'
+          label: 'Último acceso'
         operations:
           label: Operaciones
+        mail:
+          separator: ', '
       filters:
         combine:
           expose:
-            label: 'Nom ou courriel contenant'
+            label: 'Nombre o correo electrónico contiene'
         status:
           group_info:
             label: Estado
             group_items:
               1:
-                title: Actif
+                title: Activo
               2:
-                title: Bloqué
+                title: Bloqueado
         roles_target_id:
           expose:
-            label: Rôle
+            label: Rol
         permission:
           expose:
-            label: Droit
-      title: Personnes
+            label: Permiso
+      title: Usuarios
       empty:
         area_text_custom:
-          content: 'Personne n''est disponible.'
-      use_more_text: plus
+          content: 'No people available.'
+      use_more_text: más
   page_1:
     display_title: Página
     display_options:
       menu:
-        title: Lister
-        description: 'Trouver et gérer les personnes interagissant avec votre site.'
+        title: Listado
+        description: 'Encuentre y gestione a las personas que interactúan con su sitio.'
       tab_options:
-        title: Personnes
-        description: 'Gérer les comptes utilisateurs, les rôles et les droits.'
+        title: Usuarios
+        description: 'Gestionar cuentas, roles y permisos de usuarios.'

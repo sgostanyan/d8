@@ -1,19 +1,20 @@
+label: Idioma
 tips:
   language-overview:
     label: Idiomas
-    body: '<p>La page "Langues" vous permet d''ajouter, de modifier, de supprimer et réordonner les langues sur le site.</p>'
+    body: '<p>La página “Idiomas” le permite añadir, editar, borrar y reordenar idiomas para el sitio.</p>'
   language-add:
-    label: 'Ajout de langues'
-    body: '<p>Pour ajouter plus de langues à votre site, cliquer sur le bouton "Ajouter une langue".</p><p>Les langues ajoutées seront affichées dans la liste des langues et pourront ensuite être modifiées ou supprimées.</p>'
+    label: 'Añadiendo idiomas'
+    body: '<p>Para añadir más idiomas a su sitio, haga clic en el botón “Añadir idioma”.</p><p>Los idiomas añadidos se mostrarán en la lista de idiomas y podrán ser editados o eliminados.</p>'
   language-reorder:
-    label: 'Réordonner les langues'
-    body: '<p>Pour réordonner les langues sur votre site, utilisez les icônes à côté de chaque langue.</p><p>L''ordre affiché ici est l''ordre d''affichage pour les listes de langue sur le site telles que le bloc de changement de langue fourni par les modules Interface Translation et Content Translation.</p><p>Lorsque vous avez terminé de réordonner les langues, cliquer sur le bouton "Enregistrer la configuration" pour que les changements prennent effet.</p>'
+    label: 'Reordenando idiomas'
+    body: '<p>Para reordenar los idiomas en su sitio, utilice los iconos de arrastre junto a cada idioma.</p><p>El orden que se muestra aquí es el orden de visualización de las listas de idiomas en el sitio, como en los bloques de conmutación de idiomas proporcionados por los módulos de Traducción de interfaz y Traducción de contenido.</p><p>Cuando haya terminado de reordenar los idiomas, haga clic en el botón “Guardar configuración” para que los cambios surtan efecto</p>'
   language-default:
-    label: 'Définir une langue par défaut'
-    body: '<p>Vous pouvez changer la langue par défaut de votre site en choisissant une des langues configurées. Le site utilisera cette langue par défaut dans les cas où aucun choix n''a été fait mais que la langue doit être définie, par exemple pour la langue d''affichage de l''interface.</p>'
+    label: 'Fija un idioma por defecto'
+    body: '<p>Puede cambiar el idioma predeterminado del sitio eligiendo uno de los idiomas configurados como predeterminado. El sitio utilizará el idioma por defecto en situaciones en las que no se ha hecho ninguna elección pero se debe establecer un idioma, por ejemplo, como idioma de la interfaz mostrada.</p>'
   language-operations:
-    label: 'Modifie les langues'
-    body: '<p>Les actions pour éditer et supprimer vos langues sont fournies.</p><p>Vous pouvez modifier le nom et le sens de lecture de la langue.</p><p>Les langues supprimées peuvent être ré-ajoutées plus tard. Supprimer une langue retirera toutes les traductions d''interface associées et le contenu dans cette langue sera marqué comme indépendant de la langue. Notez que vous ne pouvez pas supprimer la langue par défaut du site.</p>'
+    label: 'Modificando idiomas'
+    body: '<p>Se proporcionan operaciones para editar y eliminar sus idiomas.</p><p>Puede editar el nombre y la dirección del idioma.</p><p>Los idiomas borrados se pueden volver a añadir más adelante. Al eliminar un idioma se eliminarán todas las traducciones de la interfaz asociadas a él, y el contenido en este idioma se configurará para que sea neutro. Tenga en cuenta que no puede eliminar el idioma predeterminado del sitio.</p>'
   language-continue:
-    label: 'Continuant sur'
-    body: '<p>Maintenant que vous avez une vue d''ensemble de la page "Langues", vous pouvez continuer par :<ul><li><a href="[site:url]admin/config/regional/language/add">Ajouter une langue</a></li><li>Réorganiser les langues</li><li>Modifier une langue</li><li>Supprimer une langue</li></ul></p>'
+    label: Continuando
+    body: '<p>Now that you have an overview of the "Languages" page, you can continue by:<ul><li><a href="[site:url]admin/config/regional/language/add">Adding a language</a></li><li>Reordering languages</li><li>Editing a language</li><li>Deleting a language</li></ul></p>'

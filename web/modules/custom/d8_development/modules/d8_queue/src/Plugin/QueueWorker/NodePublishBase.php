@@ -48,7 +48,7 @@ abstract class NodePublishBase extends QueueWorkerBase implements ContainerFacto
   public function processItem($data) {
     /** @var NodeInterface $node */
     $node = $this->nodeStorage->load($data->nid);
-    if (!$node->isPublished() && $node instanceof NodeInterface) {
+    if ($node instanceof NodeInterface && !$node->isPublished()) {
       return $this->publishNode($node);
     }
   }

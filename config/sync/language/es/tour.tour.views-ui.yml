@@ -1,31 +1,32 @@
-label: 'Voir la page de modification'
+label: 'Ver página de edición'
 tips:
   views-main:
-    label: 'Gérer les paramètres d''affichage'
-    body: 'Voir ou modifier la configuration.'
+    label: 'Administrar la configuración de la vista'
+    body: 'Ver o editar la configuración.'
   views-ui-displays:
-    label: 'S''affiche dans cette vue'
-    body: 'Un affichage est une façon de rendre les résultats, par exemple comme une page ou un bloc. Une vue peut contenir plusieurs affichages, qui sont listés ici. L''affichage actif est mis en évidence.'
+    label: 'Ver o editar la configuración'
+    body: 'Una visualización es una forma de dar salida a los resultados, por ejemplo, como una página o un bloque. Una vista puede contener varias pantallas, que se enumeran a continuación. La pantalla activa se resalta.'
   views-ui-view-admin:
-    label: 'Voir l''administration'
-    body: 'Réaliser des tâches d''administration, comme ajouter une description et créer un clone. Cliquer sur le bouton déroulant pour voir les options disponibles.'
+    label: 'Ver administración'
+    body: 'Realice tareas administrativas, incluyendo añadir una descripción y crear un clon. Haga clic en el botón desplegable para ver las opciones disponibles.'
   views-ui-format:
-    label: 'Format de sortie'
-    body: 'Choisir comment afficher les résultats. Par ex., choisir <em>Contenu</em> pour afficher chaque élément dans son intégralité, utilisant vos paramètres d''affichage. Ou choississez <em>Champs</em>, qui permet de n''afficher que les champs sélectionnés pour chaque résultat. Des formats supplémentaires peuvent être ajoutés en installant des modules qui <em>étendent</em> les fonctionnalités de base de Drupal.'
+    label: 'Formato de salida'
+    body: 'Seleccione cómo dar salida a los resultados. Por ejemplo, seleccione <em>Content</em> para dar salida a cada elemento por completo, utilizando los ajustes de visualización configurados. O seleccione <em>Fields</em>, lo que le permite producir sólo campos específicos para cada resultado. Se pueden añadir formatos adicionales instalando módulos en <em>extend</em> la funcionalidad básica de Drupal.'
   views-ui-fields:
     label: Campos
-    body: 'Si cette vue utilise des champs, alors ils sont listés ici. Vous pouvez cliquer sur un champ pour le configurer.'
+    body: 'Si esta vista utiliza campos, éstos se listan aquí. Puede hacer clic en un campo para configurarlo.'
   views-ui-filter:
-    label: 'Filtrer votre vue'
-    body: 'Ajouter des filtres pour limiter le nombre de résultats affichés. Par ex., pour ne montrer que le contenu <em>publié</em>, il faudrait ajouter le filtrer <em>Publié</em> et selectionner <em>Oui</em>.'
+    label: 'Filtra tu vista'
+    body: 'Añada filtros para limitar los resultados en la salida. Por ejemplo, para mostrar sólo el contenido que es <em>publicado</em>, usted agregaría un filtro para <em>Publicado</em> y seleccionaría <em>Si</em>.'
   views-ui-filter-operations:
-    label: 'Filtrer les actions'
-    body: 'Ajouter, réarranger ou supprimer les filtres.'
+    label: 'Filtrar acciones'
+    body: 'Agregue, reorganice o elimine los filtros.'
   views-ui-sorts:
-    label: 'Critère de tri'
-    body: 'Contrôler l''ordre dans lequel les résultats sont affichés. Cliquer sur une une règle de tri active pour la configurer.'
+    label: 'Criterios de ordenación'
+    body: 'Controle el orden en el que se emiten los resultados. Haga clic en una regla de ordenación activa para configurarla.'
   views-ui-sorts-operations:
-    label: 'Trier les actions'
-    body: 'Ajouter, réarranger ou supprimer les règles de tri.'
+    label: 'Acciones de ordenación'
+    body: 'Agregar, reorganizar o eliminar reglas de clasificación.'
   views-ui-preview:
-    body: 'Afficher un aperçu du résultat de la vue.'
+    label: 'Vista previa'
+    body: 'Muestra una vista previa de la salida de la vista.'
