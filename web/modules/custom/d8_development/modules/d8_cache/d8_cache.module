@@ -29,12 +29,13 @@ function d8_cache_preprocess_page(&$variables) {
   $cid = 'd8_cache:' . $lang;
   $data = NULL;
   $cache = \Drupal::cache()->get($cid);
-  if ($cache) {
-    $message = 'From cache: ' .  $cache->data;
+  $message = '[d8_cache] ';
+  if ($cache && $cache->data) {
+    $message .= 'Current language from cache : ' .  $cache->data;
   }
   else {
-    $message = 'No cache: ' . _longFunction($lang);
-    \Drupal::cache()->set($cid, $data, Cache::PERMANENT, ['d8_cache_custom']);
+    $message .= 'Current language no cache : ' . _longFunction($lang);
+    \Drupal::cache()->set($cid, $lang, Cache::PERMANENT, ['d8_cache_custom']);
   }
   Drupal::messenger()->addStatus($message, 'notice');
 }

@@ -1,0 +1,6 @@
+command:
+  local:
+    import:
+      options:
+        # Do not overrides existing translations, only append new.
+        override: none

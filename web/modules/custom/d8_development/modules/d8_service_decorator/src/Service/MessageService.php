@@ -47,14 +47,14 @@ class MessageService implements MessageServiceInterface {
   public function getMessage() {
     $currentRouteName = $this->currentRouteMatch->getRouteName();
     $currentLanguageName = $this->languageManager->getCurrentLanguage()->getName();
-    return $currentRouteName . ' ' . $currentLanguageName;
+    return '[d8_service_decorator] ' . $currentRouteName . ' ' . $currentLanguageName;
   }
 
   /**
    * @param $message
    */
   public function display($message) {
-    $this->messenger->addMessage($message);
+     $this->messenger->addMessage($message);
   }
 
 }

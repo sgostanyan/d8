@@ -8,5 +8,5 @@ remote_video_field: null
 remote_video_enable: null
 video_field: field_media_video_file
 video_enable: 0
-cron_enable: 0
+cron_enable: 1
 cron_time: '5'

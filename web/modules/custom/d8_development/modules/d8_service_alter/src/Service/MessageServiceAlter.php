@@ -58,7 +58,7 @@ class MessageServiceAlter {
     // EntityTypeManger has been added dynamically in ServiceProvider class.
     $entityTypeId = $this->entityTypeManager->getStorage('node')->getEntityTypeId();
 
-    $this->messenger->addMessage($currentRouteName . ' ' . $currentLanguageName . ' ALTER ! ' . $entityTypeId);
+    $this->messenger->addMessage('[d8_service_alter] ' . $currentRouteName . ' ' . $currentLanguageName . ' ALTER ! ' . $entityTypeId);
   }
 
 }

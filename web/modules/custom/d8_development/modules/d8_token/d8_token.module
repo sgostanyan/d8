@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * Contains d8_token.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function d8_token_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the d8_token module.
+    case 'help.page.d8_token':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Drupal 8 custom token') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_token_info().
+ */
+function d8_token_token_info() {
+
+  $info['tokens']['user']['name-blend'] = [
+    'name' => t('Nme blend'),
+    'description' => t('Blends name'),
+  ];
+
+  $info['tokens']['user']['mail-blend'] = [
+    'name' => t('Mail blend'),
+    'description' => t('Blends email'),
+  ];
+
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function d8_token_tokens($type, $tokens, array $data, array $options, \Drupal\Core\Render\BubbleableMetadata $bubbleable_metadata) {
+  $replacements = [];
+  if ($type == 'user') {
+    foreach ($tokens as $name => $original) {
+      // Find the desired token by name
+      switch ($name) {
+        case 'name-blend':
+          $user = $data['user'];
+          $replacements[$original] = str_shuffle($user->getUserName());
+          break;
+        case 'mail-blend':
+          $user = $data['user'];
+          $replacements[$original] = str_shuffle($user->getEmail());
+          break;
+      }
+    }
+  }
+  return $replacements;
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function d8_token_preprocess_html(&$variables) {
+  $user = Drupal::currentUser();
+  if ($user->isAuthenticated()) {
+    $id = $user->id();
+    $userEntity = $id ? Drupal::entityTypeManager()->getStorage('user')->load($id) : NULL;
+    $token = Drupal::token();
+    $message = $token->replace('[d8_token] Blend Username: [user:name-blend] - Blend Email: [user:mail-blend]', ['user' => $userEntity]);
+    Drupal::messenger()->addStatus($message);
+  }
+}
