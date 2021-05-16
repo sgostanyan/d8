@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * Contains d8_oembed.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\media_library\Form\OEmbedForm;
+
+/**
+ * Implements hook_help().
+ */
+function d8_oembed_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the d8_oembed module.
+    case 'help.page.d8_oembed':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Drupal 8 custom oembed provider') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_media_source_info_alter().
+ */
+function d8_oembed_media_source_info_alter(array &$sources) {
+  $sources['oembed:codepen'] = [
+    'id' => 'codepen',
+    'label' => t('CodePen'),
+    'description' => t('Embed a CodePen.'),
+    'allowed_field_types' => ['string'],
+    'default_thumbnail_filename' => 'no-thumbnail.png',
+    'providers' => ['CodePen'],
+    'class' => 'Drupal\media\Plugin\media\Source\OEmbed',
+    'forms' => [
+      'media_library_add' => OEmbedForm::class,
+    ],
+    'thumbnail_uri_metadata_attribute' => [],
+    'provider' => 'd8_oembed',
+  ];
+}
+
+/**
+ * Implements hook_oembed_resource_url_alter().
+ */
+function d8_oembed_oembed_resource_url_alter(array &$parsed_url, \Drupal\media\OEmbed\Provider $provider) {
+  if ($provider->getName() === 'CodePen') {
+    $parsed_url['query']['format'] = 'json';
+  }
+}

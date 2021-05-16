@@ -1,0 +1,21 @@
+uuid: 35457afa-586f-4901-a02f-ab0c34ef7ddd
+langcode: fr
+status: true
+dependencies:
+  module:
+    - media
+id: media.field_media_oembed_codepen_1
+field_name: field_media_oembed_codepen_1
+entity_type: media
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

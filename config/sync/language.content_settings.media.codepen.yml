@@ -1,0 +1,11 @@
+uuid: dfd64e7f-289f-47c6-aa62-1ead9a3947f8
+langcode: fr
+status: true
+dependencies:
+  config:
+    - media.type.codepen
+id: media.codepen
+target_entity_type_id: media
+target_bundle: codepen
+default_langcode: site_default
+language_alterable: false

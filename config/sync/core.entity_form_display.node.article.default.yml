@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.article.field_country
     - field.field.node.article.field_image
     - field.field.node.article.field_media
+    - field.field.node.article.field_oembed_media
     - field.field.node.article.field_page
     - field.field.node.article.field_paragraph
     - field.field.node.article.field_pdf
@@ -61,6 +62,13 @@ content:
   field_media:
     type: media_library_widget
     weight: 125
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
+  field_oembed_media:
+    type: media_library_widget
+    weight: 128
     settings:
       media_types: {  }
     third_party_settings: {  }

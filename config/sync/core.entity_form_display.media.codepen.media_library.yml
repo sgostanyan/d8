@@ -1,0 +1,21 @@
+uuid: ae910b44-587d-4575-8bf0-1079755b8528
+langcode: fr
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.codepen.field_media_oembed_codepen_1
+    - media.type.codepen
+id: media.codepen.media_library
+targetEntityType: media
+bundle: codepen
+mode: media_library
+content: {  }
+hidden:
+  created: true
+  field_media_oembed_codepen_1: true
+  langcode: true
+  name: true
+  path: true
+  status: true
+  uid: true

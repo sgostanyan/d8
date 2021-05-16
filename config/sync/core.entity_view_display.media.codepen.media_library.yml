@@ -1,0 +1,32 @@
+uuid: 6fe56b06-1515-4766-9407-7445d83ccc6f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.media_library
+    - field.field.media.codepen.field_media_oembed_codepen_1
+    - image.style.medium
+    - media.type.codepen
+  module:
+    - image
+id: media.codepen.media_library
+targetEntityType: media
+bundle: codepen
+mode: media_library
+content:
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: ''
+    weight: 0
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_media_oembed_codepen_1: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  uid: true

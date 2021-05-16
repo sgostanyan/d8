@@ -1,0 +1,61 @@
+uuid: ec45eb28-0ff4-4b62-b4a0-9e0f67fb196a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.media.codepen.field_media_oembed_codepen_1
+    - media.type.codepen
+  module:
+    - media
+    - path
+id: media.codepen.default
+targetEntityType: media
+bundle: codepen
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_media_oembed_codepen_1:
+    type: oembed_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 100
+    region: content
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+hidden:
+  name: true

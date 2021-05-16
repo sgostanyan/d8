@@ -1,0 +1,19 @@
+uuid: ca262261-d229-4936-bcb8-4035c5d24570
+langcode: fr
+status: true
+dependencies:
+  module:
+    - d8_oembed
+id: codepen
+label: CodePen
+description: ''
+source: 'oembed:codepen'
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  thumbnails_directory: 'public://oembed_thumbnails'
+  providers:
+    - CodePen
+  source_field: field_media_oembed_codepen_1
+field_map:
+  title: name

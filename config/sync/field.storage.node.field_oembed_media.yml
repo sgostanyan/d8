@@ -1,0 +1,20 @@
+uuid: bb37fa54-0c5a-40f4-9ecf-ba70ca5c020e
+langcode: fr
+status: true
+dependencies:
+  module:
+    - media
+    - node
+id: node.field_oembed_media
+field_name: field_oembed_media
+entity_type: node
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

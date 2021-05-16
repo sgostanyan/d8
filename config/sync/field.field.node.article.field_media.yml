@@ -27,8 +27,8 @@ settings:
       audio: audio
       file: file
       image: image
-      remote_video: remote_video
       video: video
+      remote_video: remote_video
     sort:
       field: _none
     auto_create: false

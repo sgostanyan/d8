@@ -1,0 +1,19 @@
+uuid: 96333f81-1c50-477c-9edb-aa77b67b90ae
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_oembed_codepen_1
+    - media.type.codepen
+id: media.codepen.field_media_oembed_codepen_1
+field_name: field_media_oembed_codepen_1
+entity_type: media
+bundle: codepen
+label: 'URL de CodePen'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
