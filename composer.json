@@ -31,7 +31,7 @@
         "drupal/field_group": "^3.0",
         "drupal/file_delete": "^1.0",
         "drupal/mail_safety": "^1.2",
-        "drupal/media_pdf_thumbnail": "^3.8@RC",
+        "drupal/media_pdf_thumbnail": "^4.0@beta",
         "drupal/paragraphs": "^1.10",
         "drupal/pathauto": "^1.5",
         "drupal/pdf_slideshow": "^2.5",
