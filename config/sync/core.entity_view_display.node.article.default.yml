@@ -18,7 +18,6 @@ dependencies:
   module:
     - file
     - image
-    - media_pdf_thumbnail
     - text
     - user
 _core:
@@ -53,13 +52,13 @@ content:
       image_link: ''
     third_party_settings: {  }
   field_media:
-    type: media_pdf_thumbnail_field_formatter
+    type: entity_reference_entity_view
     weight: 4
     region: content
     label: above
     settings:
-      image_style: ''
-      image_link: media
+      view_mode: default
+      link: false
     third_party_settings: {  }
   field_oembed_media:
     type: entity_reference_entity_view
