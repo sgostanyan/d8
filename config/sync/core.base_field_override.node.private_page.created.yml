@@ -1,0 +1,18 @@
+uuid: 652c293e-53f7-4187-ab93-6ee764ecc28d
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.private_page
+id: node.private_page.created
+field_name: created
+entity_type: node
+bundle: private_page
+label: 'Écrit le'
+description: 'L''heure à laquelle le nœud a été créé.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

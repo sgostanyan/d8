@@ -1,0 +1,18 @@
+uuid: 122c7b73-cd7f-463c-ae66-078d00282c6a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - media.type.codepen
+id: media.codepen.created
+field_name: created
+entity_type: media
+bundle: codepen
+label: 'Écrit le'
+description: 'Date à laquelle cet élément de média a été créé.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\media\Entity\Media::getRequestTime'
+settings: {  }
+field_type: created

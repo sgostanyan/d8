@@ -1,26 +1,19 @@
-uuid: 471f6293-6941-41b6-b602-2526d7bc49da
+uuid: 9f36c6ba-c6c8-411c-9ed1-1bd8befcf6f6
 langcode: fr
 status: true
 dependencies:
   config:
-    - media.type.file
+    - media.type.codepen
   module:
-    - content_translation
     - image
-third_party_settings:
-  content_translation:
-    translation_sync:
-      file: file
-      alt: 0
-      title: 0
-id: media.file.thumbnail
+id: media.codepen.thumbnail
 field_name: thumbnail
 entity_type: media
-bundle: file
-label: Thumbnail
+bundle: codepen
+label: Vignette
 description: 'Vignette de cet élément média.'
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:

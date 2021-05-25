@@ -1,19 +1,19 @@
-uuid: 7413f78c-0305-42c3-b323-48d6ce92ca5d
+uuid: 6820db73-f996-4e98-a57e-90dfa66548a9
 langcode: fr
 status: true
 dependencies:
   config:
-    - media.type.file
+    - media.type.codepen
   module:
     - path
-id: media.file.path
+id: media.codepen.path
 field_name: path
 entity_type: media
-bundle: file
+bundle: codepen
 label: 'Alias d''URL'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }

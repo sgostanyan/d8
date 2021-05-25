@@ -1,0 +1,22 @@
+uuid: 74e2d2df-7011-42bf-9841-ec6ed1a5c0fb
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.country
+id: taxonomy_term.country.status
+field_name: status
+entity_type: taxonomy_term
+bundle: country
+label: Publié
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Activé
+  off_label: Désactivé
+field_type: boolean

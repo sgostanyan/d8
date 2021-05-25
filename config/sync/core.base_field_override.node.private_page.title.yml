@@ -1,0 +1,18 @@
+uuid: 69dbbf13-8f6b-4875-a9ef-7ebd717f8da6
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.private_page
+id: node.private_page.title
+field_name: title
+entity_type: node
+bundle: private_page
+label: Titre
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,19 +1,19 @@
-uuid: 7413f78c-0305-42c3-b323-48d6ce92ca5d
+uuid: 202ec26a-a909-4e53-90c8-cc245a03e9ed
 langcode: fr
 status: true
 dependencies:
   config:
-    - media.type.file
+    - node.type.private_page
   module:
     - path
-id: media.file.path
+id: node.private_page.path
 field_name: path
-entity_type: media
-bundle: file
+entity_type: node
+bundle: private_page
 label: 'Alias d''URL'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }

@@ -1,17 +1,17 @@
-uuid: 0597ea3d-074c-4d8f-88ad-5e2f9169259f
+uuid: 1219c867-9738-4f85-9620-b64d69222462
 langcode: fr
 status: true
 dependencies:
   config:
-    - media.type.file
-id: media.file.name
+    - media.type.codepen
+id: media.codepen.name
 field_name: name
 entity_type: media
-bundle: file
-label: Name
+bundle: codepen
+label: Nom
 description: ''
 required: true
-translatable: true
+translatable: false
 default_value:
   -
     value: ''

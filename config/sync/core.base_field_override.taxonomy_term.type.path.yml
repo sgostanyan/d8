@@ -1,19 +1,19 @@
-uuid: 7413f78c-0305-42c3-b323-48d6ce92ca5d
+uuid: e0749cdb-9670-470e-af34-92f2f4e9ab92
 langcode: fr
 status: true
 dependencies:
   config:
-    - media.type.file
+    - taxonomy.vocabulary.type
   module:
     - path
-id: media.file.path
+id: taxonomy_term.type.path
 field_name: path
-entity_type: media
-bundle: file
+entity_type: taxonomy_term
+bundle: type
 label: 'Alias d''URL'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }

@@ -1,0 +1,20 @@
+uuid: cd562756-ba1e-4f29-922c-72c5de470deb
+langcode: fr
+status: true
+dependencies:
+  config:
+    - node.type.private_page
+id: node.private_page.uid
+field_name: uid
+entity_type: node
+bundle: private_page
+label: 'Écrit par'
+description: 'Le nom d''utilisateur de l''auteur du contenu.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference
