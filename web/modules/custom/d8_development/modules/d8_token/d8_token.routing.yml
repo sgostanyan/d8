@@ -1,0 +1,7 @@
+d8_token.controller_page:
+  path: '/admin/d8_development/token'
+  defaults:
+    _controller: '\Drupal\d8_token\Controller\MainController::page'
+    _title: 'Token'
+  requirements:
+    _permission: 'administer site configuration'

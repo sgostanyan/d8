@@ -1,0 +1,7 @@
+d8_token:
+  title: 'D8 Token'
+  description: 'Drupal 8 Token'
+  route_name: d8_token.controller_page
+  menu_name: system.admin
+  parent: d8_development
+  weight: 6

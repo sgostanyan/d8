@@ -1,0 +1,7 @@
+d8_service_decorator.controller_page:
+  path: '/admin/d8_development/service_decorator'
+  defaults:
+    _controller: '\Drupal\d8_service_decorator\Controller\MainController::page'
+    _title: 'Service Decorator'
+  requirements:
+    _permission: 'administer site configuration'

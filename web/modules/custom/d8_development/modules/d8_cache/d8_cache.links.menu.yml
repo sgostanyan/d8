@@ -1,0 +1,7 @@
+d8_cache:
+  title: 'D8 Cache'
+  description: 'Drupal 8 Cache'
+  route_name: d8_cache.controller_page
+  menu_name: system.admin
+  parent: d8_development
+  weight: 6

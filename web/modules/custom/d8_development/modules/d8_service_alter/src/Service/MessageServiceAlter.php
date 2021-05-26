@@ -12,7 +12,7 @@ use Drupal\Core\Routing\CurrentRouteMatch;
  *
  * @package Drupal\d8_service_alter\Service
  */
-class MessageServiceAlter {
+class MessageServiceAlter implements MessageServiceInterface {
 
   /**
    * @var \Drupal\Core\Language\LanguageManagerInterface
@@ -35,11 +35,12 @@ class MessageServiceAlter {
   protected $entityTypeManager;
 
   /**
-   * MessageService constructor.
+   * MessageServiceAlter constructor.
    *
    * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
    * @param \Drupal\Core\Routing\CurrentRouteMatch $currentRouteMatch
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    */
   public function __construct(LanguageManagerInterface $languageManager, MessengerInterface $messenger, CurrentRouteMatch $currentRouteMatch, EntityTypeManagerInterface $entityTypeManager) {
     $this->languageManager = $languageManager;

@@ -11,7 +11,7 @@ use Drupal\Core\Routing\CurrentRouteMatch;
  *
  * @package Drupal\d8_service_alter
  */
-class MessageService {
+class MessageService implements MessageServiceInterface {
 
   /**
    * @var \Drupal\Core\Language\LanguageManagerInterface

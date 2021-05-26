@@ -1,0 +1,7 @@
+d8_service_alter:
+  title: 'D8 Service Alter'
+  description: 'Drupal 8 Service Alter'
+  route_name: d8_service_alter.controller_page
+  menu_name: system.admin
+  parent: d8_development
+  weight: 6

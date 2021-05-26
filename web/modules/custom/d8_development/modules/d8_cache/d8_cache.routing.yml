@@ -1,0 +1,7 @@
+d8_cache.controller_page:
+  path: '/admin/d8_development/cache'
+  defaults:
+    _controller: '\Drupal\d8_cache\Controller\MainController::page'
+    _title: 'Cache'
+  requirements:
+    _permission: 'administer site configuration'

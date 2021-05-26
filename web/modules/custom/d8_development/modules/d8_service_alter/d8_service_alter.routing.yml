@@ -1,0 +1,7 @@
+d8_service_alter.controller_page:
+  path: '/admin/d8_development/service_alter'
+  defaults:
+    _controller: '\Drupal\d8_service_alter\Controller\MainController::page'
+    _title: 'Service Alter'
+  requirements:
+    _permission: 'administer site configuration'
